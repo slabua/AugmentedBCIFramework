@@ -1,11 +1,15 @@
 # SLB
-.gitignorecpp
 *sdf
 *suo
+*bsc
+*exe
+*pdb
 src/*/Debug
+src/*/moc*cpp
 bin/BinFiles
 bin/OutputFiles
 bin/OutputFilesLDA
+bin/logs
 bin/matlab/*mat
 bin/matlab/*bak
 bin/matlab/new
