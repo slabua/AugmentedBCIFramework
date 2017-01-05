@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<stringa>AA</stringa>
+<time_flash>125</time_flash>
+<modalita>1</modalita>
+<row_num_interface>4</row_num_interface>
+<elements>16</elements>
+<finestra>200</finestra>
+<num_flash>2</num_flash>
+<nome></nome>
+<target>
+	<t>1</t>
+	<t>1</t>
+</target>
+<sensor>0</sensor>
+<iptelenoid>192.168.1.4</iptelenoid>
+<porttelenoid>12000</porttelenoid>
+<palette>1</palette>
+<flash_analysis>1</flash_analysis>
+<optimization>-842150451</optimization>
+<calibration_analysis />
+<letter_color>black</letter_color>
+<background_color>orange</background_color>
+<texture>
+	<p>A</p>
+	<p>B</p>
+	<p>C</p>
+	<p>D</p>
+	<p>E</p>
+	<p>F</p>
+	<p>G</p>
+	<p>H</p>
+	<p>I</p>
+	<p>J</p>
+	<p>K</p>
+	<p>L</p>
+	<p>M</p>
+	<p>N</p>
+	<p>O</p>
+	<p>P</p>
+	<p>Q</p>
+	<p>R</p>
+	<p>S</p>
+	<p>T</p>
+	<p>U</p>
+	<p>V</p>
+	<p>W</p>
+	<p>X</p>
+	<p>Y</p>
+	<p>Z</p>
+	<p>0</p>
+	<p>1</p>
+	<p>2</p>
+	<p>3</p>
+	<p>4</p>
+	<p>5</p>
+	<p>6</p>
+	<p>7</p>
+	<p>8</p>
+	<p>9</p>
+</texture>

@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="c5396bbf-b4f3-4bfc-81d8-8d0b991ad000"
+  name="ModelingProject01" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="c913e71b-97a2-45cb-b5fe-036a432bac44">
+      <body>SelectedID
+    (hybrid mode output)
+
+SelectedID, BehaviourIntensity
+    (bio-hybrid mode output)</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="86d9bfa8-40cf-4d82-847d-5baa1ac29253"
+        name="ActionSelection"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="e0ceb967-0677-4483-8eeb-07ae9d0609c7">
+            <packageMoniker
+              Id="b375915b-e2a9-474d-a05e-f17dff4f9445"
+              LastKnownName="Classifier (internal)"
+              LastKnownLocation="Package_1647.uml" />
+          </dependency>
+          <dependency
+            Id="76304987-4b2b-4283-b7dc-729fd0239290">
+            <classMoniker
+              Id="6aa5372f-fa81-4691-ac96-11d9605ec7f7"
+              LastKnownName="TobiiTracker"
+              LastKnownLocation="ModelingProject01.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="22407c77-51af-4ba6-b52c-87e12d63d12f"
+            name="UserSkill"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="cd7f9242-c6be-4c76-8e69-0a184e25de64"
+            name="FocussedID"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="66947b8b-c4be-469d-8339-beebc8e0c20b"
+            name="FocusPrecision"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="3901bd69-dee0-4fbe-9411-0f31828dd260"
+            name="ClassifiedID"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="7a819af0-95cc-4f07-b9ab-a3463d09699f"
+            name="ClassificationPrecision"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="764592ff-07ae-41d2-9428-3b76cf5cb644"
+            name="SelectedID"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="251bddc8-13b6-4c0f-b62f-7cd8946f1562"
+            name="weighingModule"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="6e9062f7-b1ff-412b-8c68-10b1ace8e998"
+            name="idSelectionModule"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7412150c-5e3d-4a96-aaa0-8056505ba2af"
+        name="FeatureExtraction"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="09dcbcf2-99c2-4126-93de-146e9ef63efa">
+            <packageMoniker
+              Id="b375915b-e2a9-474d-a05e-f17dff4f9445"
+              LastKnownName="Classifier (internal)"
+              LastKnownLocation="Package_1647.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="375407d0-618e-4f35-8349-a016be8b3369"
+            isDerived="false"
+            sourceEndRoleName="FeatureExtraction"
+            targetEndRoleName="Engine"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="d1f616ca-664a-4e03-9ec4-4afb3336471b"
+              LastKnownName="Engine"
+              LastKnownLocation="Package_1620.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0352c6ce-6e79-4a79-bf64-ffca23374efd"
+                  name="FeatureExtraction"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7d6e399f-f0d6-4866-ad01-009f1f013846"
+                  name="Engine"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="f4c4a266-b706-4509-b8dc-d1892d877f1b"
+            name="NormalisedEnergy"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="6d447f59-73a2-4a18-9ac2-e12c44ac962a"
+            name="NormalisedRSquare"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="7cceb9ea-519f-43a5-ab3b-ad6a5ae806be"
+            name="NormalisedEntropy"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="fdede634-c585-4259-bb03-107edea5bc01"
+            name="EntropyEnergyNormalisation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="1c6a3ac8-112e-461f-9d63-42c14119fcb0"
+            name="EntropyEnergy"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="fab5c2d4-acac-478f-8b98-818ad4b0f719"
+            name="rSquare"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="e01d8477-d51b-4845-ad8b-21a1ee618a01"
+            name="rSquareNormalisation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="03063169-0147-4c62-aa73-2347c7b0c7c4"
+        name="ResponseModulation"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="c19c240f-1dfb-45b9-8aca-22b38c16844c">
+            <classMoniker
+              Id="7412150c-5e3d-4a96-aaa0-8056505ba2af"
+              LastKnownName="FeatureExtraction"
+              LastKnownLocation="ModelingProject01.uml" />
+          </dependency>
+          <dependency
+            Id="9e8a6515-a45c-4cb2-a685-20c9db5e08a9">
+            <classMoniker
+              Id="86d9bfa8-40cf-4d82-847d-5baa1ac29253"
+              LastKnownName="ActionSelection"
+              LastKnownLocation="ModelingProject01.uml" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="a8ad8b4f-0961-4dcc-8cda-43f86953433d"
+            name="SelectedID"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="abc48328-1f7a-4705-ac6e-4026a977c94d"
+            name="NormalisedEnergy"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="870ceade-b724-493e-b54b-3c0328bf0ef9"
+            name="NormalisedEntropy"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="c365760d-7054-441c-afe7-6eb3ac7fd57d"
+            name="NormalisedRSquare"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="8052778a-7016-4e89-87f9-40bee6587ea1"
+            name="BehaviourIntensity"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="5d6514d0-2613-4235-be5a-55798932d9d0"
+            name="modulationModule"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="429eb75c-ad2d-4b3e-a34b-054d7614c353"
+            name="thresholdModule"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="7490d6d5-0e15-4a3d-862b-26e210733e0d"
+        LastKnownName="Matlab (external)"
+        LastKnownLocation="Package_1620.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6aa5372f-fa81-4691-ac96-11d9605ec7f7"
+        name="TobiiTracker"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="883217f4-92db-428c-9942-3c17871a5032"
+            name="FocusPrecision"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="dbfd1e8a-37eb-4f27-9564-4e631c7714f5"
+            name="FocussedID"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="860ea7b8-da9e-45e8-a931-d5bdfd04019f"
+            name="Process"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="b375915b-e2a9-474d-a05e-f17dff4f9445"
+        LastKnownName="Classifier (internal)"
+        LastKnownLocation="Package_1647.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

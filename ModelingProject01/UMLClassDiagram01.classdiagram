@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="e8c50133-e915-452b-9794-812af0332740" name="UMLClassDiagram01" linkedPackageId="8068f097-a958-48f8-b6eb-db4622378467" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <ownedCommentsInternal>
+    <comment Id="566c75e9-bb8c-4e7c-ae64-0689a46eba60">
+      <elementDefinition Id="c913e71b-97a2-45cb-b5fe-036a432bac44" />
+      <body>SelectedID
+    (hybrid mode output)
+
+SelectedID, BehaviourIntensity
+    (bio-hybrid mode output)</body>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="713430ff-151e-4ca3-8766-768f009a35d9" name="ActionSelection" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="86d9bfa8-40cf-4d82-847d-5baa1ac29253" />
+        <suppliersInternal>
+          <dependency Id="bfd2dab2-1627-44ac-a96a-7f892f112e76">
+            <packageMoniker Id="be6de2cf-ca65-4617-b635-d3f3df9fbcb9" LastKnownName="Classifier (internal)" />
+            <elementDefinition Id="e0ceb967-0677-4483-8eeb-07ae9d0609c7" />
+          </dependency>
+          <dependency Id="5b5bddef-c4be-4073-9ecd-5834c76a4463">
+            <classMoniker Id="1bdcb534-d1a8-4df0-bda1-554738adcae4" LastKnownName="TobiiTracker" />
+            <elementDefinition Id="76304987-4b2b-4283-b7dc-729fd0239290" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property Id="5f75ae2e-4079-4d9f-99c8-a8e73914f63b" name="UserSkill" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="22407c77-51af-4ba6-b52c-87e12d63d12f" />
+          </property>
+          <property Id="d1069322-7ec7-433f-9568-6bb138dd8628" name="FocussedID" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="cd7f9242-c6be-4c76-8e69-0a184e25de64" />
+          </property>
+          <property Id="99f9a7c7-653d-4e5a-96bd-85c8d70a98a3" name="FocusPrecision" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="66947b8b-c4be-469d-8339-beebc8e0c20b" />
+          </property>
+          <property Id="a8c4509b-0385-4f3d-a1a6-4b0f5d96e406" name="ClassifiedID" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3901bd69-dee0-4fbe-9411-0f31828dd260" />
+          </property>
+          <property Id="814daf7d-aeda-4909-b57c-d5588bf849a3" name="ClassificationPrecision" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7a819af0-95cc-4f07-b9ab-a3463d09699f" />
+          </property>
+          <property Id="01a86713-2c56-4ce8-9b5f-426e5011b997" name="SelectedID" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="764592ff-07ae-41d2-9428-3b76cf5cb644" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="8f265efb-74a6-4e0f-b6af-d239a132df1e" name="weighingModule" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="251bddc8-13b6-4c0f-b62f-7cd8946f1562" />
+          </operation>
+          <operation Id="5d721e1e-05b8-49c0-9951-99a001404b9e" name="idSelectionModule" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="6e9062f7-b1ff-412b-8c68-10b1ace8e998" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6d934fc2-0117-42c5-a699-65a2076871fd" name="FeatureExtraction" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7412150c-5e3d-4a96-aaa0-8056505ba2af" />
+        <suppliersInternal>
+          <dependency Id="5a1c1109-c462-4b30-9721-6a4b0a0d4d4b">
+            <packageMoniker Id="be6de2cf-ca65-4617-b635-d3f3df9fbcb9" LastKnownName="Classifier (internal)" />
+            <elementDefinition Id="09dcbcf2-99c2-4126-93de-146e9ef63efa" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="eab1f7b7-f96e-4f80-a6dd-e7b8aeeb6ee8" isDerived="false" sourceEndRoleName="FeatureExtraction" targetEndRoleName="Engine" isLeaf="false" isAbstract="false">
+            <classMoniker Id="25e79f08-cf19-4f33-aa17-15ac62363be3" LastKnownName="Engine" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="995e9dad-aa49-41bc-a249-265fa889c032" name="FeatureExtraction" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0352c6ce-6e79-4a79-bf64-ffca23374efd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f0660324-71eb-434f-9dc8-16b43521a465" name="Engine" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7d6e399f-f0d6-4866-ad01-009f1f013846" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="375407d0-618e-4f35-8349-a016be8b3369" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="8b0de288-18c8-40d0-af9f-3b594b02cbaa" name="NormalisedEnergy" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f4c4a266-b706-4509-b8dc-d1892d877f1b" />
+          </property>
+          <property Id="b1f9aa9c-ec43-4134-ba57-3bd59a3bd6e6" name="NormalisedRSquare" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6d447f59-73a2-4a18-9ac2-e12c44ac962a" />
+          </property>
+          <property Id="7ae1cf64-30cc-4c03-abe3-51fbd96ea463" name="NormalisedEntropy" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7cceb9ea-519f-43a5-ab3b-ad6a5ae806be" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="3d63f8cd-aca9-485c-8bc5-cb4991847fa2" name="EntropyEnergyNormalisation" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="fdede634-c585-4259-bb03-107edea5bc01" />
+          </operation>
+          <operation Id="d15272bc-8084-4538-8abc-c08fe364c426" name="EntropyEnergy" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1c6a3ac8-112e-461f-9d63-42c14119fcb0" />
+          </operation>
+          <operation Id="8dc341a7-952f-469a-9c46-83bcb20fb898" name="rSquare" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="fab5c2d4-acac-478f-8b98-818ad4b0f719" />
+          </operation>
+          <operation Id="f869581d-bbe1-4af3-8524-54289b22ff46" name="rSquareNormalisation" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="e01d8477-d51b-4845-ad8b-21a1ee618a01" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0da3d6b9-0cf8-4cbf-8775-62796a48f74e" name="ResponseModulation" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="03063169-0147-4c62-aa73-2347c7b0c7c4" />
+        <suppliersInternal>
+          <dependency Id="91204c1a-13ba-439d-ae91-5d502ff7c362">
+            <classMoniker Id="6d934fc2-0117-42c5-a699-65a2076871fd" LastKnownName="FeatureExtraction" />
+            <elementDefinition Id="c19c240f-1dfb-45b9-8aca-22b38c16844c" />
+          </dependency>
+          <dependency Id="204e22f3-0f9f-458d-8bca-566c6185ec7e">
+            <classMoniker Id="713430ff-151e-4ca3-8766-768f009a35d9" LastKnownName="ActionSelection" />
+            <elementDefinition Id="9e8a6515-a45c-4cb2-a685-20c9db5e08a9" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property Id="ded96d03-d7a9-4197-823f-583d622f1e62" name="SelectedID" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a8ad8b4f-0961-4dcc-8cda-43f86953433d" />
+          </property>
+          <property Id="f71412b2-9f14-455d-8168-040c9e3eedbc" name="NormalisedEnergy" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="abc48328-1f7a-4705-ac6e-4026a977c94d" />
+          </property>
+          <property Id="e51d53ee-1174-4375-879b-70951c4179bd" name="NormalisedEntropy" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="870ceade-b724-493e-b54b-3c0328bf0ef9" />
+          </property>
+          <property Id="c0957e7d-5978-4678-9243-417c2c86eeaf" name="NormalisedRSquare" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="c365760d-7054-441c-afe7-6eb3ac7fd57d" />
+          </property>
+          <property Id="8cd6a229-3351-4907-b41c-d7cb3499ba31" name="BehaviourIntensity" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="8052778a-7016-4e89-87f9-40bee6587ea1" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="3f5aa5cf-a140-4c84-91fe-58a5a559d56c" name="modulationModule" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="5d6514d0-2613-4235-be5a-55798932d9d0" />
+          </operation>
+          <operation Id="6b79ab33-2954-4c7c-ba22-a7828a6e8f37" name="thresholdModule" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="429eb75c-ad2d-4b3e-a34b-054d7614c353" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="fbc1660c-df0f-48a3-913f-507bce20e1ce" name="Matlab (external)">
+        <elementDefinition Id="7490d6d5-0e15-4a3d-862b-26e210733e0d" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="25e79f08-cf19-4f33-aa17-15ac62363be3" name="Engine" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="d1f616ca-664a-4e03-9ec4-4afb3336471b" />
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1bdcb534-d1a8-4df0-bda1-554738adcae4" name="TobiiTracker" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6aa5372f-fa81-4691-ac96-11d9605ec7f7" />
+        <ownedAttributesInternal>
+          <property Id="a377ed64-f1c4-4c3c-847c-773850222987" name="FocusPrecision" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="883217f4-92db-428c-9942-3c17871a5032" />
+          </property>
+          <property Id="4a1dd0b0-c7a3-4a33-b2ac-e28966df4c6b" name="FocussedID" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="dbfd1e8a-37eb-4f27-9564-4e631c7714f5" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="eaf82bd2-d9c2-4232-b104-6cb423e8f998" name="Process" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="860ea7b8-da9e-45e8-a931-d5bdfd04019f" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="be6de2cf-ca65-4617-b635-d3f3df9fbcb9" name="Classifier (internal)">
+        <elementDefinition Id="b375915b-e2a9-474d-a05e-f17dff4f9445" />
+      </package>
+    </logicalClassDesignerModelHasPackages>
+  </packagedElements>
+  <package Id="8068f097-a958-48f8-b6eb-db4622378467" name="ModelingProject01">
+    <elementDefinition Id="c5396bbf-b4f3-4bfc-81d8-8d0b991ad000" />
+    <profileInstances>
+      <packageHasProfileInstances Id="167017c5-9144-4bf2-8445-e4fd0123bc71">
+        <profileInstance Id="82bca2f3-7d61-4f21-add0-5330844f2a8a" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="53f20312-55c2-473f-ab5d-4fc011d6a6b1">
+        <profileInstance Id="ff40c063-317a-4653-a74b-abb5b24f9246" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

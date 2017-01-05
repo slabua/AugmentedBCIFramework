@@ -1,0 +1,3 @@
+SETX QTDIR "C:\Qt\4.8.7"
+SETX QMAKESPEC "%QTDIR%\mkspecs\win32-msvc2012"
+SETX MATLABDIR "C:\Program Files (x86)\MATLAB\R2014a"
