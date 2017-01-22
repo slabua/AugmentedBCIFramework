@@ -3509,7 +3509,7 @@ void Gui::showGameSessionDialogControl() {
 	gameSessionDialogControl->setAttribute(Qt::WA_DeleteOnClose);
 	gameSessionDialogControl->setWindowFlags(Qt::FramelessWindowHint); 
 	gameSessionDialogControl->setWindowFlags(Qt::WindowTitleHint); 
-	int dialogWidth		= 500;
+	int dialogWidth		= 550;
 	int dialogHeight	= 450;
 	//gameSessionDialogControl->setMinimumWidth(dialogWidth);
 	//gameSessionDialogControl->setMinimumHeight(dialogHeight);
