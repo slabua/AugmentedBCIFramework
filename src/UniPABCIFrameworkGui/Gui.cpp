@@ -111,8 +111,8 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	QHBoxLayout* line2 = new QHBoxLayout;
 	labelModalita = new QLabel(tr("Flashing modality:"));
 	comboModalita = new QComboBox;
-	comboModalita->addItem("Single square");
-	comboModalita->addItem("Rows-columns");
+	comboModalita->addItem("Single-Square");
+	comboModalita->addItem("Rows-Columns");
 	comboModalita->setCurrentIndex(mode);
 	line2->addWidget(labelModalita);
 	line2->addWidget(comboModalita);
@@ -3618,11 +3618,11 @@ void Gui::showGameSessionDialogControl() {
 	gameFairEdit2 = new QLineEdit(tr("5"));
 	gameFairEdit1->setAlignment(Qt::AlignRight);
 	gameCheatEdit1->setAlignment(Qt::AlignRight);
-	gameCheatEdit1->setMaximumWidth(32);
+	gameCheatEdit1->setMaximumWidth(38);
 	gameCheatLabelOf->setAlignment(Qt::AlignCenter);
-	gameCheatLabelOf->setMaximumWidth(16);
+	gameCheatLabelOf->setMaximumWidth(15);
 	gameCheatEdit2->setAlignment(Qt::AlignRight);
-	gameCheatEdit2->setMaximumWidth(32);
+	gameCheatEdit2->setMaximumWidth(38);
 	gameFairEdit2->setAlignment(Qt::AlignRight);
 
 	connect(gameCheatEdit1, SIGNAL(textChanged(const QString &)), this, SLOT(changeGameCheat1()));
