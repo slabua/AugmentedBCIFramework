@@ -6,6 +6,7 @@
 *pdb
 src/*/Debug
 src/*/moc*cpp
+bin/config/configuration.xml
 bin/BinFiles
 bin/OutputFiles
 bin/OutputFilesLDA

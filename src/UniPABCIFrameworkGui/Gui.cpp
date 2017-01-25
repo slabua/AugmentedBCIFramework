@@ -3270,7 +3270,7 @@ void Gui::updateConfiguration() {
 		else
 			node.first_child().set_value(BoolToString(bioHybridMode).c_str()); // SLB
 		
-		node = doc.child("elements");
+		node = doc.child("elements"); // SLB the node "elements" on the configuration file is probably unneded, redundant
 		elements = (comboInterfaccia->currentIndex()+2)*(comboInterfaccia->currentIndex()+2);
 		node.first_child().set_value(std::to_string(elements).c_str());
 
@@ -3344,8 +3344,8 @@ void Gui::initiateConfiguration() {
 		cout << "Creating default configuration file..." << endl;
 	
 		doc.append_child("name").append_child(pugi::node_pcdata);
-		doc.append_child("time_flash_auto").append_child(pugi::node_pcdata).set_value("1");
 		doc.append_child("time_flash").append_child(pugi::node_pcdata).set_value("125");
+		doc.append_child("time_flash_auto").append_child(pugi::node_pcdata).set_value("1");
 		doc.append_child("mode").append_child(pugi::node_pcdata).set_value("1");
 		doc.append_child("row_num_interface").append_child(pugi::node_pcdata).set_value("4");
 		doc.append_child("elements").append_child(pugi::node_pcdata).set_value("16");
@@ -3364,7 +3364,7 @@ void Gui::initiateConfiguration() {
 		doc.append_child("tobiiwindowcoord").append_child(pugi::node_pcdata).set_value("1");
 		doc.append_child("tobiishowinnersquare").append_child(pugi::node_pcdata).set_value("0");
 		doc.append_child("tobiiinnersquarepc").append_child(pugi::node_pcdata).set_value("25");
-		doc.append_child("biohybridmode").append_child(pugi::node_pcdata).set_value("1");
+		doc.append_child("biohybridmode").append_child(pugi::node_pcdata).set_value("0");
 		doc.append_child("userobot").append_child(pugi::node_pcdata).set_value("1");
 		doc.append_child("iprobot").append_child(pugi::node_pcdata).set_value("192.168.1.4");
 		doc.append_child("portrobot").append_child(pugi::node_pcdata).set_value("12000");
