@@ -111,7 +111,7 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	QHBoxLayout* line2 = new QHBoxLayout;
 	labelModalita = new QLabel(tr("Flashing modality:"));
 	comboModalita = new QComboBox;
-	comboModalita->addItem("Single-Square");
+	comboModalita->addItem("Single-Character");
 	comboModalita->addItem("Rows-Columns");
 	comboModalita->setCurrentIndex(mode);
 	line2->addWidget(labelModalita);
