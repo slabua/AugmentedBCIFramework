@@ -4,6 +4,7 @@
 *bsc
 *exe
 *pdb
+*aps
 src/*/Debug
 src/*/moc*cpp
 bin/config/configuration.xml
