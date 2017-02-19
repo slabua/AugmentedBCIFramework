@@ -303,6 +303,7 @@
     <ResourceCompile Include="UniPABCIFrameworkGui.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\res\icons\UniPABCIGui.bin" />
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
