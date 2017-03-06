@@ -17,7 +17,7 @@ function [signal_entropy,   signal_energy,   ...
     timeFlash       = 125;
     % calibrationtags = 3;
     % windowlen       = 200;
-    path            = '../BinFiles/testslb/';
+    path            = '../BinFiles/testpreliminary/';
     
     %% COLOURS
     bands           = {    'alpha',     'beta',    'gamma',    'theta'};

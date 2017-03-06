@@ -14,7 +14,7 @@ bin/OutputFilesLDA
 bin/logs
 bin/matlab/*mat
 bin/matlab/*bak
-bin/matlab/new
-bin/matlab/old
+bin/matlab/*avs
 bin/matlab/test
+bin/matlab/ws
 
