@@ -5,16 +5,26 @@
 *exe
 *pdb
 *aps
+
 src/*/Debug
 src/*/moc*cpp
+
 bin/config/configuration.xml
 bin/BinFiles
 bin/OutputFiles
 bin/OutputFilesLDA
 bin/logs
+
 bin/matlab/*mat
 bin/matlab/*bak
 bin/matlab/*avs
 bin/matlab/test
 bin/matlab/ws
 
+bin/gUSBamp.dll
+res/dll/gUSBamp.dll
+res/gUSBampCAPI
+
+bin/Tobii.EyeX.Client.dll
+res/dll/Tobii.EyeX.Client.dll
+res/tobii
