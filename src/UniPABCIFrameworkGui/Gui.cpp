@@ -55,9 +55,6 @@ using std::ifstream;
 using std::stringstream;
 using std::pair;
 
-//const char* g_Title = "P300 Framework - RoboticsLab@UniPA";
-//const char* g_Title = "UniPA BCI Framework";
-//const char* g_Title = FRAMEWORKNAME;
 //vector<string> list_files(string);
 //vector<string> list_folders(string); // SLB
 QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText); // SLB
@@ -556,7 +553,7 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 
 	QHBoxLayout* line10 = new QHBoxLayout;
 	okButton = new QPushButton(tr("&Apply"));
-	okButton->setStyleSheet("QPushButton { font: bold; color: rgba(184, 38, 25, 100%); }");
+	okButton->setStyleSheet("QPushButton { font: bold; color: " ACCENT_01 "; }");
 	okButton->setDefault(true);
 	//okButton->setEnabled(false);
 	okButton->setEnabled(true); // SLB
@@ -1028,10 +1025,10 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	// SLB
 	//QPalette palette;
 	//QString paletteStyleTop = "background-color: rgba(184, 38, 25, 100%); border-top-left-radius: 6px 10px; border-top-right-radius: 6px 10px;";
-	QString paletteStyleTop = "background-color: rgba(184, 38, 25, 100%);";
+	QString paletteStyleTop = "background-color: " ACCENT_01 ";";
 	//QString paletteStyleTop = "background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #B82619, stop: 0.5 #ABAFE5, stop: 1 #B82619);";
 	//QString paletteStyleBottom = "background-color: rgba(184, 38, 25, 100%); border-bottom-left-radius: 6px 10px; border-bottom-right-radius: 6px 10px;";
-	QString paletteStyleBottom = "background-color: rgba(184, 38, 25, 100%);";
+	QString paletteStyleBottom = "background-color: " ACCENT_01 ";";
 	//QString paletteStyleBottom = "background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #B82619, stop: 0.5 #ABAFE5, stop: 1 #B82619);";
                                 
 	//palette.setColor(QPalette::Background,Qt::red);
@@ -1424,7 +1421,7 @@ void Gui::changePaletteString() {
 
 //SLB
 void Gui::configChanged() {
-	okButton->setStyleSheet("QPushButton { font: bold; color: rgba(184, 38, 25, 100%); }");
+	okButton->setStyleSheet("QPushButton { font: bold; color: " ACCENT_01 "; }");
 	timer->stop();
 }
 
@@ -4099,7 +4096,7 @@ void Gui::clickedSignalCheckButton() {
 	//statusbar->showMessage(tr("Starting signals check..."), 2000); // SLB
 	if (signalCheckButton->isChecked()) {
 		currentRunDone = false;
-		signalCheckButton->setStyleSheet("QPushButton { color: rgba(184, 38, 25, 100%); }");
+		signalCheckButton->setStyleSheet("QPushButton { color: " ACCENT_01 "; }");
 
 		_eventFinishInitialization.SetEvent();
 		_eventSignalCheckStart.SetEvent();
@@ -4432,7 +4429,8 @@ void Gui::menubar1creditsSlot() {
 	QString roboticslabLine = "<p align=\"right\"><i><font size=\"26\" color=\"black\"><b>&nbsp;ROBOTICS</b></font><font size=\"26\" color=\"white\"><b>&nbsp;LAB&nbsp;&nbsp;</b></font></i></p>";
 	
 	QLabel *statusBottomBar = new QLabel(roboticslabLine);
-	QString paletteStyle = "background-color: rgba(184, 38, 25, 100%); border-radius: 6px 10px;";
+	//QString paletteStyle = "background-color: rgba(184, 38, 25, 100%); border-radius: 6px 10px;";
+	QString paletteStyle = "background-color: " ACCENT_01 "; border-radius: 6px 10px;";
 	statusBottomBar->setAutoFillBackground(true);
 	statusBottomBar->setStyleSheet(paletteStyle);
 	statusBottomBar->setFixedHeight(36);

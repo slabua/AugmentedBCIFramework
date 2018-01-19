@@ -105,6 +105,8 @@ using std::vector;
 #define CLOSEDEYES_STOP			101
 //#define OPENEYES_START		200
 //#define OPENEYES_STOP			201
+#define ACCENT_01				"#b82619"
+#define ACCENT_02				"#224499"
 #define CHSTATUS_GREY			"#C8C8C8"
 #define CHSTATUS_GREEN			"#50C95D"//2EC940"
 #define CHSTATUS_YELLOW			"#E5E05C"//E5DE40"
