@@ -3,7 +3,7 @@
 
 Copyright (C) 2017 Salvatore La Bua [slabua(at)gmail.com](mailto:slabua@gmail.com)  
 RoboticsLab, Department of Industrial and Digital Innovation (DIID),  
-Università degli Studi di Palermo, V. delle Scienze, Palermo, Italy.  
+Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.  
 http://www.slblabs.com/projects/unipa-bci-framework  
 https://github.com/slabua/UniPABCIFramework  
 
