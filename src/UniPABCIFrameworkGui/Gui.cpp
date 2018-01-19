@@ -22,6 +22,33 @@
 #include <QtGui/qmenubar.h>			// SLB
 #include <QtGui/qwidgetaction.h>	// SLB
 
+/*****************************************************************************
+* 
+* UniPA BCI Framework: an Augmented BCI Framework
+* 
+* Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
+* RoboticsLab, Department of Industrial and Digital Innovation (DIID),
+* Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* 
+* http://www.slblabs.com/projects/unipa-bci-framework
+* https://github.com/slabua/UniPABCIFramework
+* 
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* 
+*****************************************************************************/
+
 using std::cout;
 using std::endl;
 using std::ifstream;
@@ -1179,20 +1206,20 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	QMenu *menubar1				= new QMenu(this);
 	menubar1					= menubar->addMenu(tr("&Info"));
 
-	QAction *menubar1help		= new QAction(("&Help"), this);
+	QAction *menubar1credits	= new QAction(("&Credits"), this);
+	menubar1credits->setIcon(QIcon(FRAMEWORKREDICONPATH));
+	menubar1credits->setIconVisibleInMenu(true);
+	menubar1credits->setShortcut(QKeySequence(Qt::Key_Escape));
+	connect(menubar1credits, SIGNAL(triggered()), this, SLOT(menubar1creditsSlot()));
+	QAction *menubar1help		= new QAction(("&License"), this);
 	menubar1help->setIcon(QIcon(FRAMEWORKBLUEICONPATH));
 	menubar1help->setIconVisibleInMenu(true);
 	menubar1help->setShortcut(QKeySequence(Qt::Key_Question));
 	connect(menubar1help, SIGNAL(triggered()), this, SLOT(menubar1helpSlot()));
-	QAction *menubar1credits	= new QAction(("&Credits"), this);
-	menubar1credits->setShortcut(QKeySequence(Qt::Key_Escape));
-	connect(menubar1credits, SIGNAL(triggered()), this, SLOT(menubar1creditsSlot()));
-	menubar1credits->setIcon(QIcon(FRAMEWORKREDICONPATH));
-	menubar1credits->setIconVisibleInMenu(true);
 	
 	menubar->setMinimumWidth(2);
-	menubar1->addAction(menubar1help);
 	menubar1->addAction(menubar1credits);
+	menubar1->addAction(menubar1help);
 	setMenuBar(menubar);
 	
 	statusbar = new QStatusBar(this);
@@ -1230,6 +1257,12 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	worker			= new Worker;
 	startCount();
 	*/
+	cout << "UniPA BCI Framework Copyright (C) 2016-2017 Salvatore La Bua\n"
+			"RoboticsLab, Department of Industrial and Digital Innovation (DIID),\n"
+			"Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.\n"
+			"This program comes with ABSOLUTELY NO WARRANTY.\n"
+			"This is free software, and you are welcome to redistribute it\n"
+			"under certain conditions.\n\n";
 	cout << "Gui instance created succesfully." << endl;
 }
 
@@ -4263,7 +4296,78 @@ void Gui::clickedBaselineAcqButton2() {
 
 // SLB
 void Gui::menubar1helpSlot() {
-	//
+	
+	QDialog *creditsDialog = new QDialog();
+	creditsDialog->setWindowIcon(QIcon(FRAMEWORKREDICONPATH));
+	
+
+	creditsDialog->setWindowTitle("License");
+	creditsDialog->setAttribute(Qt::WA_DeleteOnClose);
+	//dialogControl->setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint); // SLB remove "?" help quick menu
+	creditsDialog->setWindowFlags(Qt::FramelessWindowHint); 
+	creditsDialog->setWindowFlags(Qt::WindowTitleHint); 
+	//dialogControl->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
+	int dialogWidth = 480;
+	int dialogHeight = 320;
+	//creditsDialog->setMinimumWidth(dialogWidth);
+	//creditsDialog->setMinimumHeight(dialogHeight);
+	creditsDialog->setFixedSize(dialogWidth, dialogHeight);
+
+	QVBoxLayout *dialogLayout = new QVBoxLayout;
+	QHBoxLayout* logoLine = new QHBoxLayout;
+	
+	QLabel *unipaBCIIconLabel = new QLabel();
+	QPixmap iconUnipaBCI(FRAMEWORKREDICONPATH);
+	unipaBCIIconLabel->setPixmap(iconUnipaBCI);
+	unipaBCIIconLabel->setFixedSize(iconUnipaBCI.rect().size());
+
+	//QLabel *unipaBCILabel = new QLabel("UniPA  BCI Framework ");
+	QLabel *unipaBCILabel = new QLabel("Augmented\nBCI Framework");
+	unipaBCILabel->setAlignment(Qt::AlignRight);
+	QFont titleFont = font();
+	titleFont.setPointSize(20);
+	titleFont.setBold(true);
+	//titleFont.setStyleStrategy(QFont::PreferAntialias);
+	unipaBCILabel->setFont(titleFont);
+
+	logoLine->addWidget(unipaBCIIconLabel);
+	logoLine->addStretch(true);
+	logoLine->addWidget(unipaBCILabel);
+	
+	QString creditsString = "This program is free software: you can redistribute it and/or modify<br />"
+							"it under the terms of the GNU General Public License as published by<br />"
+							"the Free Software Foundation, either version 3 of the License, or<br />"
+							"(at your option) any later version.<br />"
+							"<br />"
+							"This program is distributed in the hope that it will be useful,<br />"
+							"but WITHOUT ANY WARRANTY; without even the implied warranty of<br />"
+							"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br />"
+							"GNU General Public License for more details.<br />"
+							"<br />"
+							"You should have received a copy of the GNU General Public License<br />"
+							"along with this program.  "
+							"If not, see <a href=\"http://www.gnu.org/licenses/\">http://www.gnu.org/licenses/</a>.<br />"
+							"<br /><br />";
+
+	QLabel *creditsLabel = new QLabel(creditsString);
+	creditsLabel->setAlignment(Qt::AlignCenter);
+	creditsLabel->setTextFormat(Qt::RichText);
+	creditsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+	creditsLabel->setOpenExternalLinks(true);
+	
+	dialogLayout->addLayout(logoLine);
+	dialogLayout->addStretch(true);
+	dialogLayout->addWidget(creditsLabel);
+	//dialogLayout->addWidget(statusBottomBar);
+	
+	creditsDialog->setLayout(dialogLayout);
+
+	QPalette *palette = new QPalette();	
+	palette->setBrush(QPalette::Background, *(new QBrush(*(new QPixmap(FRAMEWORKBGIMAGE)))));
+	creditsDialog->setPalette(*palette);
+
+	creditsDialog->exec(); // modal
+
 }
 
 // SLB
@@ -4293,7 +4397,9 @@ void Gui::menubar1creditsSlot() {
 	unipaBCIIconLabel->setPixmap(iconUnipaBCI);
 	unipaBCIIconLabel->setFixedSize(iconUnipaBCI.rect().size());
 
-	QLabel *unipaBCILabel = new QLabel("UniPA  BCI Framework ");
+	//QLabel *unipaBCILabel = new QLabel("UniPA  BCI Framework ");
+	QLabel *unipaBCILabel = new QLabel("Augmented\nBCI Framework");
+	unipaBCILabel->setAlignment(Qt::AlignRight);
 	QFont titleFont = font();
 	titleFont.setPointSize(20);
 	titleFont.setBold(true);
@@ -4304,21 +4410,23 @@ void Gui::menubar1creditsSlot() {
 	logoLine->addStretch(true);
 	logoLine->addWidget(unipaBCILabel);
 	
-	QString creditsString = "Developed by Salvatore La Bua\n"
-							"as a final project for his second cycle degree\n"
-							"programme at University of Palermo, Italy.\n"
-							"\n"
-							"With the supervision of:\n"
-							" Prof. Eng. Rosario Sorbello\n"
-							" Dr. Eng. Marcello Giardina\n"
-							" Eng. Salvatore Tramonte\n"
-							"\n"
-							"Based on the previous work (P300 core) of:\n"
-							" Rosario Misuraca\n"
-							" Walter Tranchina\n"
-							" Giuseppe Trubia";
+	QString creditsString = "Developed by <a href=\"mailto:slabua@gmail.com?subject=BCIFramework\">Salvatore La Bua</a> in 2016-2017<br />"
+							"as a final project for his second cycle degree<br />"
+							"programme at University of Palermo, Italy.<br />"
+							"<br />"
+							"More information at:<br />"
+							"<a href=\"https://goo.gl/xrfQEs\">http://www.slblabs.com/projects/unipa-bci-framework</a><br />"
+							"<br /><br /><br />"
+							"Based on a previous work (P300 core) of: "
+							"<i>R. Misuraca</i>, <i>W. Tranchina</i>, <i>G. Trubia</i>.<br />"
+							"RoboticsLab, "
+							"Department of Industrial and Digital Innovation (DIID), "
+							"University of Palermo.";
 
 	QLabel *creditsLabel = new QLabel(creditsString);
+	creditsLabel->setTextFormat(Qt::RichText);
+	creditsLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+	creditsLabel->setOpenExternalLinks(true);
 
 	QHBoxLayout *lineBottom = new QHBoxLayout;
 	QString roboticslabLine = "<p align=\"right\"><i><font size=\"26\" color=\"black\"><b>&nbsp;ROBOTICS</b></font><font size=\"26\" color=\"white\"><b>&nbsp;LAB&nbsp;&nbsp;</b></font></i></p>";
