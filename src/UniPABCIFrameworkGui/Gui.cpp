@@ -1,28 +1,4 @@
-﻿#include "Gui.h"
-#include "moc_gui.cpp"
-#include <iostream>
-#include <sstream>
-#include <fstream>
-
-#include "rootpaths.h"			// SLB
-#include <io.h>					// SLB
-#include <mmsystem.h>			// SLB
-#include "RobotController.h"	// SLB
-#include "KinectListener.h"		// SLB
-#include <afxwin.h>			// SLB ^
-
-#include "pugixml.hpp"
-#include "qcustomplot.h"
-
-#include <QtGui/QMessageBox>
-#include <QtGui/QScrollBar>
-#include <QtCore/QThread>
-#include <QtGui/qdesktopwidget.h>	// SLB
-#include <QtGui/QApplication>		// SLB
-#include <QtGui/qmenubar.h>			// SLB
-#include <QtGui/qwidgetaction.h>	// SLB
-
-/*****************************************************************************
+﻿/*****************************************************************************
 * 
 * UniPA BCI Framework: an Augmented BCI Framework
 * 
@@ -48,6 +24,30 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * 
 *****************************************************************************/
+
+#include "Gui.h"
+#include "moc_gui.cpp"
+#include <iostream>
+#include <sstream>
+#include <fstream>
+
+#include "rootpaths.h"			// SLB
+#include <io.h>					// SLB
+#include <mmsystem.h>			// SLB
+#include "RobotController.h"	// SLB
+#include "KinectListener.h"		// SLB
+#include <afxwin.h>			// SLB ^
+
+#include "pugixml.hpp"
+#include "qcustomplot.h"
+
+#include <QtGui/QMessageBox>
+#include <QtGui/QScrollBar>
+#include <QtCore/QThread>
+#include <QtGui/qdesktopwidget.h>	// SLB
+#include <QtGui/QApplication>		// SLB
+#include <QtGui/qmenubar.h>			// SLB
+#include <QtGui/qwidgetaction.h>	// SLB
 
 using std::cout;
 using std::endl;
