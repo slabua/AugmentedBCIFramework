@@ -28,3 +28,5 @@ res/gUSBampCAPI
 bin/Tobii.EyeX.Client.dll
 res/dll/Tobii.EyeX.Client.dll
 res/tobii
+
+res/qcustomplot/examples
