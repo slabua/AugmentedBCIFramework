@@ -7,8 +7,19 @@ Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 http://www.slblabs.com/projects/unipa-bci-framework  
 https://github.com/slabua/UniPABCIFramework  
 
----
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
 
+- [Introduction to the Project](#introduction-to-the-project)
+- [Some information about UniPA BCI Framework](#some-information-about-unipa-bci-framework)
+- [Design and Implementation of Modules for the Extraction of Biometric Parameters in an Augmented BCI Framework](#design-and-implementation-of-modules-for-the-extraction-of-biometric-parameters-in-an-augmented-bci-framework)
+  - [Thesis Abstract](#thesis-abstract)
+- [Resources](#resources)
+- [LICENSE](#license)
+- [Screenshots](#screenshots)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## Introduction to the Project
 
 - The master's degree thesis is available at:
@@ -30,8 +41,6 @@ https://github.com/slabua/UniPABCIFramework
   P300 paradigm, but it also considers useful information, such as the user
   visual focus and her level of engagement with the system, providing a more
   robust and effective global response.
-
----
 
 ## Design and Implementation of Modules for the Extraction of Biometric Parameters in an Augmented BCI Framework
 
@@ -77,8 +86,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
----
+## Screenshots
 
 ![Main](https://goo.gl/6hUcfq)
 
----
