@@ -1,3 +1,5 @@
+%% Adapted from: https://dsp.stackexchange.com/a/1090
+
 function y = notchFilter(signal, sampleRate, notchFrequency)
 
     fs          = sampleRate;        %sampling rate
