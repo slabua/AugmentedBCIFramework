@@ -9,6 +9,8 @@
 src/*/Debug
 src/*/moc*cpp
 
+!bin/KinectHandTracking.exe
+
 bin/config/configuration.xml
 bin/BinFiles
 bin/OutputFiles
