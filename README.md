@@ -18,6 +18,13 @@ https://github.com/slabua/UniPABCIFramework
 - [Resources](#resources)
 - [LICENSE](#license)
 - [Screenshots](#screenshots)
+  - [BCI Framework main interface](#bci-framework-main-interface)
+  - [Baseline Acquisition interface](#baseline-acquisition-interface)
+  - [Game Session controller](#game-session-controller)
+  - [Alphanumeric Spelling interface](#alphanumeric-spelling-interface)
+  - [Symbolic Spelling interface](#symbolic-spelling-interface)
+  - [Credits](#credits)
+  - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## Introduction to the Project
@@ -88,5 +95,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Screenshots
 
+### BCI Framework main interface
 ![Main](https://goo.gl/6hUcfq)
+
+### Baseline Acquisition interface
+![Baseline Acquisition](https://goo.gl/VHo1fX)
+
+### Game Session controller
+![Game Session](https://goo.gl/mPxkR3)
+
+### Alphanumeric Spelling interface
+![Alphanumeric Speller](https://goo.gl/DN2Qt4)
+
+### Symbolic Spelling interface
+![Symbolic Speller](https://goo.gl/hLGvcy)
+
+### Credits
+![Credits](https://goo.gl/qvfKNk)
+
+### License
+![License](https://goo.gl/NjbEWi)
 
