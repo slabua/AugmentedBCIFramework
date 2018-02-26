@@ -76,7 +76,8 @@ agent.
 1. [Master's Degree Thesis](https://goo.gl/buaKOv)
 2. [Presentation](https://goo.gl/ZGJKXZ)
 3. [ResearchGate Thesis publication](https://goo.gl/M0ju0s)
-4. [ResearchGate related project](https://goo.gl/lrbjgy)
+4. [ResearchGate Presentation publication](https://goo.gl/EcMujd)
+5. [ResearchGate related project](https://goo.gl/lrbjgy)
 
 ## LICENSE
 
