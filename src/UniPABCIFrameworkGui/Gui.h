@@ -537,3 +537,4 @@ inline std::ostream& operator<<(std::ostream& os, const color& c) {
 // -----------------------------------------------------------------
 
 #endif
+

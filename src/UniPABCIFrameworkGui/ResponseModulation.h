@@ -57,7 +57,6 @@ private:
 	std::vector <int> tobiiresultIDs;
 	float stimuli_entropy, epy_min, epy_max, epy_cum, epy_norm;
 	float stimuli_energy, egy_min, egy_max, egy_cum, egy_norm;
-	//float rsq, rsq_cum, rsq_gap, rsq_min, rsq_max, rsq_norm;
 	float rsq, rsq_cum, rsq_min, rsq_max, rsq_norm;
 	bool activation_threshold;
 	float behaviour_intensity;

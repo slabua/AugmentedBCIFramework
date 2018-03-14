@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'  degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -37,7 +37,6 @@ using std::cout;
 using std::endl;
 
 
-//P300Framework::P300Framework() {
 P300Framework::P300Framework(Gui* gui) {
 
 	guiObject = gui; // SLB
@@ -46,13 +45,10 @@ P300Framework::P300Framework(Gui* gui) {
 
 	counter_stimuli			= 1;
 	sampleRate				= 4;
-	//number_of_channels	= 4;	// SLB variable is read from configuration file
 	seconds_running			= 10000;
 	buffer_size				= 9000;
 	number_of_scan			= 1;
 	buffer_size_second		= 10;
-	//sample_rate_hz		= 256;	// sampleRate // SLB variable is read from configuration file
-	//ocular_filter			= 60;
 	LPSTR _slaveSerials[]	= { "" };
 
 	controller = new CalibrationController(number_of_channels-number_of_channels_plus,window_len,number_of_calibration_tag,number_of_flash,number_of_tags,sampleRate,flashingMode,number_of_row_interface,username);
@@ -75,7 +71,6 @@ P300Framework::P300Framework(Gui* gui) {
 		engineenabled		= featuresExtractor->InitialiseEngine();
 	}
 	actionSelector			= new ActionSelection();
-	//selectorenabled		= actionSelector->InitialiseEngine();
 	responseModulator		= new ResponseModulation();
 	//
 	baselineAcquisitionStarted = false;	// SLB
@@ -105,10 +100,9 @@ void P300Framework::readConfiguration() {
 		sample_rate_hz				= atoi(doc.child("samplerate").first_child().value());				// SLB
 		bioHybridMode				= (bool) atoi(doc.child("biohybridmode").first_child().value());	// SLB
 		
-		if (mode == 0) { // modalità flash square
+		if (mode == 0) { // modalita' flash square
 			flashingMode = false;
 		}
-		//else { //rows-cols
 		else if (mode == 1) { // rows-cols // SLB
 			flashingMode = true;
 		}
@@ -184,12 +178,12 @@ void P300Framework::calibration() {
 		//in attesa dell'evento che indica l'avvio dell'interfaccia (cod 100)
 		WaitForSingleObject(listener->getStartedCalibrationEvent().m_hObject, INFINITE);
 
-		//se arriva l'evento di avvio interfaccia, può partire il thread di acquisizione dei dati
+		//se arriva l'evento di avvio interfaccia, puo' partire il thread di acquisizione dei dati
 		_dataAcquisitionThread = AfxBeginThread(module->DoAcquisition, NULL, THREAD_PRIORITY_ABOVE_NORMAL, 0, CREATE_SUSPENDED);
 		_dataAcquisitionThread->ResumeThread();
 		
 		cout << "Started!\n";
-		//while continua finchè non arriva evento che indica la fine della scrittura sui buffer dei dati acquisiti
+		//while continua finche' non arriva evento che indica la fine della scrittura sui buffer dei dati acquisiti
 		while (!WaitForSingleObject(controller->getFinishStoreAllSessionDataEvent().m_hObject, 0) == WAIT_OBJECT_0) {
 			//quando arriva evento di inizio stimolo, si resetta il buffer 
 			if (WaitForSingleObject(listener->getCallNextStimulus().m_hObject, 0) == WAIT_OBJECT_0) {
@@ -215,7 +209,7 @@ void P300Framework::calibration() {
 			}
 			else {
 				listener->getSymbolTagEvent().ResetEvent();
-				receivedData[number_of_channels + 1] = 0;  //qua andrà il tag ottenuto dall'interfaccia
+				receivedData[number_of_channels + 1] = 0;  //qua andra' il tag ottenuto dall'interfaccia
 			}
 
 			receivedData[number_of_channels + 2] = 0;
@@ -369,7 +363,7 @@ void P300Framework::spelling() {
 		module->StartAcquisition();
 		speller->openBinFile();
 
-		//se arriva l'evento di avvio interfaccia, può partire il thread di acquisizione dei dati
+		//se arriva l'evento di avvio interfaccia, puo' partire il thread di acquisizione dei dati
 		_dataAcquisitionThread = AfxBeginThread(module->DoAcquisition, NULL, THREAD_PRIORITY_ABOVE_NORMAL, 0, CREATE_SUSPENDED);
 		_dataAcquisitionThread->ResumeThread();
 
@@ -400,7 +394,7 @@ void P300Framework::spelling() {
 			}
 			else {
 				listener->getSymbolTagEvent().ResetEvent();
-				receivedData[number_of_channels + 1] = 0;  //qua andrà il tag ottenuto dall'interfaccia
+				receivedData[number_of_channels + 1] = 0;  //qua andra' il tag ottenuto dall'interfaccia
 			}
 
 			receivedData[number_of_channels + 2] = 0;
@@ -618,9 +612,6 @@ void P300Framework::gameSession() {
 
 	bool trialEndReached = false;
 	bool trialClosedFile = false;
-
-	// SLB TEST tobii instance
-
 
 	while (guiObject->isGameRunDone()) {}
 
@@ -883,3 +874,4 @@ void P300Framework::runModulesGame() {
 	guiObject->setPlotBars();
 
 }
+

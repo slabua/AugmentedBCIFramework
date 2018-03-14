@@ -86,3 +86,4 @@ float** Winsor::apply() {
 
 	return matrix;
 }
+

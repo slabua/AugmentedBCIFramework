@@ -41,7 +41,6 @@ using std::string;
 //  Classe che implementa il classificatore LDA
 class BayesianLDA {
 	public:
-		//BayesianLDA(int, int, int); // SLB not necessary, never used, must've been a test function
 		BayesianLDA(int, int, int, float**, int*, int*, string);
 		void compute_eigenvectors_and_eigenvalues();							// Metodo che calcola gli autovettori e gli autovalori 
 		gsl_vector_float* vectorXmatrix(gsl_vector_float*, gsl_matrix_float*);  // Metodo che effettua il prodotto vettoreXmatrice
@@ -64,8 +63,6 @@ class BayesianLDA {
 		void compute_alpha(float);												// Metodo che aggiorna il valore del parametro alpha e d_alpha
 		void compute_beta(float);												// Metodo che aggiorna il valore del parametro beta e d_beta
 		gsl_matrix* inverse(gsl_matrix*);										// Metodo che calcola l'inversa di una matrice
-		//void readInputXfromfile(); // SLB not necessary, never used, must've been a test function
-		//void readInputYfromfile(); // SLB not necessary, never used, must've been a test function
 		gsl_matrix_float* get_evec();			
 		gsl_vector_float* get_eval();
 		double get_alpha();
@@ -107,5 +104,5 @@ class BayesianLDA {
 		string username;
 };
 
-
 #endif
+

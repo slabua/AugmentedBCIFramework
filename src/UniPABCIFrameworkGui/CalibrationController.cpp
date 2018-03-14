@@ -75,7 +75,6 @@ CalibrationController::CalibrationController(int numCh, int windLen, int NumCali
 	}
 
 	target = new int[numberOfCalibrationTag];
-	//currentCalibrationTag = 1;
 	currentCalibrationTag = 0; // SLB was 1
 
 	numberOfCalibrations = 0;
@@ -372,7 +371,6 @@ void CalibrationController::nextCalibration() {
 	tempStimuli.close();
 	tempBuffer.close();
 
-	//currentCalibrationTag = 1;
 	currentCalibrationTag = 0; // SLB
 }
 
@@ -722,21 +720,10 @@ void CalibrationController::openGameBinFile() {
 	char* timeNow = new char[12];
 
 	string rootPath = binFilesRoot + "/GameS_";
-	/*
-	string x		= "x";
-	string und		= "_";
-	string number	= std::to_string(numberOfRowInterface);
-
-	string dim		= und + number + x + number;
-
-	string flash	= (flashingMode) ? "_RC_" : "_SE_";
-	*/
 	now = time(NULL);
 	strftime(timeNow, 80, "%Y_%m_%d_%H_%M_%S", gmtime(&now));
 
 	rootPath += username;
-	//rootPath += dim;
-	//rootPath += flash;
 	rootPath += "_";
 	rootPath += timeNow;
 	rootPath += ".bin";
@@ -744,8 +731,7 @@ void CalibrationController::openGameBinFile() {
 	outputFile.Open(rootPath.c_str(), CFile::modeCreate | CFile::modeWrite | CFile::typeBinary);
 	
 	readConfiguration();			// SLB
-	//updateConfiguration(rootPath);	// SLB
-
+	
 	// SLB delete[]
 	/*
 	delete[] timeNow;
@@ -788,21 +774,10 @@ void CalibrationController::openBaselineBinFile() {
 	char* timeNow = new char[12];
 
 	string rootPath = binFilesRoot + "/Basel_";
-	/*
-	string x		= "x";
-	string und		= "_";
-	string number	= std::to_string(numberOfRowInterface);
-
-	string dim		= und + number + x + number;
-
-	string flash	= (flashingMode) ? "_RC_" : "_SE_";
-	*/
 	now = time(NULL);
 	strftime(timeNow, 80, "%Y_%m_%d_%H_%M_%S", gmtime(&now));
 
 	rootPath += username;
-	//rootPath += dim;
-	//rootPath += flash;
 	rootPath += "_";
 	rootPath += timeNow;
 	rootPath += ".bin";
@@ -931,3 +906,4 @@ void CalibrationController::closeGameTrialBinFile() {
 	outputTrialFile.Close();
 	cout << "Game trial binary file closed." << endl;
 }
+

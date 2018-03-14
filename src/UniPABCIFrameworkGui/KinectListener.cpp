@@ -28,7 +28,6 @@
 #include "KinectListener.h"
 #include <ws2tcpip.h> // for inet_pton
 #include <iostream>
-//#include "ringbuffer.h"
 #include <afxwin.h>
 
 using std::cout;
@@ -53,9 +52,7 @@ KinectListener::KinectListener() {
 void KinectListener::startAcquisition() {
 
 	isListening = true;
-
-	//_networkTagThread = AfxBeginThread(listenNetwork, NULL, THREAD_PRIORITY_ABOVE_NORMAL, 0, CREATE_SUSPENDED);
-	//_networkTagThread->ResumeThread();
+	
 }
 
 void KinectListener::stopAcquisition() {
@@ -289,3 +286,4 @@ CEvent& KinectListener::getIsScissorsEvent() {
 
 	return _isScissors;
 }
+

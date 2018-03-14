@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'  degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -263,7 +263,6 @@ void SpellerController::reshape() {
 }
 
 void SpellerController::invReshape() {
-	//int index[4] = { 0, 0, 0, 0 };
 	// SLB
 	std::vector <int> index;
 	for (int i=0; i<numberOfChannels; i++) {
@@ -277,22 +276,6 @@ void SpellerController::invReshape() {
 		}
 	}
 }
-
-/* SLB TODO to remove
-void SpellerController::printFile() {
-
-	ofstream test;
-	test.open("F:/Utenti/Walter/Desktop/buffer.txt"); // La matrice è (4*50)X(8*9) => 200X72
-													  // deve diventare 4X(50*8*9) => 4X3600
-	for (int j = 0; j < tags*numberOfFlash; j++) {
-		for (int i=0; i<numberOfChannels*windowLen; i++)
-			test << P300SpellerBuffer[i][j] << endl;
-		test << endl << endl;
-	}
-	test.close();
-
-}
-*/
 
 int* SpellerController::prediction() {
 
@@ -311,3 +294,4 @@ int* SpellerController::prediction() {
 	return predicted;
 
 }
+

@@ -414,3 +414,4 @@ void TobiiTracker::readConfiguration() {
 	else
 		cout << "Could not find configuration file." << endl;
 }
+

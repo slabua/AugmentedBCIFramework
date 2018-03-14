@@ -124,6 +124,7 @@ void clientTCP::sendCommand(const char* s)
         WSACleanup();
 
     }
+
     sendbuf = s;
     //printf("DEBUGGG_> ");
     // Send an initial buffer
@@ -134,9 +135,6 @@ void clientTCP::sendCommand(const char* s)
         WSACleanup();
 
     }
-
-	
-
 
     // shutdown the connection since no more data will be sent
     iResult = shutdown(ConnectSocket, SD_SEND);
@@ -163,8 +161,7 @@ void clientTCP::sendCommand(const char* s)
     // cleanup
     closesocket(ConnectSocket);
     WSACleanup();
-
-
+    
 }
 
 void clientTCP::sendCommandToRobot(const char* s)
@@ -257,3 +254,4 @@ void clientTCP::sendCommandToRobot(const char* s)
     WSACleanup();
 
 }
+

@@ -60,7 +60,6 @@ class InterfaceListener {
 	private:
 		static bool endedStimulus;
 		static bool is_listening;
-		//static bool valueReady;
 		static bool _startedOnlineP300Interface;
 		static int symbolTag;
 		bool waitForParameters;
@@ -70,5 +69,5 @@ class InterfaceListener {
 		static CEvent _finishCalibration;
 };
 
-
 #endif
+

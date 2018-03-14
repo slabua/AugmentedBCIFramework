@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'  degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -47,7 +47,6 @@ class Classification{
 		int* flashVector();					// Funzione che ritorna il vettore con i tag predetti per ogni flash
 		void vectorXmatrix(int, int,float**);
 		void readWfromFile();
-		//void weighSignalFromFile(); // SLB not necessary, never used in originalcd
 	private:
 		float **signal;			// Segnale in input
 		float *w;				// Vettore dei pesi calcolati da classificazione
@@ -58,12 +57,13 @@ class Classification{
 		int n_channels;			// Numero di canali
 		int n_samples;			// Numero di campioni
 		int n_trials;			// Numero di trials
-		int sampleRate;			// Fattore di riduzione del sample rate, se passiamo da 256 a 64, il fattore sarà 4
+		int sampleRate;			// Fattore di riduzione del sample rate, se passiamo da 256 a 64, il fattore sara' 4
 		int windowLen;			// Dimensione della finestra di acquisizione
-		bool mode;				// Modalità d'esecuzione, true = RC; false = Square
+		bool mode;				// Modalita' d'esecuzione, true = RC; false = Square
 		std::string username;
 		float* m;				// Vettore dei pesi dopo il prodotto w*buffer
 		int size;				// SLB
 };
 
 #endif
+

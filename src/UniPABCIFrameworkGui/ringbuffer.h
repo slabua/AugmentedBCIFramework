@@ -189,3 +189,4 @@ protected:
 	//flag indicating if the buffer is empty. Necessary because when _start == _end it is undefined if the buffer is full or empty.
 	bool _isEmpty;
 };
+

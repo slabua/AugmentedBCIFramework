@@ -63,10 +63,6 @@ void ResponseModulation::readConfiguration() {
 			tobiiresultIDs.push_back(atoi(tool.first_child().value()));
 		}
 
-		//stimuli_entropy	= atof(doc.child("stimuli_entropy").first_child().value());
-		//stimuli_energy	= atof(doc.child("stimuli_energy").first_child().value());
-		//epy_cum			= atof(doc.child("epy_cum").first_child().value());
-		//egy_cum			= atof(doc.child("egy_cum").first_child().value());
 		epy_min			= atof(doc.child("epy_min").first_child().value());
 		epy_max			= atof(doc.child("epy_max").first_child().value());
 		egy_min			= atof(doc.child("egy_min").first_child().value());
@@ -74,9 +70,6 @@ void ResponseModulation::readConfiguration() {
 		epy_norm			= atof(doc.child("epy_norm").first_child().value());	// focus = 1-stress
 		egy_norm			= atof(doc.child("egy_norm").first_child().value());	// attention
 
-		//rsq				= atof(doc.child("rsq").first_child().value());
-		//rsq_cum			= atof(doc.child("rsq_cum").first_child().value());
-		//rsq_gap			= atof(doc.child("rsq_gap").first_child().value());
 		rsq_min			= atof(doc.child("rsq_min").first_child().value());
 		rsq_max			= atof(doc.child("rsq_max").first_child().value());
 		rsq_norm			= atof(doc.child("rsq_norm").first_child().value());	// intention
@@ -148,10 +141,6 @@ string ResponseModulation::getResult() {
 	}
 
 	if (bioHybridMode) {
-		/*
-		result += "Threshold: ";
-		result += (activation_threshold) ? "Passed.\n" : "Not passed.\n";
-		*/
 		result += "\nBehaviour Intensity: ";
 		result += std::to_string(behaviour_intensity);
 		result += ".\n";
@@ -244,3 +233,4 @@ void ResponseModulation::Process() {
 	writeResult();
 
 }
+

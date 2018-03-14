@@ -66,3 +66,4 @@ float** Normalize::apply() {
 
 	return newM;
 }
+

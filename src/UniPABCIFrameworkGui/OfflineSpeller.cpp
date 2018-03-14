@@ -33,7 +33,6 @@
 #include <fstream>
 #include "BayesianLDA.h"
 #include "rootpaths.h" //SLB
-//#include "pugixml.hpp"
 
 using std::cout;
 using std::endl;
@@ -69,29 +68,6 @@ OfflineSpeller::~OfflineSpeller() {
 	delete buffers;
 	delete classification;
 }
-
-/*
-void OfflineSpeller::configBuffer(vector<int> indexCalib) {
-
-	ofstream tempBuffer;
-	tempBuffer.open("./OutputFileLDA/tempBufferProva.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-	string line;
-	for (int i=0; i<indexCalib.size(); i++) {
-		ifstream singleCalib;
-		singleCalib.open("./OutputFileLDA/bufferCalib_"+to_string(indexCalib[i])+".txt");
-		if (singleCalib.is_open()) {
-			while (getline(singleCalib, line)) {
-				std::string::size_type sz;     // alias of size_t
-				float val = ::atoi(line.c_str());
-				tempBuffer << val;
-				}
-			}
-		singleCalib.close();
-	}
-
-	tempBuffer.close();
-}
-*/
 
 int OfflineSpeller::mappingNumbers(int indice1, int indice2) {
 	int i = indice1 - 1;
@@ -602,24 +578,7 @@ int OfflineSpeller::calculateNumberOfFlashOnline(int targetP) {
 		}
 
 		fileTempBuffer.close();
-		/*cout << "ITERATOR " << iterator << endl;
-		name = "./OutputFileLDA/tempLabel.txt";
-		fileTempLabel.open(name);
-		iterator = 0;
-		i = 0;
 
-		if (fileTempLabel.is_open()) {
-			while (getline(fileTempLabel, line)) {
-				if (iterator < iterator_stop_label && iterator_start_label <= iterator) {
-					std::string::size_type sz;     // alias of size_t
-					int val = ::atoi(line.c_str());
-					tempLabel[i] = val;
-					i++;
-				}
-				iterator++;
-			}
-		}
-		*/
 		name = outputFilesRoot + "LDA/stimuliSpeller.txt";
 		fileTempStimuli.open(name.c_str()); // SLB
 		//fileTempStimuli.open(name);
@@ -636,22 +595,6 @@ int OfflineSpeller::calculateNumberOfFlashOnline(int targetP) {
 		}
 
 		fileTempStimuli.close();
-
-		/// SLB TODO CHECK crash
-		/* SLB absent in originalcd
-		pugi::xml_document doc;
-		//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
-		pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
-		
-		if (result) {
-			numberOfFlash = atoi(doc.child("num_flash").first_child().value());
-			// SLB TODO fixes symbolic speller crash at size 3*3 but introduces a further crash upon BACK and Speller res
-			rowsNumber = atoi(doc.child("row_num_interface").first_child().value());
-			numberOfTag	= (flashingMode) ? rowsNumber*2 : rowsNumber*rowsNumber;
-			//
-		}
-		*/
-		///
 
 		classification = new Classification(tempBuffer, tempStimuli, 1, numberOfTag, numberOfFlash,
 			numberOfChannels, sampledWindow, numberOfFlash*numberOfTag, sampleRate, sampledWindow*sampleRate, flashingMode, username);
@@ -733,3 +676,4 @@ int OfflineSpeller::calculateNumberOfFlashOnline(int targetP) {
 	flash.close();
 	return (perc100 ? maxScore+1 : numberOfFlash);
 }
+

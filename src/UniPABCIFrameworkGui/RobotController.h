@@ -36,7 +36,6 @@ class RobotController {
 	public:
 		RobotController();
 		~RobotController(void);
-		//void sendCommandToRobot(string);
 		void sendRawCommand(string);	// SLB
 		void playmotion(string);		// SLB
 		void playvoice(string);			// SLB

@@ -48,15 +48,6 @@ RobotController::RobotController() {
 RobotController::~RobotController(void) {}
 
 //telenoid: 192.168.1.71:11000
-/*
-void RobotController::sendCommandToRobot(string code) {
-
-	clientTCP *conn = new clientTCP(RobotPort, RobotIP);
-	string command = "playvoice "+code+".wav";
-	conn->sendCommandToRobot(command.c_str());
-
-}
-*/
 
 // SLB
 void RobotController::sendRawCommand(string motion) {
@@ -103,3 +94,4 @@ unsigned int RobotController::sendCommandToNao(string code) {
 
 	return 0;
 }
+

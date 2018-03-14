@@ -4968,3 +4968,4 @@ vector<string> Gui::list_folders(string path) {
 	FindClose(hFind);
 	return subdirs;
 }
+

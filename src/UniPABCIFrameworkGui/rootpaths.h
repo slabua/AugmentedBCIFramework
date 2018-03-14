@@ -39,3 +39,4 @@ extern const std::string binFilesRoot;
 extern const std::string logFilesRoot;
 
 #endif
+

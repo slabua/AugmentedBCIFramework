@@ -34,3 +34,4 @@ const std::string audioPathRoot		= "audio";
 const std::string outputFilesRoot	= "OutputFiles";
 const std::string binFilesRoot		= "BinFiles";
 const std::string logFilesRoot		= "logs";
+

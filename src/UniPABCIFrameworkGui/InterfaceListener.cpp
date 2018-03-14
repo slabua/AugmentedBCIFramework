@@ -30,7 +30,6 @@
 
 #include "InterfaceListener.h"
 #include <iostream>
-//#include "ringbuffer.h"
 #include <afxwin.h>
 
 using std::cout;
@@ -38,7 +37,6 @@ using std::endl;
 
 
 bool InterfaceListener::is_listening;
-//bool InterfaceListener::valueReady;
 bool InterfaceListener::_startedOnlineP300Interface;
 int InterfaceListener::symbolTag;
 CEvent InterfaceListener::_switchSimbolTag;
@@ -58,9 +56,7 @@ InterfaceListener::InterfaceListener() {
 void InterfaceListener::startAcquisition() {
 
 	is_listening = true;
-
-	//_networkTagThread = AfxBeginThread(listenNetwork, NULL, THREAD_PRIORITY_ABOVE_NORMAL, 0, CREATE_SUSPENDED);
-	//_networkTagThread->ResumeThread();
+	
 }
 
 int InterfaceListener::bufferToInt(char* buffer) {
@@ -293,49 +289,3 @@ CEvent& InterfaceListener::getFinishCalibrationEvent() {
 	return _finishCalibration;
 }
 
-/*
-void InterfaceListener::sendtoNetwork(char* message) {
-	try{
-		//send the message
-		if (sendto(s, message, strlen(message), 0,
-			(struct sockaddr *) &si_other, slen) == SOCKET_ERROR && is_listening == TRUE) {
-			printf("sendto() failed with error code : %d", WSAGetLastError());
-			exit(EXIT_FAILURE);
-		}
-		//receive a reply and print it
-		//clear the buffer by filling null, it might have previously received data
-		memset(buf, '\0', BUFLEN);
-	}
-	catch (const std::exception& ex) {
-		printf("** RuntimeException from thread");
-	}
-}
-
-unsigned int InterfaceListener::udpSocketInitialization() {
-	//Initialise winsock
-	printf("\nInitialising Winsock...");
-	if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0) {
-		printf("Failed. Error Code : %d", WSAGetLastError());
-		exit(EXIT_FAILURE);
-	}
-	printf("Initialised.\n");
-
-	//create socket
-	if ((s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == SOCKET_ERROR) {
-		printf("socket() failed with error code : %d", WSAGetLastError());
-		exit(EXIT_FAILURE);
-	}
-
-	//setup address structure
-	memset((char *)&si_other, 0, sizeof(si_other));
-	si_other.sin_family = AF_INET;
-	si_other.sin_port = htons(8888);
-	si_other.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
-}
-
-
-void udpSocketTermination() {
-	closesocket(s);
-	WSACleanup();
-}
-*/

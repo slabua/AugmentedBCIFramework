@@ -47,7 +47,6 @@ class SpellerController {
 		void downSampling();								// Funzione che effettua il downsampling dei dati di un fattore sampleRate
 		void reshape();										// Funzione che effettua il reshape della matrice da (canali*finestraSottocampionata X numeroDiTag*numeroDiFlash) a (canali X finestraSottocampionata*numeroDiTag*numeroDiFlash)
 		void invReshape();									// Funzione che effettua il reshape inverso
-		//void printFile();									// Funzione ausiliaria per stampare su file
 		int* prediction();
 		void nextPrediction();								// Funzione che resetta le variabili utilizzate per il nuovo tag da predire
 		void openBinFile();
@@ -84,3 +83,4 @@ class SpellerController {
 };
 
 #endif
+

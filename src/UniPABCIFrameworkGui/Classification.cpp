@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'  degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -217,8 +217,8 @@ int* Classification::classify() { // Attualmente classifica su una sola calibraz
 			}
 
 			tuttecose << "-------------------------------------" << endl;
-			if (mode) {		// Se siamo in modalità RC il vettore degli indici avrà dimensione 2*n_runs,
-							//la prima metà sarà l'ID di riga e la seconda sarà l'ID di colonna.
+			if (mode) {		// Se siamo in modalita' RC il vettore degli indici avra' dimensione 2*n_runs,
+							//la prima meta' sara' l'ID di riga e la seconda sara' l'ID di colonna.
 				maxIndex[i] = 0;
 				maxIndex[i + n_runs] = n_tag/2; 
 				float maxScoreR=scores[0];
@@ -258,26 +258,6 @@ int* Classification::classify() { // Attualmente classifica su una sola calibraz
 
 	return maxIndex;
 }
-
-/* SLB not necessary, never used in originalcd
-void Classification::weighSignalFromFile() {
-	ifstream file;
-	file.open((outputFilesRoot + "LDA/m.txt").c_str()); // SLB
-	//file.open(outputFilesRoot + "LDA/m.txt");
-	string line; 
-	int i = 0;
-
-	if (file.is_open()) {
-		while (getline(file, line)) {
-			std::string::size_type sz;     // alias of size_t
-			float val = ::atof(line.c_str());
-			Classification::m[i] = val;
-			i++;
-		}
-	}
-	
-}
-*/
 
 int* Classification::flashVector() { // Attualmente classifica su una sola calibrazione
 
@@ -320,7 +300,6 @@ int* Classification::flashVector() { // Attualmente classifica su una sola calib
 
 		weighSignal(false);						// Ritorno il vettore w*x
 
-		//weighSignalFromFile();
 		ofstream fileM;
 		fileM.open((outputFilesRoot + "LDA/fileM.txt").c_str(), std::fstream::app); // SLB
 		//fileM.open((outputFilesRoot + "LDA/fileM.txt"), std::fstream::app);
@@ -356,8 +335,8 @@ int* Classification::flashVector() { // Attualmente classifica su una sola calib
 
 			file << endl << "-----------------------------------------------------" << endl;
 
-			if (mode) { // Se siamo in modalità RC il vettore degli indici avrà dimensione 2*n_runs, la prima metà sarà l'ID
-						// di riga e la seconda sarà l'ID di colonna.
+			if (mode) { // Se siamo in modalita' RC il vettore degli indici avra' dimensione 2*n_runs, la prima meta' sara' l'ID
+						// di riga e la seconda sara' l'ID di colonna.
 				maxIndex[i] = 0;
 				maxIndex[i + n_runs] = n_tag / 2;
 
@@ -476,3 +455,4 @@ void Classification::readWfromFile() {
 		}
 	}
 }
+

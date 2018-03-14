@@ -53,11 +53,10 @@ class Worker : public QObject {
         void doWork();						// metodo che invia il messaggio alla gui
 	signals:
 		void updateStamp(string);
-		//void gameSetChoiceIcons(int);		// SLB
-        void finished();
+		void finished();
     private:
 		string message;
-		//int gameMove;
 };
  
 #endif // __COUNT_WORKER_H__
+

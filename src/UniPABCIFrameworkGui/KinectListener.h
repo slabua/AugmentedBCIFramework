@@ -29,7 +29,6 @@
 #define KINECTLISTENER_H
 
 #include <afxmt.h>
-//#include <afxwin.h>
 
 #define GAMEK_ROCK			3
 #define GAMEK_PAPER			1
@@ -66,5 +65,5 @@ class KinectListener {
 
 };
 
-
 #endif
+

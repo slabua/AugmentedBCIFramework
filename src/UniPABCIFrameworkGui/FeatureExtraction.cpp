@@ -43,11 +43,6 @@ const char* pathToFeaturesFile;
 float epy_norm		=  1;
 float egy_norm		= -1;
 float rsq_norm		= -1;
-/*
-float past_epy_norm =  1;
-float past_egy_norm = -1;
-float past_rsq_norm = -1;
-*/
 
 
 FeatureExtraction::FeatureExtraction(void)
@@ -261,18 +256,9 @@ void FeatureExtraction::EpyEgy() {
 	string command;
 	
 	command = "[epy_min, epy_max, egy_min, egy_max, signal_entropy, signal_energy, baseline_entropy, baseline_energy, stimuli_entropy, stimuli_energy, signal_entropy_theta, signal_entropy_alpha, signal_entropy_beta, signal_entropy_gamma, signal_energy_theta, signal_energy_alpha, signal_energy_beta, signal_energy_gamma, baseline_entropy_theta, baseline_entropy_alpha, baseline_entropy_beta, baseline_entropy_gamma, stimuli_entropy_theta, stimuli_entropy_alpha, stimuli_entropy_beta, stimuli_entropy_gamma, baseline_energy_theta, baseline_energy_alpha, baseline_energy_beta, baseline_energy_gamma, stimuli_energy_theta, stimuli_energy_alpha, stimuli_energy_beta, stimuli_energy_gamma] = ext_feat(";
-	// command = "[baseline_entropy_theta, baseline_entropy_alpha, baseline_entropy_beta, baseline_entropy_gamma, stimuli_entropy_theta, stimuli_entropy_alpha, stimuli_entropy_beta, stimuli_entropy_gamma, baseline_energy_theta, baseline_energy_alpha, baseline_energy_beta, baseline_energy_gamma, stimuli_energy_theta, stimuli_energy_alpha, stimuli_energy_beta, stimuli_energy_gamma] = ext_feat(";
 	command += "'../";
 	command += binfilename;
 	command += "', ";
-	/*
-	command += std::to_string(rows);
-	command += ", ";
-	command += std::to_string(mode);
-	command += ", ";
-	command += std::to_string(flash);
-	command += ", ";
-	*/
 	command += std::to_string(channels);
 	command += ", ";
 	command += std::to_string(samplerate);
@@ -284,18 +270,7 @@ void FeatureExtraction::EpyEgy() {
 
 	cm = command.c_str();
 	engEvalString(eFE, cm);
-	/*
-	signal_entropy_alpha	= *mxGetPr(engGetVariable(eFE, "signal_entropy_alpha"));
-	signal_entropy_beta		= *mxGetPr(engGetVariable(eFE, "signal_entropy_beta"));
-	signal_entropy_gamma	= *mxGetPr(engGetVariable(eFE, "signal_entropy_gamma"));
-	signal_entropy_theta	= *mxGetPr(engGetVariable(eFE, "signal_entropy_theta"));
-
-	signal_energy_alpha		= *mxGetPr(engGetVariable(eFE, "signal_energy_alpha"));
-	signal_energy_beta		= *mxGetPr(engGetVariable(eFE, "signal_energy_beta"));
-	signal_energy_gamma		= *mxGetPr(engGetVariable(eFE, "signal_energy_gamma"));
-	signal_energy_theta		= *mxGetPr(engGetVariable(eFE, "signal_energy_theta"));
-	*/
-
+	
 	signal_entropy			= *mxGetPr(engGetVariable(eFE, "signal_entropy"));
 	signal_energy			= *mxGetPr(engGetVariable(eFE, "signal_energy"));
 
@@ -330,8 +305,6 @@ void FeatureExtraction::EpyEgy() {
 	float egy_min_tmp		= *mxGetPr(engGetVariable(eFE, "egy_min"));
 	float egy_max_tmp		= *mxGetPr(engGetVariable(eFE, "egy_max"));
 
-	//float entropy			= stimuli_entropy;
-	//float energy			= stimuli_energy;
 	float entropy			= signal_entropy;
 	float energy			= signal_energy;
 	
@@ -364,8 +337,6 @@ void FeatureExtraction::EpyEgy() {
 
 void FeatureExtraction::EpyEgyNorm() {
 
-	//float entropy	= stimuli_entropy;
-	//float energy	= stimuli_energy;
 	float entropy	= signal_entropy;
 	float energy	= signal_energy;
 
@@ -384,28 +355,11 @@ void FeatureExtraction::EpyEgyNorm() {
 	else {
 		egy_norm		= 0.5; // SLB workaround when using the multiple identical targets during calibration
 	}
-	/*
-	past_epy_norm	 = past_epy	- epy_max;
-	past_epy_norm	/= epy_min	- epy_max;
-
-	past_egy_norm	 = past_egy	- egy_min;
-	past_egy_norm	/= egy_max	- egy_min;
-	*/
+	
 }
 
 void FeatureExtraction::printResultsEE() {
-	/*
-	cout << "signal   entropy theta -> " << signal_entropy_theta	<< endl;
-	cout << "signal   entropy alpha -> " << signal_entropy_alpha	<< endl;
-	cout << "signal   entropy beta  -> " << signal_entropy_beta		<< endl;
-	cout << "signal   entropy gamma -> " << signal_entropy_gamma	<< endl;
 	
-	cout << "signal   energy theta  -> " << signal_energy_theta		<< endl;
-	cout << "signal   energy alpha  -> " << signal_energy_alpha		<< endl;
-	cout << "signal   energy beta   -> " << signal_energy_beta		<< endl;
-	cout << "signal   energy gamma  -> " << signal_energy_gamma		<< endl;
-	*/
-
 	cout << "signal entropy         -> " << signal_entropy			<< endl;
 	cout << "signal energy          -> " << signal_energy			<< endl;
 
@@ -440,18 +394,7 @@ void FeatureExtraction::printResultsEE() {
 void FeatureExtraction::writeResultsEE() {
 
 	featuresFile.open(pathToFeaturesFile, std::ios_base::app | std::ios_base::out);
-	/*
-	featuresFile << "signal   entropy theta = " << signal_entropy_theta		<< endl;
-	featuresFile << "signal   entropy alpha = " << signal_entropy_alpha		<< endl;
-	featuresFile << "signal   entropy beta  = " << signal_entropy_beta		<< endl;
-	featuresFile << "signal   entropy gamma = " << signal_entropy_gamma		<< endl;
 	
-	featuresFile << "signal   energy theta  = " << signal_energy_theta		<< endl;
-	featuresFile << "signal   energy alpha  = " << signal_energy_alpha		<< endl;
-	featuresFile << "signal   energy beta   = " << signal_energy_beta		<< endl;
-	featuresFile << "signal   energy gamma  = " << signal_energy_gamma		<< endl;
-	*/
-
 	featuresFile << "signal entropy         = " << signal_entropy			<< endl;
 	featuresFile << "signal energy			= " << signal_energy			<< endl;
 
@@ -493,7 +436,6 @@ void FeatureExtraction::rSquare(int tagPredicted) {
 	const char* cm;
 	string command;
 
-	//command = "[rsq, rsq_gap, rsq_min, rsq_max] = ext_rsq(";
 	command = "[rsq, rsq_min, rsq_max] = ext_rsq(";
 	command += "'../";
 	command += binfilename;
@@ -517,8 +459,7 @@ void FeatureExtraction::rSquare(int tagPredicted) {
 	engEvalString(eFE, cm);
 	
 	rsq		= *mxGetPr(engGetVariable(eFE, "rsq"));
-	//rsq_gap = *mxGetPr(engGetVariable(eFE, "rsq_gap"));
-
+	
 	float rsq_min_tmp = *mxGetPr(engGetVariable(eFE, "rsq_min"));
 	float rsq_max_tmp = *mxGetPr(engGetVariable(eFE, "rsq_max"));
 	
@@ -554,18 +495,13 @@ void FeatureExtraction::rSquareNorm() {
 	else {
 		 rsq_norm		= 0.5; // SLB workaround when using the multiple identical targets during calibration
 	}
-	/*
-	past_rsq_norm	 = past_rsq	- rsq_min;
-	past_rsq_norm	/= rsq_max	- rsq_min;
-	*/
+	
 }
 
 void FeatureExtraction::printResultRsq() {
 
 	cout << "R^2 -> " << rsq << endl;
-	//if (rsq_gap != -1)
-	//	cout << "R^2 Gap -> " << rsq_gap << endl;
-
+	
 }
 
 void FeatureExtraction::writeResultRsq() {
@@ -573,12 +509,11 @@ void FeatureExtraction::writeResultRsq() {
 	featuresFile.open(pathToFeaturesFile, std::ios_base::app | std::ios_base::out);
 
 	featuresFile << "R^2 = " << rsq << endl;
-	//if (rsq_gap != -1)
-	//	featuresFile << "R^2 Gap = " << rsq_gap << endl;
-
+	
 	featuresFile << "******************************" << endl;
 
 	featuresFile.flush();
 	featuresFile.close();
 
 }
+

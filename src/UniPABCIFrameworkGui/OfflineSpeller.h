@@ -41,7 +41,6 @@ using std::string;
 class OfflineSpeller{
 	public:
 		OfflineSpeller(int,int,int,int,int,int,int,bool,int,string);
-		//void configBuffer(vector<int>);
 		int calculateNumberOfFlash();
 		int calculateNumberOfFlashCalibAnalisys();
 		int calculateNumberOfFlashOnline(int);
@@ -68,3 +67,4 @@ class OfflineSpeller{
 };
 
 #endif
+

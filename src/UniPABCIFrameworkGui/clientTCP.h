@@ -36,17 +36,17 @@
 #include <winsock2.h>
 #include <string>
 
-#define DEFAULT_BUFLEN 512
-#define DEFAULT_PORT "8888"
-#define DEFAULT_ADDRESS "127.0.0.2"
+#define DEFAULT_BUFLEN	512
+#define DEFAULT_PORT	"8888"
+#define DEFAULT_ADDRESS	"127.0.0.2"
 
 
 class clientTCP
 {
 public:
-    clientTCP();
+	clientTCP();
 	clientTCP(std::string,std::string);
-    void sendCommand(const char* s);
+	void sendCommand(const char* s);
 	void sendCommandToRobot(const char* s);
 protected:
 	WSADATA wsaData;
@@ -63,3 +63,4 @@ protected:
 };
 
 #endif // CLIENTTCP_H
+

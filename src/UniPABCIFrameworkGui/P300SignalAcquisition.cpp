@@ -48,7 +48,6 @@ CEvent P300SignalAcquisition::_newDataAvailable;
 
 P300SignalAcquisition::P300SignalAcquisition(LPSTR* slaveDevices, int slaveDevicesSize, LPSTR masterDevice, int buf_size, int rate, int chann, int scan) {
 	
-	//for (int i=0; i<4; i++)
 	for (int i=0; i<chann; i++) // SLB
 		_channelsToAcquire[i] = i+1;
 
@@ -484,3 +483,4 @@ CEvent& P300SignalAcquisition::getNewDataAvailableEvent() {
 
 	return _newDataAvailable;
 }
+

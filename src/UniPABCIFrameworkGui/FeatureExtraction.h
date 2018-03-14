@@ -69,8 +69,6 @@ private:
 	int tagPredicted;
 	std::string binfilename;
 
-	//double signal_entropy_alpha,	signal_entropy_beta,	signal_entropy_gamma,	signal_entropy_theta;
-	//double signal_energy_alpha,	signal_energy_beta,		signal_energy_gamma,	signal_energy_theta;
 	double signal_entropy;
 	double signal_energy;
 	double baseline_entropy;
@@ -84,7 +82,6 @@ private:
 
 	double past_epy, past_egy;
 	double past_rsq, rsq, rsq_min, rsq_max;
-	//float epy_norm, egy_norm, rsq_norm;
-
+	
 };
 

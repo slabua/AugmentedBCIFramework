@@ -43,13 +43,11 @@
 Worker::Worker() {
 
 	message = "";
-	//gameMove = -1;
 }
 
 void Worker::doWork() {
 
 	emit updateStamp(message);
-	//emit gameSetChoiceIcons(gameMove); // SLB
 	qApp->processEvents();
 	emit finished();
 }

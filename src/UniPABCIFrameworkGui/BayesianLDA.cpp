@@ -465,28 +465,6 @@ void BayesianLDA::printmatrix(gsl_matrix_float* m, string nome) {
 	cout << endl << endl;
 }
 
-/* SLB not necessary, never used, must've been a test function
-void BayesianLDA::readInputXfromfile() {
-
-	string line; 
-	ifstream file("C:/Users/Rosario/Documents/MATLAB/TESI/Tesi/inputX.txt");
-	int i=0;
-	int j=0;
-	if (file.is_open()) {
-		while (getline(file, line)) {
-			std::string::size_type sz;     // alias of size_t
-			float val = ::atof(line.c_str());
-			gsl_matrix_float_set(x, i, j, val);
-			i++;
-			if (i==n_feature) {
-				i=0;
-				j++;
-			}
-		}
-	}
-}
-*/
-
 void BayesianLDA::printvectorintofile(gsl_vector_float* vec, string path) {
 
 	ofstream test;
@@ -511,23 +489,6 @@ void BayesianLDA::printmatrixintofile(gsl_matrix_float* mat, string path) {
 
 	test.close();
 }
-
-/* SLB not necessary, never used, must've been a test function
-void BayesianLDA::readInputYfromfile() {
-
-	string line; 
-	ifstream file("C:/Users/Rosario/Documents/MATLAB/TESI/Tesi/inputY.txt");
-	int i=0;
-	if (file.is_open()) {
-		while (getline(file, line)) {
-			std::string::size_type sz;     // alias of size_t
-			float val = ::atof(line.c_str());
-			gsl_vector_int_set(yi, i, val);
-			i++;
-		}
-	}
-}
-*/
 
 gsl_matrix_float* BayesianLDA::get_evec() {
 	
@@ -578,3 +539,4 @@ gsl_vector_float* BayesianLDA::get_vxy() {
 
 	return vxy;
 }
+

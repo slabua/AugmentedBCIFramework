@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'  degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -50,7 +50,6 @@ using std::string;
 
 class P300Framework {
 	public:
-		//P300Framework();
 		P300Framework(Gui*);						// SLB
 		void readConfiguration();					// metodo che setta alcuni parametri di classe leggendoli dal file xml di config
 		void thread_initialization();				// metodo che inizializza i thread di acquisizione
@@ -59,7 +58,6 @@ class P300Framework {
 		void calibration();
 		void ldaClassification();
 		void resetCalibration();
-		//void spelling(int);
 		void spelling();							// SLB
 		void resetSpeller();
 		int offlineSpellerStart();
@@ -70,6 +68,7 @@ class P300Framework {
 		int getNumberOfCalibrations();
 		int getInputNewFlash();
 		void writeTagPredicted(int*);
+		//void createStatisticsXMLfile();
 		void signalCheck();							// SLB
 		void gameSession();							// SLB
 		void baselineAcquisitionInit();				// SLB
@@ -94,10 +93,7 @@ class P300Framework {
 		ResponseModulation* responseModulator;		// SLB
 		bool bioHybridMode;							// SLB
 		bool engineenabled;							// SLB
-		//bool selectorenabled;						// SLB
 		bool baselineAcquisitionStarted;			// SLB
-		//int samplesAcquired;						// SLB
-		//int maxSamples;							// SLB
 		int number_of_calibration_tag;				// numero di tag per la calibrazione
 		int number_of_flash;						// numero di flash per singolo tag
 		int* target_of_calibration;					// vettore dei target scelto per la calibrazione
@@ -105,7 +101,7 @@ class P300Framework {
 		int number_of_tags;							// numero di tag totali dell'interfaccia
 		string username;							// nome dell'utente
 		int counter_stimuli;						// contatore dei tag di calibrazione
-		bool flashingMode;							// flag per indicare la modalità di flashing (true=RC, false=S)
+		bool flashingMode;							// flag per indicare la modalita' di flashing (true=RC, false=S)
 		int window_len;								// dimensione della finestra di campioni acquisiti per ogni tag
 		int sampleRate;								// fattore di downsampling
 		int number_of_channels;						// numero di canali per l'acquisizione
@@ -117,7 +113,6 @@ class P300Framework {
 		int number_of_scan;
 		int buffer_size_second;
 		int sample_rate_hz;
-		//int ocular_filter;						// soglia per il filtraggio oculare
 		float* receivedData;
 		Gui* guiObject;								// SLB
 		CWinThread* _networkTagThread;
@@ -125,3 +120,4 @@ class P300Framework {
 };
 
 #endif
+

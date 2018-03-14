@@ -43,8 +43,6 @@
 */
 // SLB
 #include "rootpaths.h"
-//
-//#include "engine.h"
 
 #define SLBDEBUG			FALSE // SLB
 
@@ -65,10 +63,8 @@ string padding = ""; // "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"; // SLB
 
 bool classificationComplete		= false;
 bool classificatorReady			= false;
-///bool flag						= false;	// SLB not used in originalcd
 bool optFlash					= false;
 int n_flash_online				= 0;		// SLB moved here as global
-//float flash_precision			= 0;		// SLB
 bool deviceOpened				= false;	// SLB
 bool spellerInterfaceStarted	= false;	// SLB
 
@@ -108,9 +104,6 @@ void updateConfiguration(string flash_precision) {
 
 string getFlash() {
 
-	//string line; // SLB moved below
-	//string is;
-	//int i=0; // SLB moved below
 	string n_flash;
 	ifstream flash;
 	flash.open((outputFilesRoot + "/flash.txt").c_str()); // SLB
@@ -191,18 +184,6 @@ void startInterface(P300Framework* fw) {
 	}
 }
 
-// SLB TODO remove, redundant
-/*
-int getNumberFlashFromConfig() {
-
-	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
-	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
-	if (result) 
-		 return atoi(doc.child("num_flash").first_child().value());
-}
-*/
-
 int main(int argc, char *argv[]) {
 	
 	// SLB
@@ -232,7 +213,6 @@ int main(int argc, char *argv[]) {
 
 	while (gui->isRunning()) {}
 
-	//P300Framework* framework = new P300Framework();
 	P300Framework* framework = new P300Framework(gui); // SLB
 	//framework->sendCommandToInterface(650); ////////////////////////////// SLB moved below for each calib/spell event
 
@@ -240,10 +220,6 @@ int main(int argc, char *argv[]) {
 	char *initialStamp = "System set-up completed!\nStarting interface...\n";
 	gui->updateStamp(initialStamp);
 	
-	//int n_flash_online = 0; // SLB moved to global
-	
-	//bool flag = false; // SLB
-	//n_flash_online = 0; // SLB redundant
 	char x;
 	while (true) {
 		WaitForSingleObject(gui->getFinishInitializationEvent().m_hObject, INFINITE);
@@ -440,3 +416,4 @@ int main(int argc, char *argv[]) {
 	//system("PAUSE");
 	return 0;
 }
+
