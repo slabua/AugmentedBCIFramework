@@ -4413,6 +4413,7 @@ void Gui::menubar1creditsSlot() {
 							"<br />"
 							"More information at:<br />"
 							"<a href=\"https://goo.gl/xrfQEs\">http://www.slblabs.com/projects/unipa-bci-framework</a><br />"
+							"<a href=\"https://goo.gl/4sQH7g\">https://github.com/slabua/UniPABCIFramework</a><br />"
 							"<br /><br /><br />"
 							"Based on a previous work (P300 core) of: "
 							"<i>R. Misuraca</i>, <i>W. Tranchina</i>, <i>G. Trubia</i>.<br />"
@@ -4429,11 +4430,14 @@ void Gui::menubar1creditsSlot() {
 	QString roboticslabLine = "<p align=\"right\"><i><font size=\"26\" color=\"black\"><b>&nbsp;ROBOTICS</b></font><font size=\"26\" color=\"white\"><b>&nbsp;LAB&nbsp;&nbsp;</b></font></i></p>";
 	
 	QLabel *statusBottomBar = new QLabel(roboticslabLine);
-	//QString paletteStyle = "background-color: rgba(184, 38, 25, 100%); border-radius: 6px 10px;";
-	QString paletteStyle = "background-color: " ACCENT_01 "; border-radius: 6px 10px;";
+	QString paletteStyle = "background-color: " ACCENT_01 "; border-top-left-radius: 6px 10px; border-bottom-right-radius: 6px 10px;";
 	statusBottomBar->setAutoFillBackground(true);
 	statusBottomBar->setStyleSheet(paletteStyle);
-	statusBottomBar->setFixedHeight(36);
+	statusBottomBar->setFixedHeight(30);
+	QFont statusBottomBarFont = font();
+	statusBottomBarFont.setPointSize(4);
+	statusBottomBarFont.setBold(true);
+	statusBottomBar->setFont(statusBottomBarFont);
 
 	dialogLayout->addLayout(logoLine);
 	dialogLayout->addStretch(true);

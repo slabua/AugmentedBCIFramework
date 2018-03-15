@@ -112,7 +112,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ![Symbolic Speller](https://goo.gl/hLGvcy)
 
 ### Credits
-![Credits](https://goo.gl/qvfKNk)
+![Credits](https://goo.gl/BVu3PF)
 
 ### License
 ![License](https://goo.gl/NjbEWi)
