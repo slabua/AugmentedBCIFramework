@@ -132,9 +132,6 @@ void clientTCP::sendCommand(const char* s)
 
     }
 
-	
-
-
     // shutdown the connection since no more data will be sent
     iResult = shutdown(ConnectSocket, SD_SEND);
     if (iResult == SOCKET_ERROR) {
@@ -160,7 +157,6 @@ void clientTCP::sendCommand(const char* s)
     // cleanup
     closesocket(ConnectSocket);
     WSACleanup();
-
 
 }
 

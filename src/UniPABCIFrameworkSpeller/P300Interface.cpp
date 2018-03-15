@@ -41,34 +41,6 @@ P300Interface::P300Interface() {
 P300Interface::P300Interface(int elem) {
 	setNumberEl(elem);
 	
-	/* SLB redundant code
-	int tmp = ceil(sqrt(elem));
-	int rows;
-	
-	if (tmp <= 4)
-		rows = 2;
-	else if ((tmp > 4) && (tmp <= 9))
-		rows = 3;
-	else if ((tmp > 9) && (tmp <= 16))
-		rows = 4;
-	else if ((tmp > 16) && (tmp <= 25))
-		rows = 5;
-	else if ((tmp > 25) && (tmp <= 36))
-		rows = 6;
-	else if ((tmp > 36) && (tmp <= 49))
-		rows = 7;
-	else if ((tmp > 49) && (tmp <= 64))
-		rows = 8;
-	else if ((tmp > 64) && (tmp <= 81))
-		rows = 9;
-	else if ((tmp > 81) && (tmp <= 100))
-		rows = 10;
-	else {
-		cout << endl << "Errore, inserito numero di elementi errato." << endl;
-		exit(1);
-	}
-	*/
-
 	// SLB
 	int rows = ceil(sqrt(elem));
 	if (rows > 100) {

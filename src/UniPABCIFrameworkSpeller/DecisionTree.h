@@ -48,3 +48,4 @@ class DecisionTree {
 		static size_t write_to_string(void*, size_t, size_t, void*);
 
 };
+

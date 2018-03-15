@@ -41,8 +41,8 @@ bool ChiSquareTest::test(std::vector<std::vector <int> > count,int x,int y) {
 	const int m_x_l = x;
 	const int m_y_l = y;
 
-	std::vector<double> m_x(m_x_l,0);// margin for x
-	std::vector<double> m_y(m_y_l,0);// margin for y
+	std::vector<double> m_x(m_x_l,0); // margin for x
+	std::vector<double> m_y(m_y_l,0); // margin for y
 	double m = 0;
 	for (int i=0; i<m_x_l; i++) {
 		for (int j = 0; j < m_y_l; j++) {

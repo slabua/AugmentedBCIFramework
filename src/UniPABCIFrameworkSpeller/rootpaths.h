@@ -36,3 +36,4 @@ extern const std::string outputFilesRoot;
 extern const std::string binFilesRoot;
 
 #endif
+

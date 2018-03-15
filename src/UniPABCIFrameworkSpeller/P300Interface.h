@@ -71,3 +71,4 @@ class P300Interface {
 		string texturePathName; // Path delle texture
 };
 #endif
+

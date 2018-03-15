@@ -37,7 +37,7 @@
 
 /*ChiSquare si occupa di effettuare la sogliatura dell'albero per ridurre il problema del sovraddatamento della rete, le
 soglie ottimali sono:(dal piu alto al piu basso)
-/**
+/*
 	 * Chi-square test with threshold .001.
 			* ChiSquareTest(16.27);
 
@@ -62,3 +62,4 @@ class ChiSquareTest
 };
 
 #endif // CHISQUARETEST_H
+

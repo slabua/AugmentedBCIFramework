@@ -331,3 +331,4 @@ void updateXML(int); //metodo per aggiornare il file xml della memoria
 const char* BoolToString(bool b);
 void sendCommandToRobot(int);
 bool spellerHandler=false;
+

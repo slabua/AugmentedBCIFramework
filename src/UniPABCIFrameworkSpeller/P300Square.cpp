@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'  degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita'ï¿½ degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -132,7 +132,7 @@ void P300Square::setTexture(bool func) {
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //aumento qualità
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //aumento qualitï¿½
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL); //aumento luminosita
@@ -142,21 +142,7 @@ void P300Square::setTexture(bool func) {
 	glBegin(GL_QUADS);
 	//glColor4f(0.5f, 0.0, 0.0f, 0.8f); // SLB
 
-	/* SLB
-	// Bottom Left
-	glTexCoord2f(1, 1);
-	glVertex2f(u, v + size);
-	// Top Left
-	glTexCoord2f(1, 0);
-	glVertex2f(u, v);
-	// Top Right
-	glTexCoord2f(0, 0);
-	glVertex2f(u + size, v);
-	// Bottom Right
-	glTexCoord2f(0, 1);
-	glVertex2f(u + size, v + size);
-	*/
-
+	// SLB
 	// Bottom Left
 	glTexCoord2f(0, 0);
 	glVertex2f(u, v);

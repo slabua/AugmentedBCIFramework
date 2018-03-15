@@ -58,3 +58,4 @@ class Instance
 };
 
 #endif // ISTANCES_H
+
