@@ -77,7 +77,7 @@ agent.
 2. [Presentation](https://goo.gl/ZGJKXZ)
 3. [ResearchGate Thesis publication](https://goo.gl/M0ju0s)
 4. [ResearchGate Presentation publication](https://goo.gl/EcMujd)
-5. [ResearchGate related project](https://goo.gl/lrbjgy)
+5. [ResearchGate UniPA BCI Framework project](https://goo.gl/lrbjgy)
 
 ## LICENSE
 
