@@ -1,5 +1,5 @@
 # UniPA BCI Framework
-[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPLv3][GPLimg]][GPLurl]
 
 Copyright (C) 2017 Salvatore La Bua [slabua(at)gmail.com](mailto:slabua@gmail.com)  
 RoboticsLab, Department of Industrial and Digital Innovation (DIID),  
@@ -73,11 +73,11 @@ agent.
 
 ## Resources
 
-1. [Master's Degree Thesis](https://goo.gl/buaKOv)
-2. [Presentation](https://goo.gl/ZGJKXZ)
-3. [ResearchGate Thesis publication](https://goo.gl/M0ju0s)
-4. [ResearchGate Presentation publication](https://goo.gl/EcMujd)
-5. [ResearchGate UniPA BCI Framework project](https://goo.gl/lrbjgy)
+1. [Master's Degree Thesis][R01]
+2. [Presentation][R02]
+3. [ResearchGate Thesis publication][R03]
+4. [ResearchGate Presentation publication][R04]
+5. [ResearchGate UniPA BCI Framework project][R05]
 
 ## LICENSE
 
@@ -97,23 +97,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ## Screenshots
 
 ### BCI Framework main interface
-![Main](https://goo.gl/6hUcfq)
+![Main][S01]
 
 ### Baseline Acquisition interface
-![Baseline Acquisition](https://goo.gl/VHo1fX)
+![Baseline Acquisition][S02]
 
 ### Game Session controller
-![Game Session](https://goo.gl/mPxkR3)
+![Game Session][S03]
 
 ### Alphanumeric Spelling interface
-![Alphanumeric Speller](https://goo.gl/DN2Qt4)
+![Alphanumeric Speller][S04]
 
 ### Symbolic Spelling interface
-![Symbolic Speller](https://goo.gl/hLGvcy)
+![Symbolic Speller][S05]
 
 ### Credits
-![Credits](https://goo.gl/BVu3PF)
+![Credits][S06]
 
 ### License
-![License](https://goo.gl/NjbEWi)
+![License][S07]
+
+[GPLimg]: https://img.shields.io/badge/License-GPLv3-blue.svg
+[GPLurl]: https://www.gnu.org/licenses/gpl-3.0
+[R01]: https://goo.gl/buaKOv
+[R02]: https://goo.gl/ZGJKXZ
+[R03]: https://goo.gl/M0ju0s
+[R04]: https://goo.gl/EcMujd
+[R05]: https://goo.gl/lrbjgy
+[S01]: https://goo.gl/6hUcfq
+[S02]: https://goo.gl/VHo1fX
+[S03]: https://goo.gl/mPxkR3
+[S04]: https://goo.gl/DN2Qt4
+[S05]: https://goo.gl/hLGvcy
+[S06]: https://goo.gl/BVu3PF
+[S07]: https://goo.gl/NjbEWi
 
