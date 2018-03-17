@@ -90,7 +90,7 @@ using std::vector;
 #define TIMER_INTERVAL			50
 #define FRAMEWORKNAME			"UniPA BCI Framework"
 #define SERVICE_CHANNELS		3
-#define NOTIFICATION_SOUND		"..\\bin\\audio\\notification.wav"
+//#define NOTIFICATION_SOUND		"..\\bin\\audio\\notification.wav"
 #define FRAMEWORKREDICONPATH	"./icons/UniPABCIGui.bin"
 #define FRAMEWORKBLUEICONPATH	"./icons/UniPABCISpeller.bin"
 #define FRAMEWORKBGIMAGE		"./icons/bg.jpg"
@@ -291,7 +291,7 @@ class Gui : public QMainWindow {
 		void updateTimerTime();						// SLB
 		void updateTimer();							// SLB
 	private:
-		string notificationSound;
+		//string notificationSound; // SLB
 		string logFilePath; // SLB
 		//CFile logFile; // SLB
 		QTimer *timerTime;	// SLB
@@ -309,6 +309,7 @@ class Gui : public QMainWindow {
 		QLineEdit *durationLineEdit;	// SLB
 		QLabel *dialogLabelUser;		// SLB
 		QLabel *dialogIconLabel;		// SLB
+		QLabel *dialogIconLabel2;		// SLB
 		QPushButton *closedEyesButton;	// SLB
 		QPushButton *openedEyesButton;	// SLB
 		QLabel *pbarLabel;		// SLB

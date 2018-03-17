@@ -282,12 +282,14 @@ int main(int argc, char *argv[]) {
 					framework->baselineAcquisition(EYESCLOSED, gui->getBaselineAcqDuration());
 					///Sleep(gui->getBaselineAcqDuration() * 1000);
 					gui->setEyesAcquisitionStatus(CLOSEDEYES_STOP);
+					gui->playSound("notification");
 				}
 
 				while (!gui->isAcqReady() && !gui->isAcqDone()) {}
 				if (!gui->isAcqDone()) {
 					framework->baselineAcquisition(EYESOPEN, gui->getBaselineAcqDuration());
 					///Sleep(gui->getBaselineAcqDuration() * 1000);
+					gui->playSound("notification");
 				}
 				
 				framework->baselineAcquisitionTerm();

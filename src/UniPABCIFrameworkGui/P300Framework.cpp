@@ -779,7 +779,7 @@ void P300Framework::baselineAcquisition(int eyesOpen, int seconds) {
 
 		}
 
-		guiObject->playSound("notification");
+		///guiObject->playSound("notification"); // Moved to the framework main file
 		cout << "Baseline acquisition stopped.\n\n";
 
 		//Sleep(1000);

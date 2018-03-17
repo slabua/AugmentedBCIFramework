@@ -1958,7 +1958,7 @@ void Gui::initVariables() {
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
 	
-	notificationSound = audioPathRoot + "/notification.wav";
+	//notificationSound = audioPathRoot + "/notification.wav";
 
 	acqReady				= false;
 	acqDone					= false;
@@ -4007,11 +4007,20 @@ void Gui::showBaselineAcquisitionDialogUser() {
 	dialogLabelUser->setAlignment(Qt::AlignCenter);
 	dialogLabelUser->setStyleSheet("font-size: 20px; font-weight: bold; color: #3c3c3c");
 	
+	QHBoxLayout *dialogEyesLayout = new QHBoxLayout;
+	QPixmap iconEyeClosed(EYECLOSEDICONPATH);
 	dialogIconLabel = new QLabel("");
 	dialogIconLabel->setAlignment(Qt::AlignCenter);
-	QPixmap iconEyeClosed(EYECLOSEDICONPATH);
 	dialogIconLabel->setPixmap(iconEyeClosed);
+	dialogIconLabel2 = new QLabel("");
+	dialogIconLabel2->setAlignment(Qt::AlignCenter);
+	dialogIconLabel2->setPixmap(iconEyeClosed);
 	//dialogIconLabel->setFixedSize(iconEyeClosed.rect().size());
+	dialogEyesLayout->addStretch(true);
+	dialogEyesLayout->addWidget(dialogIconLabel);
+	dialogEyesLayout->addStretch(true);
+	dialogEyesLayout->addWidget(dialogIconLabel2);
+	dialogEyesLayout->addStretch(true);
 
 	//QPushButton *closeDialogButton = new QPushButton(tr("Close"));
 
@@ -4043,7 +4052,8 @@ void Gui::showBaselineAcquisitionDialogUser() {
 
 	dialogLayout->addStretch(true);
 	dialogLayout->addWidget(dialogLabelUser);
-	dialogLayout->addWidget(dialogIconLabel);
+	//dialogLayout->addWidget(dialogIconLabel);
+	dialogLayout->addLayout(dialogEyesLayout);
 	dialogLayout->addStretch(true);
 	dialogLayout->addLayout(pbarLayout1);
 	dialogLayout->addLayout(pbarLayout2);
@@ -4159,6 +4169,7 @@ void Gui::clickedBaselineAcqButton1() {
 
 	QPixmap iconEyeClosed(EYECLOSEDICONPATH);
 	dialogIconLabel->setPixmap(iconEyeClosed);
+	dialogIconLabel2->setPixmap(iconEyeClosed);
 
 	closedEyesButton->setEnabled(false);
 	acqReady = true;
@@ -4255,6 +4266,7 @@ void Gui::clickedBaselineAcqButton2() {
 
 	QPixmap iconEyeOpen(EYEOPENICONPATH);
 	dialogIconLabel->setPixmap(iconEyeOpen);
+	dialogIconLabel2->setPixmap(iconEyeOpen);
 
 	pbarLabel->setText("2 / 2");
 	pbarLabel1->setText("2 / 2");
