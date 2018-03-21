@@ -124,11 +124,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 [R03]: https://goo.gl/M0ju0s
 [R04]: https://goo.gl/EcMujd
 [R05]: https://goo.gl/lrbjgy
-[S01]: https://goo.gl/6hUcfq
-[S02]: https://goo.gl/wLJpYU
-[S03]: https://goo.gl/RkHv4x
-[S04]: https://goo.gl/DN2Qt4
-[S05]: https://goo.gl/hLGvcy
-[S06]: https://goo.gl/iZG4je
-[S07]: https://goo.gl/8ezoui
+[S01]: https://goo.gl/Tej47J
+[S02]: https://goo.gl/pVfrwR
+[S03]: https://goo.gl/XXEwuC
+[S04]: https://goo.gl/7heD6Y
+[S05]: https://goo.gl/vYPKYe
+[S06]: https://goo.gl/wK7qyE
+[S07]: https://goo.gl/CFVjKB
 
