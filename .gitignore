@@ -1,24 +1,26 @@
-*sdf
-*suo
+*aps
 *bsc
 *exe
 *pdb
-*aps
+*sdf
+*suo
+.vscode
+untracked
 
-src/*/Debug
 src/*/moc*cpp
+src/*/Debug
 
 !bin/KinectHandTracking.exe
 
 bin/config/configuration.xml
+bin/logs
 bin/BinFiles
 bin/OutputFiles
 bin/OutputFilesLDA
-bin/logs
 
-bin/matlab/*mat
-bin/matlab/*bak
 bin/matlab/*avs
+bin/matlab/*bak
+bin/matlab/*mat
 bin/matlab/test
 bin/matlab/ws
 
@@ -30,4 +32,3 @@ bin/Tobii.EyeX.Client.dll
 res/dll/Tobii.EyeX.Client.dll
 res/tobii
 
-res/qcustomplot/examples
