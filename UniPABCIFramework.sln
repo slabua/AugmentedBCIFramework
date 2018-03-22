@@ -5,7 +5,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UniPABCIFrameworkGui", "src
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UniPABCIFrameworkSpeller", "src\UniPaBCIFrameworkSpeller\UniPaBCIFrameworkSpeller.vcxproj", "{2ECA7DB8-1331-41BA-8572-2764539E5A3F}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject01", "ModelingProject01\ModelingProject01.modelproj", "{E15163CD-D4B5-4537-A6DD-F41349C84BF5}"
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject", "ModelingProject\ModelingProject.modelproj", "{E15163CD-D4B5-4537-A6DD-F41349C84BF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

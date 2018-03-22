@@ -2,7 +2,7 @@
 <modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="c5396bbf-b4f3-4bfc-81d8-8d0b991ad000"
-  name="ModelingProject01" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  name="ModelingProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
   <ownedCommentsInternal>
     <comment
       Id="c913e71b-97a2-45cb-b5fe-036a432bac44">
@@ -48,7 +48,7 @@ SelectedID, BehaviourIntensity
             <classMoniker
               Id="6aa5372f-fa81-4691-ac96-11d9605ec7f7"
               LastKnownName="TobiiTracker"
-              LastKnownLocation="ModelingProject01.uml" />
+              LastKnownLocation="ModelingProject.uml" />
           </dependency>
         </suppliersInternal>
         <ownedAttributesInternal>
@@ -280,14 +280,14 @@ SelectedID, BehaviourIntensity
             <classMoniker
               Id="7412150c-5e3d-4a96-aaa0-8056505ba2af"
               LastKnownName="FeatureExtraction"
-              LastKnownLocation="ModelingProject01.uml" />
+              LastKnownLocation="ModelingProject.uml" />
           </dependency>
           <dependency
             Id="9e8a6515-a45c-4cb2-a685-20c9db5e08a9">
             <classMoniker
               Id="86d9bfa8-40cf-4d82-847d-5baa1ac29253"
               LastKnownName="ActionSelection"
-              LastKnownLocation="ModelingProject01.uml" />
+              LastKnownLocation="ModelingProject.uml" />
           </dependency>
         </suppliersInternal>
         <ownedAttributesInternal>

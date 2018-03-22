@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{e15163cd-d4b5-4537-a6dd-f41349c84bf5}</ProjectGuid>
     <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
-    <Name>ModelingProject01</Name>
-    <RootNamespace>ModelingProject01</RootNamespace>
+    <Name>ModelingProject</Name>
+    <RootNamespace>ModelingProject</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -28,15 +28,15 @@
     <Content Include="ModelDefinition\Package_1647.uml">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="UMLClassDiagram01.classdiagram">
+    <Content Include="UMLClassDiagram.classdiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="UMLClassDiagram01.classdiagram.layout">
+    <Content Include="UMLClassDiagram.classdiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>UMLClassDiagram01.classdiagram</DependentUpon>
+      <DependentUpon>UMLClassDiagram.classdiagram</DependentUpon>
     </Content>
     <Folder Include="ModelDefinition\" />
-    <Content Include="ModelDefinition\ModelingProject01.uml">
+    <Content Include="ModelDefinition\ModelingProject.uml">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>

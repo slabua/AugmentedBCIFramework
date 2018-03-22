@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="e8c50133-e915-452b-9794-812af0332740" name="UMLClassDiagram01" linkedPackageId="8068f097-a958-48f8-b6eb-db4622378467" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="e8c50133-e915-452b-9794-812af0332740" name="UMLClassDiagram" linkedPackageId="8068f097-a958-48f8-b6eb-db4622378467" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <ownedCommentsInternal>
     <comment Id="566c75e9-bb8c-4e7c-ae64-0689a46eba60">
       <elementDefinition Id="c913e71b-97a2-45cb-b5fe-036a432bac44" />
@@ -184,7 +184,7 @@ SelectedID, BehaviourIntensity
       </package>
     </logicalClassDesignerModelHasPackages>
   </packagedElements>
-  <package Id="8068f097-a958-48f8-b6eb-db4622378467" name="ModelingProject01">
+  <package Id="8068f097-a958-48f8-b6eb-db4622378467" name="ModelingProject">
     <elementDefinition Id="c5396bbf-b4f3-4bfc-81d8-8d0b991ad000" />
     <profileInstances>
       <packageHasProfileInstances Id="167017c5-9144-4bf2-8445-e4fd0123bc71">
