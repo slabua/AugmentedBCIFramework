@@ -1213,10 +1213,16 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	menubar1help->setIconVisibleInMenu(true);
 	menubar1help->setShortcut(QKeySequence(Qt::Key_Question));
 	connect(menubar1help, SIGNAL(triggered()), this, SLOT(menubar1helpSlot()));
+	QAction *menubar1showGPL	= new QAction(("Show &GPL"), this);
+	menubar1showGPL->setIcon(QIcon(FRAMEWORKBLUEICONPATH));
+	menubar1showGPL->setIconVisibleInMenu(true);
+	menubar1showGPL->setShortcut(QKeySequence(Qt::Key_G));
+	connect(menubar1showGPL, SIGNAL(triggered()), this, SLOT(menubar1showGPLSlot()));
 	
 	menubar->setMinimumWidth(2);
 	menubar1->addAction(menubar1credits);
 	menubar1->addAction(menubar1help);
+	menubar1->addAction(menubar1showGPL);
 	setMenuBar(menubar);
 	
 	statusbar = new QStatusBar(this);
@@ -4307,7 +4313,7 @@ void Gui::clickedBaselineAcqButton2() {
 void Gui::menubar1helpSlot() {
 	
 	QDialog *creditsDialog = new QDialog();
-	creditsDialog->setWindowIcon(QIcon(FRAMEWORKREDICONPATH));
+	creditsDialog->setWindowIcon(QIcon(FRAMEWORKBLUEICONPATH));
 	
 
 	creditsDialog->setWindowTitle("License");
@@ -4323,7 +4329,7 @@ void Gui::menubar1helpSlot() {
 	creditsDialog->setFixedSize(dialogWidth, dialogHeight);
 
 	QVBoxLayout *dialogLayout = new QVBoxLayout;
-	QHBoxLayout* logoLine = new QHBoxLayout;
+	QHBoxLayout *logoLine = new QHBoxLayout;
 	
 	QLabel *unipaBCIIconLabel = new QLabel();
 	QPixmap iconUnipaBCI(FRAMEWORKREDICONPATH);
@@ -4399,7 +4405,7 @@ void Gui::menubar1creditsSlot() {
 	creditsDialog->setFixedSize(dialogWidth, dialogHeight);
 
 	QVBoxLayout *dialogLayout = new QVBoxLayout;
-	QHBoxLayout* logoLine = new QHBoxLayout;
+	QHBoxLayout *logoLine = new QHBoxLayout;
 	
 	QLabel *unipaBCIIconLabel = new QLabel();
 	QPixmap iconUnipaBCI(FRAMEWORKREDICONPATH);
@@ -4454,6 +4460,93 @@ void Gui::menubar1creditsSlot() {
 	dialogLayout->addLayout(logoLine);
 	dialogLayout->addStretch(true);
 	dialogLayout->addWidget(creditsLabel);
+	dialogLayout->addWidget(statusBottomBar);
+
+	creditsDialog->setLayout(dialogLayout);
+
+	QPalette *palette = new QPalette();	
+	palette->setBrush(QPalette::Background, *(new QBrush(*(new QPixmap(CREDITSBGIMAGE)))));
+	creditsDialog->setPalette(*palette);
+
+	creditsDialog->exec(); // modal
+
+}
+
+// SLB
+void Gui::menubar1showGPLSlot() {
+
+	QString gplFilename = "../LICENSE";
+    QFile gplFile(gplFilename);
+
+	QDialog *creditsDialog = new QDialog();
+	creditsDialog->setWindowIcon(QIcon(FRAMEWORKBLUEICONPATH));
+	
+
+	creditsDialog->setWindowTitle("GPL");
+	creditsDialog->setAttribute(Qt::WA_DeleteOnClose);
+	//dialogControl->setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint); // SLB remove "?" help quick menu
+	creditsDialog->setWindowFlags(Qt::FramelessWindowHint); 
+	creditsDialog->setWindowFlags(Qt::WindowTitleHint); 
+	//dialogControl->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
+	int dialogWidth = 480;
+	int dialogHeight = 320;
+	//creditsDialog->setMinimumWidth(dialogWidth);
+	//creditsDialog->setMinimumHeight(dialogHeight);
+	creditsDialog->setFixedSize(dialogWidth, dialogHeight);
+
+	QVBoxLayout *dialogLayout = new QVBoxLayout;
+	QHBoxLayout* logoLine = new QHBoxLayout;
+	
+	QLabel *unipaBCIIconLabel = new QLabel();
+	QPixmap iconUnipaBCI(FRAMEWORKREDICONPATH);
+	unipaBCIIconLabel->setPixmap(iconUnipaBCI);
+	unipaBCIIconLabel->setFixedSize(iconUnipaBCI.rect().size());
+
+	//QLabel *unipaBCILabel = new QLabel("UniPA  BCI Framework ");
+	QLabel *unipaBCILabel = new QLabel("Augmented\nBCI Framework");
+	unipaBCILabel->setAlignment(Qt::AlignRight);
+	QFont titleFont = font();
+	titleFont.setPointSize(20);
+	titleFont.setBold(true);
+	//titleFont.setStyleStrategy(QFont::PreferAntialias);
+	unipaBCILabel->setFont(titleFont);
+
+	logoLine->addWidget(unipaBCIIconLabel);
+	logoLine->addStretch(true);
+	logoLine->addWidget(unipaBCILabel);
+	
+	QTextEdit *gplTextField = new QTextEdit();
+	gplTextField->clear();
+	gplTextField->setReadOnly(true);
+
+	statusbar->showMessage(tr("Loading License file..."), 2000);
+	QString line;
+	if (gplFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		QTextStream stream(&gplFile);
+		while (!stream.atEnd()) {
+			line = stream.readLine();
+			gplTextField->setText(gplTextField->toPlainText() + line + "\n");
+		}
+	}
+	gplFile.close();
+	statusbar->showMessage(tr("License file loaded"), 2000);
+
+	QHBoxLayout *lineBottom = new QHBoxLayout;
+	QString roboticslabLine = "<p align=\"right\"><i><font size=\"26\" color=\"black\"><b>&nbsp;ROBOTICS</b></font><font size=\"26\" color=\"white\"><b>&nbsp;LAB&nbsp;&nbsp;</b></font></i></p>";
+	
+	QLabel *statusBottomBar = new QLabel(roboticslabLine);
+	QString paletteStyle = "background-color: " ACCENT_01 "; border-top-left-radius: 6px 10px; border-bottom-right-radius: 6px 10px;";
+	statusBottomBar->setAutoFillBackground(true);
+	statusBottomBar->setStyleSheet(paletteStyle);
+	statusBottomBar->setFixedHeight(30);
+	QFont statusBottomBarFont = font();
+	statusBottomBarFont.setPointSize(4);
+	statusBottomBarFont.setBold(true);
+	statusBottomBar->setFont(statusBottomBarFont);
+
+	dialogLayout->addLayout(logoLine);
+	dialogLayout->addStretch(true);
+	dialogLayout->addWidget(gplTextField);
 	dialogLayout->addWidget(statusBottomBar);
 
 	creditsDialog->setLayout(dialogLayout);

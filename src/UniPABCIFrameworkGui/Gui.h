@@ -237,6 +237,7 @@ class Gui : public QMainWindow {
 		void clickedBaselineAcqButton2();			// SLB
 		void menubar1helpSlot();					// SLB
 		void menubar1creditsSlot();					// SLB
+		void menubar1showGPLSlot();					// SLB
 		void setAcqDone();							// SLB
 		int getBaselineAcqDuration();				// SLB
 		void clickedCalibrationButton();
