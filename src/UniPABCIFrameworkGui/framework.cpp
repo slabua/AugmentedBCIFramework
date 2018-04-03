@@ -33,10 +33,6 @@
 #include <QtGui/QApplication>
 //#include <QtCore/QThread>
 //
-/* SLB QT4
-#include <Qt/qapplication.h>
-#include <Qt/qthread.h>
-*/
 /* SLB QT5
 #include <QtWidgets\qapplication.h>
 #include <QtCore\qthread.h>

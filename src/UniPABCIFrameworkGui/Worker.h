@@ -34,9 +34,6 @@
 // SLB QT4
 #include <QtCore/QObject>
 //
-/* SLB QT4
-#include <Qt/qobject.h>
-*/
 /* SLB QT5
 #include <QtCore\qobject.h>
 */

@@ -48,21 +48,6 @@
 #include <QtGui/qstatusbar.h>		// SLB
 #include <QtGui/qmainwindow.h>		// SLB
 //
-/* SLB QT4
-#include <Qt/qdialog.h>
-#include <Qt/qlabel.h>
-#include <Qt/qlineedit.h>
-#include <Qt/qboxlayout.h>
-#include <Qt/qpushbutton.h>
-#include <Qt/qcombobox.h>
-#include <Qt/qcheckbox.h> // SLB
-#include <Qt/qradiobutton.h>
-#include <Qt/qgroupbox.h>
-#include <Qt/qmessagebox.h>
-#include <Qt/qtextedit.h>
-#include <Qt/qscrollbar.h>
-#include <Qt/qthread.h>
-*/
 /* SLB QT5
 #include <QtWidgets\qdialog.h>
 #include <QtWidgets\qlabel.h>
@@ -90,7 +75,6 @@ using std::vector;
 #define TIMER_INTERVAL			50
 #define FRAMEWORKNAME			"UniPA BCI Framework"
 #define SERVICE_CHANNELS		3
-//#define NOTIFICATION_SOUND		"..\\bin\\audio\\notification.wav"
 #define FRAMEWORKREDICONPATH	"./icons/UniPABCIGui.bin"
 #define FRAMEWORKBLUEICONPATH	"./icons/UniPABCISpeller.bin"
 #define FRAMEWORKBGIMAGE		"./icons/bg.jpg"
@@ -144,7 +128,6 @@ using std::vector;
 #define KINECT_EXECUTABLE		"KinectHandTracking.exe"
 
 
-//class Gui : public QDialog {
 class Gui : public QMainWindow {
 
 	Q_OBJECT
@@ -175,13 +158,11 @@ class Gui : public QMainWindow {
 		CEvent& getSpellerFileStartEvent();
 		CEvent& getOnlineFlashAnalysisStartEvent();
 		CEvent& getCalibrationAnalysisStartEvent();
-		//CEvent& getEyeTrackingEvent(); // SLB
 		CEvent& getKillEvent();		// SLB
 		bool exists_file(string);
 		void check_folder(string);	// SLB
 		void setIndexSliders();		// SLB
 		void setPlotBars();			// SLB
-		void insertNewFlash(string);
 		string BoolToString(bool);	// SLB
 		QRect buildScreenGeometry();						// SLB
 		void showGameSessionDialogControl();				// SLB
@@ -243,12 +224,10 @@ class Gui : public QMainWindow {
 		void clickedCalibrationButton();
 		void clickedSpellerButton();
 		void clickedSpellerFileButton();
-		//void enableSpellerButton();				// SLB removed, was never used
 		void clickedFlashAnalysisButton();
 		void clickedOnlineFlashAnalysisButton();
 		void clickedStartCalibrationAnalysisButton();
 		void updateStamp(string);
-		//void gameSetChoiceIcons(int);				// SLB slot for worker class
 	signals:
 	private slots:
 		void okClicked();
@@ -256,13 +235,11 @@ class Gui : public QMainWindow {
 		//void resetClicked();						// SLB TODO
 		void closeClicked();						// SLB
 		void closeEvent(QCloseEvent *event);		// SLB
-		//void enableokButton();					// SLB not needed
 		void changeComboTarget();
 		void changeTagComboTarget();
 		void changeTextureCombo();					// SLB
 		void changePaletteString();					// SLB
 		void changeLineFlash();						// SLB
-		//void changeLineFlashTime();				// SLB
 		void changeChannel1();						// SLB
 		void changeChannel2();						// SLB
 		void clickedstate(bool);
@@ -292,7 +269,6 @@ class Gui : public QMainWindow {
 		void updateTimerTime();						// SLB
 		void updateTimer();							// SLB
 	private:
-		//string notificationSound; // SLB
 		string logFilePath; // SLB
 		//CFile logFile; // SLB
 		QTimer *timerTime;	// SLB
@@ -347,13 +323,10 @@ class Gui : public QMainWindow {
 		QLineEdit *lineChan2;			// SLB
 		QRadioButton *radioAlphabetic;
 		QRadioButton *radioSymbolic;
-		//QRadioButton *radioCustomPalette; // SLB
 		QCheckBox *checkCustomPalette;	// SLB
 		QRadioButton *radioBasic;		// SLB
 		QRadioButton *radioHybrid;		// SLB
 		QRadioButton *radioBioHybrid;	// SLB
-		//QRadioButton *radioOn;		// SLB
-		//QRadioButton *radioOff;		// SLB
 		QCheckBox *checkFlashOpt;		// SLB
 		QCheckBox *checkFlashTimeAuto;	// SLB
 		QRadioButton *tobiiFilteredRadio;	// SLB
@@ -396,11 +369,8 @@ class Gui : public QMainWindow {
 		bool time_flash_auto;		// SLB
 		int number_channels;		// SLB
 		int number_channels_plus;	// SLB
-		//int tot_channels;			// SLB
 		int number_of_calibrations;
-		//bool flashingMode;
 		int mode;
-		//int optFlash; // SLB
 		bool optFlash;
 		int number_of_tags;
 		int* target_of_calibration;
@@ -466,8 +436,6 @@ class Gui : public QMainWindow {
 		QSlider *index1Slider;		// SLB
 		QSlider *index2Slider;		// SLB
 		QSlider *index3Slider;		// SLB
-		//QLabel *graphWidget;		// SLB
-		//QLabel *graphWidget2;		// SLB
 		QCustomPlot *customPlot;	// SLB
 		QCustomPlot *customPlot2;	// SLB
 		QSlider *signalPlotGainSlider;	// SLB

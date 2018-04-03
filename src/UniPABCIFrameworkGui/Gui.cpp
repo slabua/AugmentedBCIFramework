@@ -55,25 +55,18 @@ using std::ifstream;
 using std::stringstream;
 using std::pair;
 
-//vector<string> list_files(string);
-//vector<string> list_folders(string); // SLB
 QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText); // SLB
 
 
-//Gui::Gui(QWidget *parent) : QDialog(parent) {
 Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 
 	running = true;
 
 	readConfiguration();
 	initVariables();	// SLB
-	//initKinect();		// SLB Kinect
 	
 	QHBoxLayout* line1 = new QHBoxLayout;
 	labelUsername = new QLabel(tr("Subject name:"));
-	/*lineUsername = new QLineEdit;
-	lineUsername->setText(QString::fromStdString(username));
-	labelUsername->setBuddy(lineUsername);*/
 	files = list_files(outputFilesRoot);
 	Sleep(100);
 	cusername = new QComboBox();
@@ -92,8 +85,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	}
 	cusername->setEditable(true);
 	connect(cusername, SIGNAL(editTextChanged(const QString &)), this, SLOT(configChanged()));
-	//line1->addWidget(labelUsername);
-	//line1->addWidget(cusername);
 	// SLB
 	QGridLayout* gridUsername = new QGridLayout;
 	gridUsername->addWidget(labelUsername, 0, 0);
@@ -107,17 +98,11 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	QHBoxLayout* lineSkillLevel = new QHBoxLayout;
 	labelSkill = new QLabel(tr("Skill level:"));
 	skillSlider = new QSlider(Qt::Horizontal);
-	//skillSlider = new MySlider(Qt::Horizontal);
 	skillSlider->setEnabled(tobiienabled);
 	//skillSlider->setTickPosition(QSlider::TicksBothSides);
-	//skillSlider->setMinimum(0);
-	//skillSlider->setMaximum(10);
-	///skillSlider->setRange(0, 100);
 	skillSlider->setRange(0, 10);
-	///skillSlider->setTickInterval(10);
 	skillSlider->setTickInterval(1);
 	//skillSlider->setSliderPosition((bool)tobiienabled ? skillSliderValue : 100);
-	///skillSlider->setSliderPosition(skillSliderValue);
 	skillSlider->setSliderPosition(skillSliderValue/10);
 	skillSlider->setTickPosition(QSlider::TicksBelow);
 	skillSlider->setMinimumWidth(80);
@@ -128,7 +113,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	gridSkill->addWidget(skillSlider, 0, 1);
 	gridSkill->setColumnStretch(0, 50);
 	gridSkill->setColumnStretch(1, 50);
-	//connect(skillSlider, SIGNAL(valueChanged(int)), this, SLOT(getSkillSliderValue(int)));
 	connect(skillSlider, SIGNAL(valueChanged(int)), this, SLOT(configChanged()));
 	lineSkillLevel->addLayout(gridSkill);
 
@@ -170,11 +154,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	lineNumCalibTag->setValidator(new QIntValidator(1, 7));
 	lineNumCalibTag->setAlignment(Qt::AlignRight);
 	lineNumCalibTag->setText(QString::number(number_of_calibration_tag));
-	/*
-	line4->addWidget(labelNumCalibTag);
-	line4->addStretch(true); // SLB
-	line4->addWidget(lineNumCalibTag);
-	*/
 	// SLB
 	QGridLayout* gridNumCalibTag = new QGridLayout;
 	gridNumCalibTag->addWidget(labelNumCalibTag, 0, 0);
@@ -188,8 +167,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	for (int i=0; i<number_of_calibration_tag; i++) {
 		comboTarget.push_back(new QComboBox);
 		for (int j=0;j<number_of_tags;j++) {
-			//string s = std::to_string(j+1);
-			//comboTarget[i]->addItem(s.c_str()); 
 			comboTarget[i]->addItem(QString::number(j+1)); 
 		}
 		comboTarget[i]->setCurrentIndex(target_of_calibration[i]-1);
@@ -208,13 +185,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	lineFlash->setText(QString::number(number_of_flash));
 	connect(lineFlash, SIGNAL(textChanged(const QString &)), this, SLOT(changeLineFlash()));
 	connect(lineFlash, SIGNAL(textChanged(const QString &)), this, SLOT(configChanged()));
-	//lineFlash->setMinimumWidth(200); // SLB
-	//labelFlash->setBuddy(lineFlash);
-	/*
-	line6->addWidget(labelFlash);
-	line6->addStretch(true); // SLB
-	line6->addWidget(lineFlash);
-	*/
 	// SLB
 	checkFlashOpt = new QCheckBox(tr("&Optimise"));
 	checkFlashOpt->setMinimumWidth(85);
@@ -229,12 +199,10 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 
 	QGridLayout* gridFlash = new QGridLayout;
 	gridFlash->addWidget(labelFlash, 0, 0);
-	//gridFlash->addWidget(lineFlash, 0, 1);
 	gridFlash->addLayout(line6b, 0, 1);
 	//gridFlash->addWidget(checkFlashOpt, 0, 2);
 	gridFlash->setColumnStretch(0, 50);
 	gridFlash->setColumnStretch(1, 50);
-	//gridFlash->setColumnStretch(2, 20);
 	line6->addLayout(gridFlash);
 
 	// SLB
@@ -245,7 +213,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	lineFlashTime->setEnabled(!time_flash_auto);
 	lineFlashTime->setAlignment(Qt::AlignRight);
 	lineFlashTime->setText(QString::number(velocita));
-	//connect(lineFlashTime, SIGNAL(textChanged(const QString &)), this, SLOT(changeLineFlashTime()));
 	connect(lineFlashTime, SIGNAL(textChanged(const QString &)), this, SLOT(configChanged()));
 	checkFlashTimeAuto = new QCheckBox(tr("&Auto"));
 	checkFlashTimeAuto->setMinimumWidth(85);
@@ -277,7 +244,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	connect(lineChan, SIGNAL(textChanged(const QString &)), this, SLOT(changeChannel1()));
 	connect(lineChan, SIGNAL(textChanged(const QString &)), this, SLOT(configChanged()));
 	QLabel *chanPlus = new QLabel(tr(","));
-	//labelChan2 = new QLabel(tr("Number of additional channels:"));
 	lineChan2 = new QLineEdit;
 	lineChan2->setValidator(new QIntValidator(0, 15));
 	lineChan2->setAlignment(Qt::AlignRight);
@@ -298,7 +264,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 
 	// SLB Utilisation modes groupbox
 	QHBoxLayout* lineUtilMode = new QHBoxLayout;
-	//labelUtilMode = new QLabel(tr("Mode of use:"));
 	QGroupBox *groupBoxUtilMode = new QGroupBox(tr("Preset mode:"));
 	radioBasic = new QRadioButton(tr("&Basic"));
 	radioBasic->setToolTip("Basic-Mode: EEG");
@@ -320,11 +285,9 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 
 	radioBasic->setChecked(!tobiienabled && !bioHybridMode);
 	radioHybrid->setChecked(!bioHybridMode && !radioBasic->isChecked());
-	//radioHybrid->setChecked(!bioHybridMode);
 	radioBioHybrid->setChecked(bioHybridMode);
 	
 	QHBoxLayout *vboxUtilMode = new QHBoxLayout;
-	//vbox->addStretch(true); // SLB
 	vboxUtilMode->addStretch(true);
     vboxUtilMode->addWidget(radioBasic);
     vboxUtilMode->addStretch(true);
@@ -338,37 +301,23 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	//
 
 	QHBoxLayout* line7 = new QHBoxLayout;
-	//labelSensor = new QLabel(tr("Modality of interface:")); // SLB
 	QGroupBox *groupBox = new QGroupBox(tr("Interface modality:")); // SLB added title
 	groupBox->setFixedHeight(76);
     radioAlphabetic = new QRadioButton(tr("&Alphabetic")); // SLB Alphabet
 	radioAlphabetic->setToolTip("Interface with alpha-numeric symbols");
     connect(radioAlphabetic,SIGNAL(clicked(bool)),this,SLOT(clickedstate(bool)));
-	//connect(radioAlphabetic,SIGNAL(clicked(bool)),this,SLOT(enableokButton())); // SLB
 	connect(radioAlphabetic,SIGNAL(clicked(bool)),this,SLOT(configChanged()));
     radioAlphabetic->setAutoExclusive(true);
     
 	radioSymbolic = new QRadioButton(tr("&Symbolic")); // SLB Sensor module
 	radioSymbolic->setToolTip("Interface with symbolic icons");
     connect(radioSymbolic,SIGNAL(clicked(bool)),this,SLOT(clickedstate(bool)));
-	//connect(radioSymbolic,SIGNAL(clicked(bool)),this,SLOT(enableokButton())); // SLB
 	connect(radioSymbolic,SIGNAL(clicked(bool)),this,SLOT(configChanged()));
     radioSymbolic->setAutoExclusive(true);
 	
-	/*
-	//radioCustomPalette = new QRadioButton(tr("&Visually impaired")); // SLB
-	//radioCustomPalette->setToolTip("Interface with high contrast symbols");
-	radioCustomPalette = new QRadioButton(tr("&Custom palette")); // SLB
-	radioCustomPalette->setToolTip("Interface with custom colours palette and symbols");
-    connect(radioCustomPalette,SIGNAL(clicked(bool)),this,SLOT(clickedstate(bool)));
-	//connect(radioCustomPalette,SIGNAL(clicked(bool)),this,SLOT(enableokButton())); // SLB
-    radioCustomPalette->setAutoExclusive(true);
-	*/
 	checkCustomPalette = new QCheckBox(tr("&Custom palette")); // SLB
-	//checkCustomPalette->setEnabled(false);
 	checkCustomPalette->setToolTip("Interface with custom colours palette and symbols");
     connect(checkCustomPalette,SIGNAL(clicked(bool)),this,SLOT(clickedstate(bool)));
-	//connect(checkCustomPalette,SIGNAL(clicked(bool)),this,SLOT(enableokButton())); // SLB
 	connect(checkCustomPalette,SIGNAL(clicked(bool)),this,SLOT(configChanged()));
 
 	connect(radioAlphabetic, SIGNAL(clicked(bool)), this, SLOT(changePaletteString())); // SLB
@@ -377,7 +326,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
     
 	radioAlphabetic->setChecked(!symbolicMode);
 	radioSymbolic->setChecked(symbolicMode);
-	//radioCustomPalette->setChecked(customPalette); // SLB
 	checkCustomPalette->setEnabled(!symbolicMode);
 	checkCustomPalette->setChecked(customPalette);
 
@@ -390,7 +338,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 		ctextures->setEditable(false);
 		int impaired_index = 0;
 		for (int i=0; i<textures.size(); i++) {
-			//ctextures->addItem(textures[i].c_str());
 			ctextures->addItem(QString::fromStdString(textures[i]));
 			if (textures[i] == impaired_theme)
 				impaired_index = i;
@@ -408,22 +355,17 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	linePaletteString->setText(palette_string.c_str());
 	linePaletteString->setToolTip("Matrix elements string (maximum 36 elements)\nThe string must contain only letters and numbers\nLeave empty to use the default alphabetic string");
 	paletteStringCounter = new QLabel;
-	//paletteStringCounter->setEnabled(false);
 	paletteStringCounter->setToolTip("Custom string length\nGreen:\tString length matches the matrix size\nBlack:\tString provides more characters than needed, will be truncated\nRed:\tString has no sufficient number of elements for the chosen matrix size, will be filled by default characters");
 	changePaletteString();
-	//paletteStringCounter->setText(std::to_string(linePaletteString->text().size()).c_str());
 	connect(linePaletteString, SIGNAL(textChanged(QString)), this, SLOT(changePaletteString()));
 	connect(linePaletteString, SIGNAL(textChanged(QString)), this, SLOT(configChanged()));
 
 	QHBoxLayout *vbox = new QHBoxLayout;
-	//vbox->addStretch(true); // SLB
-    vbox->addWidget(radioAlphabetic);
+	vbox->addWidget(radioAlphabetic);
     vbox->addStretch(true);
 	vbox->addWidget(radioSymbolic);
-	//vbox->addStretch(true);
 	QHBoxLayout *vbox2 = new QHBoxLayout;
 	if (!textures.empty()) { // SLB
-		//vbox2->addWidget(radioCustomPalette);
 		vbox2->addWidget(checkCustomPalette);
 		vbox2->addWidget(ctextures);
 		vbox2->addWidget(linePaletteString);
@@ -435,9 +377,7 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	QVBoxLayout *vvbox = new QVBoxLayout;
 	vvbox->addLayout(vbox);
 	vvbox->addLayout(vbox2);
-	//vvbox->addWidget(linePaletteString);
-    groupBox->setLayout(vvbox);
-	//line7->addWidget(labelSensor); // SLB
+	groupBox->setLayout(vvbox);
 	line7->addWidget(groupBox);
 
 	// SLB
@@ -448,10 +388,7 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	labelEyeTracker = new QLabel(tr("Eye Tracking:"));
 	eyeTrackerCheckBox = new QCheckBox;
 	eyeTrackerCheckBox->setChecked(tobiienabled);
-	//eyeTrackerCheckBox->setLayoutDirection(Qt::RightToLeft);
-	//(tobiienabled==1) ? eyeTrackerCheckBox->setText("&Enabled") : eyeTrackerCheckBox->setText("&Disabled");
 	eyeTrackerCheckBox->setText("&Eye Tracker");
-	//(tobiienabled) ? eyeTrackerCheckBox->setToolTip("Click to disable") : eyeTrackerCheckBox->setToolTip("Click to enable");
 	eyeTrackerCheckBox->setToolTip(tobiienabled ? "Click to disable" : "Click to enable");
 	eyeTrackerGazeCheckBox = new QCheckBox(tr("&Show gaze"));
 	eyeTrackerGazeCheckBox->setEnabled(tobiienabled);
@@ -470,11 +407,8 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
     connect(tobiiRawRadio,SIGNAL(clicked(bool)),this,SLOT(clickedtobiifilter(bool)));
 	connect(tobiiRawRadio,SIGNAL(clicked(bool)),this,SLOT(configChanged()));
 	tobiiRawRadio->setAutoExclusive(true);
-	//eyeTrackerLine->addWidget(labelEyeTracker);
 	// SLB test icon
 	QPixmap iconEye(EYEICONPATH);
-	//iconEyeLabel = new QLabel();
-	//iconEyeLabel->setPixmap(iconEye);
 	iconEyeLabel = new QPushButton();
 	iconEyeLabel->setFlat(true);
 	iconEyeLabel->setIcon(iconEye);
@@ -485,8 +419,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	connect(iconEyeLabel, SIGNAL(clicked()), this, SLOT(eyeIconClicked()));
 	connect(iconEyeLabel, SIGNAL(clicked()), this, SLOT(configChanged()));
 	QPixmap iconBrain(BRAINICONPATH);
-	//iconBrainLabel = new QLabel();
-	//iconBrainLabel->setPixmap(iconBrain);
 	iconBrainLabel = new QPushButton();
 	iconBrainLabel->setFlat(true);
 	iconBrainLabel->setIcon(iconBrain);
@@ -506,9 +438,7 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	eyeTrackerLine->addWidget(tobiiFilteredRadio);
 	eyeTrackerLine->addWidget(tobiiRawRadio);
 
-	//sensorLayout->addWidget(eyeTrackerCheckBox);
 	sensorLayout->addLayout(eyeTrackerLine);
-	//sensorLayout->addLayout(lineSkillLevel);
 	sensorBox->setLayout(sensorLayout);
 	sensorBox->setFixedHeight(sensorLayout->sizeHint().height()+11);
 
@@ -518,7 +448,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	connect(eyeTrackerGazeCheckBox,SIGNAL(clicked(bool)),this,SLOT(configChanged()));
 
 	QHBoxLayout *line8 = new QHBoxLayout;
-	//labelRobot = new QLabel(tr("IP/Port output:"));
 	labelRobot = new QLabel(tr("Robot connection:")); // SLB
 	labelRobot->setToolTip("Robot IP and Port configuration");
 	lineIpRobot = new QLineEdit;
@@ -533,10 +462,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	linePortRobot->setToolTip("Robot Port configuration");
 	linePortRobot->setMaximumWidth(60); // SLB
 	connect(linePortRobot, SIGNAL(textChanged(const QString &)), this, SLOT(configChanged()));
-
-	//line8->addWidget(labelRobot);
-	//line8->addWidget(lineIpRobot);
-	//line8->addWidget(linePortRobot);
 
 	QHBoxLayout* line8b = new QHBoxLayout;
 	QLabel *labelColon = new QLabel(tr(":")); // SLB
@@ -555,20 +480,18 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	okButton = new QPushButton(tr("&Apply"));
 	okButton->setStyleSheet("QPushButton { font: bold; color: " ACCENT_01 "; }");
 	okButton->setDefault(true);
-	//okButton->setEnabled(false);
 	okButton->setEnabled(true); // SLB
 	okButton->setMinimumHeight(26); // SLB
 	//resetButton = new QPushButton(tr("&Reset")); // SLB TODO
-	//resetButton->setMinimumHeight(26); // SLB
+	//resetButton->setMinimumHeight(26); // SLB TODO
 	closeButton = new QPushButton(tr("E&xit"));
 	closeButton->setStyleSheet("QPushButton { font: bold; }");
 	closeButton->setEnabled(false); // SLB
 	closeButton->setMinimumHeight(26); // SLB
 	line10->addWidget(okButton);
-	//line10->addWidget(resetButton); // SLB
+	//line10->addWidget(resetButton); // SLB TODO
 	line10->addWidget(closeButton);
 
-	//connect(lineUsername, SIGNAL(textChanged(const QString &)),this, SLOT(enableokButton()));
 	connect(comboModalita, SIGNAL(currentIndexChanged(int)), this, SLOT(changeTagComboTarget()));
 	connect(comboModalita, SIGNAL(currentIndexChanged(int)), this, SLOT(configChanged()));
 	connect(comboInterfaccia, SIGNAL(currentIndexChanged(int)), this, SLOT(changeTagComboTarget()));
@@ -577,10 +500,8 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	connect(lineNumCalibTag, SIGNAL(textChanged(const QString &)), this, SLOT(configChanged()));
 	connect(okButton, SIGNAL(clicked()), this, SLOT(okClicked()));
 	//connect(resetButton, SIGNAL(clicked()), this, SLOT(resetClicked())); // SLB TODO
-	//connect(closeButton, SIGNAL(clicked()), this, SLOT(close())); // SLB
 	connect(closeButton, SIGNAL(clicked()), this, SLOT(closeClicked())); // SLB
 
-	//connect(okButton, SIGNAL(clicked(bool)), this, SLOT(changePaletteString())); // SLB
 	connect(comboInterfaccia, SIGNAL(currentIndexChanged(int)), this, SLOT(changePaletteString())); // SLB
 
 	QGroupBox *groupBoxTasti = new QGroupBox;
@@ -588,7 +509,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	signalCheckButton = new QPushButton(tr("CHECK\nSIGNALS"));
 	signalCheckButton->setEnabled(false);
 	signalCheckButton->setCheckable(true);
-	//signalCheck->setMaximumWidth(109);
 	//
 	baselineAcquisitionButton = new QPushButton(tr("BASELINE\nCALIBRATION"));
 	baselineAcquisitionButton->setEnabled(false);
@@ -609,11 +529,7 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	calibBox->addWidget(signalCheckButton);			// SLB
 	calibBox->addWidget(gameSessionButton);		// SLB
 	calibBox->addWidget(baselineAcquisitionButton);	// SLB
-	///calibBox->addWidget(calibration);
-	//calibBox->addWidget(speller);
-	///calibBox->addWidget(flashAnalysis);
-	//calibBox->addWidget(spellerFile);
-
+	
 	QHBoxLayout *spellBox = new QHBoxLayout;
 	//spellBox->addWidget(baselineAcquisition); // SLB
 	spellBox->addWidget(calibration);
@@ -626,7 +542,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	calibSpellBox->addLayout(spellBox);
 	groupBoxTasti->setLayout(calibSpellBox);
 
-	//groupBoxTasti->setLayout(calibBox);
 	QHBoxLayout *line11 = new QHBoxLayout;
 	line11->addWidget(groupBoxTasti);
 	
@@ -641,10 +556,8 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 
 	QHBoxLayout *line12 = new QHBoxLayout;
 	textarea = new QTextEdit();
-	//textarea->setReadOnly(false); // SLB
 	textarea->setReadOnly(true);
 	QScrollBar *sb = textarea->verticalScrollBar();
-	//sb->setValue(sb->minimum());
 	line12->addWidget(textarea);
 	line12->addWidget(sb);
 	// SLB index sliders ///
@@ -667,12 +580,9 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	index3Slider->setRange(0, 100);
 	//index3Slider->setStyleSheet("QSlider::handle:vertical { background: #202080; border-radius: 5px; }");
 	index3Slider->setStyleSheet("QSlider::handle:vertical { background: #6F09B0; border-radius: 5px; border: 1px solid #555; }"); // 202080
-	//lineFeatSliders->addStretch(true);
 	lineFeatSliders->addWidget(index1Slider);
 	lineFeatSliders->addWidget(index2Slider);
 	lineFeatSliders->addWidget(index3Slider);
-	//lineFeatSliders->addStretch(true);
-	//line12->addStretch(true);
 	line12->addLayout(lineFeatSliders);
 
 	// SLB test plot ----------------------------------------
@@ -744,12 +654,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	rsquare->moveAbove(epy);
 	
 	// prepare x axis with country labels:
-	//QVector<double> ticks;
-	//QVector<QString> labels;
-	//ticks << 1 << 2 << 3;
-	//labels << "1" << "2" << "3";
-	//labels << " " << " " << " ";
-	//QSharedPointer<QCPAxisTickerText> textTicker(new QCPAxisTickerText); // SLB moved to global
 	textTicker->addTicks(ticks, labels);
 	customPlot->xAxis->setTicker(textTicker);
 	
@@ -767,12 +671,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	// prepare y axis:
 	customPlot->yAxis->setRange(0, 1.0);
 	customPlot->yAxis->setPadding(5); // a bit more space to the left border
-	/*
-	customPlot->yAxis->setLabel("Behaviour Intensity");
-	QFont yAxisFont = font();
-	yAxisFont.setPointSize(10);
-	customPlot->yAxis->setLabelFont(yAxisFont);
-	*/
 	customPlot->yAxis->setBasePen(QPen(Qt::white));
 	customPlot->yAxis->setTickPen(QPen(Qt::white));
 	customPlot->yAxis->setSubTickPen(QPen(Qt::white));
@@ -788,20 +686,8 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 		customPlot->yAxis->setLabelColor(Qt::gray);
 	}
 	
-	// Add data:
-	//QVector<double> rsquareData, epyData, egyData;
-	/*
-	rsquareData		<< 0.25 << 0.1  << 0.7;
-	epyData			<< 0.3  << 0.4  << 0.15;
-	egyData			<< 0.35 << 0.24 << 0.1;
-	
-	rsquare->setData(ticks, rsquareData);
-	epy->setData(ticks, epyData);
-	egy->setData(ticks, egyData);
-	*/
 	// setup legend:
 	customPlot->legend->setVisible(true);
-	//customPlot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignHCenter);
 	customPlot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignRight);
 	customPlot->legend->setBorderPen(Qt::NoPen);
 	QFont legendFont = font();
@@ -816,33 +702,8 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 		customPlot->legend->setBrush(QColor(150, 150, 150, 200));
 		customPlot->legend->setTextColor(QColor(100, 100, 100));
 	}
-	/*
-	// now we move the legend from the inset layout of the axis rect into the main grid layout.
-	// We create a sub layout so we can generate a small gap between the plot layout cell border
-	// and the legend border:
-	QCPLayoutGrid *subLayout = new QCPLayoutGrid;
-	customPlot->plotLayout()->addElement(1, 0, subLayout);
-	subLayout->setMargins(QMargins(5, 0, 5, 5));
-	subLayout->addElement(0, 0, customPlot->legend);
-	// change the fill order of the legend, so it's filled left to right in columns:
-	customPlot->legend->setFillOrder(QCPLegend::foColumnsFirst);
-	// set legend's row stretch factor very small so it ends up with minimum height:
-	customPlot->plotLayout()->setRowStretchFactor(1, 0.001);
-	*/
 	customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-	//customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom |
-	//							QCP::iSelectAxes | QCP::iSelectLegend | QCP::iSelectPlottables);
 	customPlot->setNoAntialiasingOnDrag(true);
-	//connect(customPlot, SIGNAL(mousePress(QMouseEvent*)), this, SLOT(mousePress()));
-	// top values:
-	/*
-	for( int i=0; i<ticks.count(); i++) {
-		QCPItemText *textLabel = new QCPItemText(customPlot);
-		textLabel->setText(QString::number(ticks[i]));
-		textLabel->position->setCoords(i+1, ticks[i]+10);
-		customPlot->addItem(textLabel);
-	}
-	*/
 	customPlot->replot();
 	// SLB test plot ^ ----------------------------------------
 	
@@ -860,17 +721,10 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	for (int c = 0; c < 16; c++) {
 		customPlot2->addGraph();
 		customPlot2->graph(c)->setPen(QPen(Qt::black, 1.0));
-		//customPlot2->graph(c)->setPen(QPen(c));
 		QVector<double> temp;
 		y.push_back(temp);
 	}
 	//customPlot2->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20)));
-	/*
-	for (int i=0; i<251; ++i) {
-	  x << i;
-	  y << qExp(-i/150.0)*qCos(i/10.0);
-	}
-	*/
 	// configure right and top axis to show ticks but no labels:
 	// (see QCPAxisRect::setupFullAxesBox for a quicker method to do this)
 	customPlot2->xAxis->setVisible(true);
@@ -919,8 +773,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	for (int c = 0; c < tot_channels; c++) {
 		chanStatusLabels.push_back(new QLabel(QString::number(c+1)));
 		chanStatusLabels[c]->setAlignment(Qt::AlignCenter);
-		//chanStatusLabels[c]->setMaximumWidth(25); // 50
-		//chanStatusLabels[c]->setMinimumHeight(25); // 20
 		chanStatusLabels[c]->setFixedSize(25, 25);
 		/* SLB ok flat colour
 		string chanStatusStyle = "QLabel { background: ";
@@ -953,10 +805,7 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	lineOnlineAnalysis->addWidget(lineTagOnlineAnalysis);
 	lineOnlineAnalysis->addWidget(onlineAnalysis);
 
-	//groupBoxAnalysis->setLayout(lineOnlineAnalysis);
 	connect(onlineAnalysis, SIGNAL(clicked(bool)), this, SLOT(clickedOnlineFlashAnalysisButton()));
-	//QHBoxLayout* line13 = new QHBoxLayout;
-	//line13->addWidget(groupBoxAnalysis);
 
 	labelCalibrationAnalysis = new QLabel(tr("Calibration Analysis:"));
 	labelCalibrationAnalysis->setMinimumWidth(109); //120
@@ -967,13 +816,11 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	startCalibrationAnalysis->setMinimumWidth(109);
 	lineCalibrationAnalysis->setEnabled(false); // SLB
 	startCalibrationAnalysis->setEnabled(false);
-	//QGroupBox* groupBoxCalibrationAnalysis = new QGroupBox;
 	QHBoxLayout *lineCalibAnalysis = new QHBoxLayout;
 	lineCalibAnalysis->addWidget(labelCalibrationAnalysis);
 	lineCalibAnalysis->addWidget(lineCalibrationAnalysis);
 	lineCalibAnalysis->addWidget(startCalibrationAnalysis);
 	
-	//groupBoxCalibrationAnalysis->setLayout(lineCalibAnalysis);
 	connect(startCalibrationAnalysis, SIGNAL(clicked(bool)), this, SLOT(clickedStartCalibrationAnalysisButton()));
 
 	analysisLayout->addLayout(lineOnlineAnalysis);
@@ -982,45 +829,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	groupBoxAnalysis->setLayout(analysisLayout);
 	QHBoxLayout* line13 = new QHBoxLayout;
 	line13->addWidget(groupBoxAnalysis);
-
-	//QHBoxLayout* line14 = new QHBoxLayout;
-	//line14->addWidget(groupBoxCalibrationAnalysis);
-
-	/*
-	QHBoxLayout *line15 = new QHBoxLayout;
-	QLabel *optimizationFlash = new QLabel(tr("Optimisation of flashes:"));
-	//
-	QGroupBox *groupBoxOptFlash = new QGroupBox(tr("")); // SLB
-	//groupBoxOptFlash->setFlat(true); // SLB
-	radioOn = new QRadioButton(tr("&On"));
-	radioOn->setToolTip("Enable Optimisation of flashes");
-	radioOn->setChecked(optFlash); // SLB
-	//connect(radioOn,SIGNAL(clicked(bool)),this,SLOT(enableokButton())); // SLB
-	connect(radioOn,SIGNAL(clicked(bool)),this,SLOT(clickedOpt(bool)));
-    radioOn->setAutoExclusive(true);
-    radioOff = new QRadioButton(tr("&Off"));
-	radioOff->setToolTip("Disable Optimisation of flashes");
-	radioOff->setChecked(!optFlash);
-	// connect(radioOff,SIGNAL(clicked(bool)),this,SLOT(enableokButton())); // SLB
-	connect(radioOff,SIGNAL(clicked(bool)),this,SLOT(clickedOpt(bool)));
-    radioOff->setAutoExclusive(true);
-	*/
-	/* SLB moved up to line6
-	checkFlashOpt = new QCheckBox(tr("&Optimise"));
-	checkFlashOpt->setLayoutDirection(Qt::RightToLeft);
-	checkFlashOpt->setToolTip(optFlash ? "Disable optimisation of flashes" : "Enable optimisation of flashes");
-    connect(checkFlashOpt,SIGNAL(clicked(bool)),this,SLOT(clickedOpt(bool)));
-	checkFlashOpt->setChecked(optFlash);
-	//
-	line15->addWidget(optimizationFlash);
-	line15->addStretch(true); // SLB
-	line15->addWidget(checkFlashOpt); // SLB
-	*/
-	/*
-	line15->addWidget(radioOn);
-	line15->addWidget(radioOff);
-	//groupBoxOptFlash->setLayout(line15);
-	*/
 
 	// SLB
 	//QPalette palette;
@@ -1031,12 +839,8 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	QString paletteStyleBottom = "background-color: " ACCENT_01 ";";
 	//QString paletteStyleBottom = "background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #B82619, stop: 0.5 #ABAFE5, stop: 1 #B82619);";
                                 
-	//palette.setColor(QPalette::Background,Qt::red);
-	
 	QHBoxLayout *lineTop = new QHBoxLayout;
-	//QString empty = "";
 	QLabel *topBar = new QLabel();
-	//topBar->setPalette(palette);
 	topBar->setAutoFillBackground(true);
 	topBar->setStyleSheet(paletteStyleTop);
 	topBar->setFixedHeight(10);
@@ -1045,77 +849,52 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	QHBoxLayout *lineBottom = new QHBoxLayout;
 	QString credits = "<p align=\"right\"><i><font color=\"black\"><b>&nbsp;ROBOTICS</b></font><font color=\"white\"><b>&nbsp;LAB&nbsp;&nbsp;</b></font></i></p>";
 	QLabel *statusBottomBar = new QLabel(credits);
-	//statusBottomBar->setPalette(palette);
 	statusBottomBar->setAutoFillBackground(true);
 	statusBottomBar->setStyleSheet(paletteStyleBottom);
 	statusBottomBar->setFixedHeight(20);
 
 	lineBottom->addWidget(statusBottomBar);
-	//lineBottom->addStretch(true);
-
+	
 	// SLB new layout
 	QVBoxLayout *leftCenter = new QVBoxLayout;
 	leftCenter->addLayout(line1);
 	leftCenter->addLayout(linechannels);
-	//leftCenter->addLayout(lineSkillLevel);
 	leftCenter->addLayout(line3);
 	leftCenter->addLayout(line2);
 	leftCenter->addLayout(line6);
 	leftCenter->addLayout(lineFlashTimeBox);
-	//leftCenter->addLayout(linechannels);
-	//leftCenter->addLayout(linechannels2);
 	leftCenter->addLayout(line4);
 	leftCenter->addLayout(line5);
-	//leftCenter->addLayout(line15); // SLB flash opt enabled in originalcd
-	//leftCenter->addWidget(groupBoxOptFlash); // ^ SLB
 	if (userobot)
 		leftCenter->addLayout(line8); // SLB Robot enabled in originalcd
 	leftCenter->addLayout(lineUtilMode);
 	leftCenter->addLayout(line10);
 	leftCenter->addLayout(line11); // SLB
-	//leftCenter->addLayout(tastibox);
 	leftCenter->addLayout(line13);
-	//leftCenter->addLayout(line14);
 	leftCenter->addLayout(line12);
 
 	QVBoxLayout *rightCenter = new QVBoxLayout;
-	//rightCenter->addLayout(lineUtilMode);
 	rightCenter->addLayout(line7);
 	rightCenter->addWidget(sensorBox); // SLB TODO change to a layout, not widget
-	//rightCenter->addLayout(line8); // SLB Robot enabled in originalcd
-	//rightCenter->addLayout(lineFeatSliders);
-	
-	///rightCenter->addStretch(true);
-	
 	//
 	QFrame* Frame = new QFrame;
 	QHBoxLayout *plotLayout = new QHBoxLayout;
 	plotLayout->addWidget(customPlot2);
 	plotLayout->addWidget(signalPlotGainSlider);
-	//Frame->setFrameShape(QFrame::WinPanel);
-	//Frame->setFrameShadow(QFrame::Sunken);
-	//Frame->setFrameStyle(QFrame::Sunken);
-	//Frame->setContentsMargins(2, 2, 2, 2);
 	Frame->setStyleSheet("QFrame { border: 1px solid #DCDCDC; }");
 	Frame->setLayout(plotLayout);
 	rightCenter->addWidget(Frame);
 	//
-	//
-	//rightCenter->addWidget(customPlot2);
 	rightCenter->addWidget(chanStatusBox);
 	rightCenter->addWidget(customPlot);
-	//rightCenter->addStretch(true);
 	
 	QHBoxLayout* centerMainLayout = new QHBoxLayout;
 
 	QGridLayout* gridCenterMain = new QGridLayout;
 	gridCenterMain->addLayout(leftCenter, 0, 0);
 	QFrame* vFrame = new QFrame;
-	//vFrame->setFixedWidth(2);
 	vFrame->setFrameShape(QFrame::VLine);
-	//vFrame->setDisabled(true);
 	vFrame->setStyleSheet("QFrame { color: #DCDCDC; }");
-	//vFrame->setFrameShadow(QFrame::Sunken);
 	gridCenterMain->addWidget(vFrame, 0, 1);
 	gridCenterMain->addLayout(rightCenter, 0, 2);
 	gridCenterMain->setColumnStretch(0, 20);
@@ -1128,44 +907,16 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	// SLB old layout
 	QVBoxLayout *mainLayout = new QVBoxLayout;
 	mainLayout->addLayout(lineTop);
-	/*
-	mainLayout->addLayout(line1);
-	//mainLayout->addLayout(lineSkillLevel);
-	mainLayout->addLayout(line3);
-	mainLayout->addLayout(line2);
-	mainLayout->addLayout(line6);
-	mainLayout->addLayout(linechannels);
-	mainLayout->addLayout(line4);
-	mainLayout->addLayout(line5);
-	mainLayout->addLayout(lineUtilMode);
-	mainLayout->addLayout(line7);
-	mainLayout->addWidget(sensorBox); // SLB TODO change to a layout, not widget
-	//mainLayout->addLayout(line15); // ^ SLB
-	//mainLayout->addLayout(line8); // SLB Robot
-	mainLayout->addLayout(line10);
-	mainLayout->addLayout(line11); // SLB
-	//mainLayout->addLayout(tastibox);
-	mainLayout->addLayout(line13);
-	mainLayout->addLayout(line14);
-	*/
 	mainLayout->addLayout(centerMainLayout); // SLB
-	//mainLayout->addLayout(line12);
 	mainLayout->addLayout(lineBottom); // SLB
 	// SLB end old layout
 
-	//setWindowTitle(tr(g_Title)); // SLB
-	//setFixedHeight(sizeHint().height());
 	setWindowTitle(tr(FRAMEWORKNAME));
 	setWindowIcon(QIcon(FRAMEWORKREDICONPATH));
-	//setMinimumWidth(540);			// SLB 480
-	//setMinimumWidth(540+540/2);	// SLB 480
 	setMinimumWidth(900);			// SLB 480
-	//setMinimumHeight(680);		// SLB
 	setMinimumHeight(680);			// SLB 900*580 ok new wide interface, pre 2 rowed calibspellbox
 	//setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint); // SLB remove "?" help quick menu
 
-	//setLayout(mainLayout); //--------------------
-	
 	//setStyleSheet("QMainWindow { background: #2fc6f5; }");
 	
 	QPalette *palette = new QPalette();	
@@ -1176,19 +927,19 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	mainWidget->setLayout(mainLayout);
 	setCentralWidget(mainWidget);
 	
-	/*
+	/* SLB menu bars place test holders
 	//menu bar 0
 	newFile = new QAction(("&New"),this);
-	newFile -> setShortcuts(QKeySequence::New);
-	newFile -> setStatusTip(tr("Create a new file"));
+	newFile->setShortcuts(QKeySequence::New);
+	newFile->setStatusTip(tr("Create a new file"));
 	connect(newFile,SIGNAL(triggered()),this,SLOT(newfile()));
 	//menu bar 1
 	mystatus = new QAction(("&Status Bar"), this);
-	mystatus -> setCheckable(true);
+	mystatus->setCheckable(true);
 	mystatus->setStatusTip(tr("Status check box here..."));
-	connect( mystatus, SIGNAL(toggled(bool)), status, SLOT(setHidden(bool)));
-	connect( newFile, SIGNAL(hovered()), this, SLOT(newFileStatusMsg()));
-	connect( mystatus, SIGNAL(hovered()), this, SLOT(myStatusMsg()));
+	connect(mystatus, SIGNAL(toggled(bool)), status, SLOT(setHidden(bool)));
+	connect(newFile, SIGNAL(hovered()), this, SLOT(newFileStatusMsg()));
+	connect(mystatus, SIGNAL(hovered()), this, SLOT(myStatusMsg()));
 	*/
 
 	// SLB TEST TIMER
@@ -1197,23 +948,23 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	timerLabel->setMinimumWidth(51); // use with hh:mm:ss
 	//timerLabel->setAlignment(Qt::AlignLeft);
 	
-	QMenuBar *menubar			= new QMenuBar(this);
+	QMenuBar *menubar = new QMenuBar(this);
 	menubar->setCornerWidget(timerLabel, Qt::TopRightCorner);
 	
-	QMenu *menubar1				= new QMenu(this);
-	menubar1					= menubar->addMenu(tr("&Info"));
+	QMenu *menubar1 = new QMenu(this);
+	menubar1 = menubar->addMenu(tr("&Info"));
 
-	QAction *menubar1credits	= new QAction(("&Credits"), this);
+	QAction *menubar1credits = new QAction(("&Credits"), this);
 	menubar1credits->setIcon(QIcon(FRAMEWORKREDICONPATH));
 	menubar1credits->setIconVisibleInMenu(true);
 	menubar1credits->setShortcut(QKeySequence(Qt::Key_Escape));
 	connect(menubar1credits, SIGNAL(triggered()), this, SLOT(menubar1creditsSlot()));
-	QAction *menubar1help		= new QAction(("&License"), this);
+	QAction *menubar1help = new QAction(("&License"), this);
 	menubar1help->setIcon(QIcon(FRAMEWORKBLUEICONPATH));
 	menubar1help->setIconVisibleInMenu(true);
 	menubar1help->setShortcut(QKeySequence(Qt::Key_Question));
 	connect(menubar1help, SIGNAL(triggered()), this, SLOT(menubar1helpSlot()));
-	QAction *menubar1showGPL	= new QAction(("Show &GPL"), this);
+	QAction *menubar1showGPL = new QAction(("Show &GPL"), this);
 	menubar1showGPL->setIcon(QIcon(FRAMEWORKBLUEICONPATH));
 	menubar1showGPL->setIconVisibleInMenu(true);
 	menubar1showGPL->setShortcut(QKeySequence(Qt::Key_G));
@@ -1227,23 +978,6 @@ Gui::Gui(QWidget *parent) : QMainWindow(parent) {
 	
 	statusbar = new QStatusBar(this);
 	setStatusBar(statusbar);
-
-	/*
-	QLabel *statusBarLeft	= new QLabel();
-	QLabel *statusBarRight	= new QLabel();
-	QString paletteStyleBottomLeft	= "background-color: rgba(184, 38, 25, 100%); border-bottom-left-radius: 6px 10px;";
-	QString paletteStyleBottomRight	= "background-color: rgba(184, 38, 25, 100%); border-bottom-right-radius: 6px 10px;";
-	statusBarLeft->setAutoFillBackground(true);
-	statusBarRight->setAutoFillBackground(true);
-	statusBarLeft->setStyleSheet(paletteStyleBottomLeft);
-	statusBarRight->setStyleSheet(paletteStyleBottomRight);
-	statusBarLeft->setFrameStyle(QFrame::NoFrame | QFrame::Sunken);
-	statusBarRight->setFrameStyle(QFrame::NoFrame | QFrame::Sunken);
-	//
-	statusbar->addPermanentWidget(statusBarLeft, 2);
-	statusbar->addPermanentWidget(statusBarRight, 1);
-	*/
-	//statusbar->addPermanentWidget(timerLabel, 2);
 
 	statusbar->setSizeGripEnabled(false);
 	//statusBar()->activateWindow();
@@ -1313,23 +1047,9 @@ void Gui::writeLogFile(string log) {
 				
 		fprintf(logFile, "%s\n", log.c_str());
 		
-		///fflush(logFile); // SLB check open/close file stream too often?!
 		fclose(logFile);
 	}
 }
-
-// SLB TODO Remove later
-/*
-void Gui::enableokButton() {
-
-	///okButton->setEnabled((radioAlphabetic->isChecked() || radioSymbolic->isChecked() || radioCustomPalette->isChecked()));
-	okButton->setEnabled((radioAlphabetic->isChecked() || radioSymbolic->isChecked() || checkCustomPalette->isChecked()));
-	//okButton->setEnabled((radioAlphabetic->isChecked() || radioSymbolic->isChecked() || radioCustomPalette->isChecked()) &&
-	//					(radioOn->isChecked() || radioOff->isChecked()));				// SLB used in originalcd
-	//reseteButton->setEnabled((radioAlphabetic->isChecked() || radioSymbolic->isChecked() || radioCustomPalette->isChecked()));	// SLB
-	//closeButton->setEnabled((radioAlphabetic->isChecked() || radioSymbolic->isChecked() || radioCustomPalette->isChecked()));		// SLB
-}
-*/
 
 void Gui::changeTagComboTarget() {
 
@@ -1368,7 +1088,6 @@ void Gui::changeComboTarget() {
 				comboTarget.push_back(new QComboBox);
 				for (int j=0; j<number_of_tags; j++) {
 					string s = std::to_string(j+1);
-					//comboTarget[i]->addItem(s.c_str());
 					comboTarget[i]->addItem(QString::fromStdString(s));
 					connect(comboTarget[i], SIGNAL(currentIndexChanged(int)), this, SLOT(configChanged()));
 				}
@@ -1433,20 +1152,12 @@ void Gui::configChanged() {
 
 // SLB
 void Gui::updateTimerTime() {
-	//cout << clock() << endl;
 	QString currtime = QTime::currentTime().toString(QString("hh:mm:ss")); // "hh:mm:ss.zzz"
-	//timerLabel->setText(QString::number(clock()));
 	timerLabel->setText(currtime);
 }
 
 // SLB
 void Gui::updateTimer() {
-	/*
-	//cout << clock() << endl;
-	QString currtime = QTime::currentTime().toString(QString("hh:mm:ss")); // "hh:mm:ss.zzz"
-	//timerLabel->setText(QString::number(clock()));
-	timerLabel->setText(currtime);
-	*/
 	changeChannelStatusColour();
 
 	if (bioHybridMode)
@@ -1526,23 +1237,10 @@ void Gui::okClicked() {
 		number_channels_plus = value5;
 
 	// SLB
-	///skillSliderValue = skillSlider->value();
 	skillSliderValue = skillSlider->value()*10;
 
 	ipRobot = lineIpRobot->text().toLocal8Bit().constData();
 	portRobot = linePortRobot->text().toLocal8Bit().constData();
-
-	// SLB
-	/*
-	if (linePaletteString->text().isEmpty()) {
-		palette_string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	}
-	else {
-		palette_string = linePaletteString->text().toLocal8Bit().constData(); // SLB
-		std::transform(palette_string.begin(), palette_string.end(), palette_string.begin(), toupper);
-	}
-	linePaletteString->setText(palette_string.c_str());
-	*/
 
 	// SLB
 	string valid_string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -1599,9 +1297,6 @@ void Gui::okClicked() {
 
 	signalPlotGain = signalPlotGainSlider->value();
 
-	//initKinect();	// SLB Kinect
-	//initTobii();	// SLB Tobii
-	
 	running = false;
 }
 
@@ -1716,23 +1411,23 @@ void Gui::guiElementsSetEnabled(bool flag) {
 	
 }
 
-bool Gui::exists_file (string name) {
+bool Gui::exists_file(string name) {
 
 	name.erase(0, name.find_first_not_of(' '));      
-	name.erase(name.find_last_not_of(' ')+1); 
+	name.erase(name.find_last_not_of(' ') + 1); 
 
-    ifstream f(name+".txt");
-    if (f.good()) {
-        f.close();
-        return true;
-    } else {
-        f.close();
-        return false;
-    }   
+	ifstream f(name+".txt");
+	if (f.good()) {
+		f.close();
+		return true;
+	} else {
+		f.close();
+		return false;
+	}
 }
 
 // SLB
-void Gui::check_folder (string path) { // SLB create a folder if it doesn't exist already
+void Gui::check_folder(string path) { // SLB create a folder if it doesn't exist already
 
 	if (access (path.c_str(), 0) != 0) {
 
@@ -1796,13 +1491,6 @@ void Gui::setPlotBars() {
 			float epy_norm = atof(doc.child("epy_norm").first_child().value()) / 3;
 			float egy_norm = atof(doc.child("egy_norm").first_child().value()) / 3;
 		
-			/*
-			ticks.clear();
-			labels.clear();
-			rsquareData.clear();
-			epyData.clear();
-			egyData.clear();
-			*/
 			int value = ticks.size(); // + 1;
 			ticks << value;
 			if (labels.size() != 0)
@@ -1851,20 +1539,6 @@ void Gui::changeLineFlash() {
 
 }
 
-/*
-// SLB
-void Gui::changeLineFlashTime() {
-
-	bool conv1ok = false;
-	int value1 = lineFlashTime->text().toInt(&conv1ok, 10);
-	if (conv1ok && !value1) {
-		velocita = 1;
-		lineFlash->setText(QString::number(number_of_flash));
-	}
-
-}
-*/
-
 // SLB
 void Gui::changeChannel1() {
 
@@ -1888,7 +1562,6 @@ void Gui::changeChannel1() {
 	}
 
 	changeChannelStatus(tot_channels);
-	//changeChannelStatusColour();
 
 }
 
@@ -1905,13 +1578,6 @@ void Gui::changeChannel2() {
 	if (tot_channels > 16) {
 		number_channels -= (tot_channels - 16);
 		tot_channels = 16;
-		/*
-		if (number_channels == 0) {
-			number_channels = 1;
-			number_channels_plus--;
-			lineChan2->setText(QString::number(number_channels_plus));
-		}
-		*/
 		lineChan->setText(QString::number(number_channels));
 	}
 
@@ -1928,8 +1594,6 @@ void Gui::changeChannelStatus(int tot_channels) {
 		for (int c = nOld; c < tot_channels; c++) {
 			chanStatusLabels.push_back(new QLabel(QString::number(c+1)));
 			chanStatusLabels[c]->setAlignment(Qt::AlignCenter);
-			//chanStatusLabels[c]->setMaximumWidth(25);
-			//chanStatusLabels[c]->setMinimumHeight(25);
 			chanStatusLabels[c]->setFixedSize(25, 25);
 			/* SLB ok flat colour
 			string chanStatusStyle = "QLabel { background: ";
@@ -1964,8 +1628,6 @@ void Gui::initVariables() {
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
 	
-	//notificationSound = audioPathRoot + "/notification.wav";
-
 	acqReady				= false;
 	acqDone					= false;
 	currentRunDone			= false;
@@ -1977,7 +1639,6 @@ void Gui::initVariables() {
 	gameUseBCI				= false;
 	signalPlotGain			= 1;
 	eyesAcqStatus			= -1;
-	//ocular_filter			= 60;
 	gameMode				= GAMEMODE_FAIR;
 	gamePlayerChoice		= GAME_UNDEFINED;
 	gameSessionCounter		= 0;
@@ -2019,13 +1680,6 @@ void Gui::initReceivedData() {
 
 // SLB
 void Gui::setReceivedData(float* data) {
-	/*
-	int tot_channels = number_channels + number_channels_plus;
-
-	for (int c = 0; c < tot_channels; c++)
-		receivedData[c] = data[c];
-	*/
-	
 	receivedData = data;
 }
 
@@ -2049,8 +1703,8 @@ void Gui::changeChannelStatusColour() {
 	string post			= "; border-radius: 11px; border: 1px solid #555; }";
 	*/
 
-	string pre			= "QLabel { background: qradialgradient(cx:0, cy:0, radius:1, fx:0.5, fy:0.5, stop:0 white, stop:1 ";
-	string post			= "); border-radius: 11px; border: 1px solid #555; }";
+	string pre				= "QLabel { background: qradialgradient(cx:0, cy:0, radius:1, fx:0.5, fy:0.5, stop:0 white, stop:1 ";
+	string post				= "); border-radius: 11px; border: 1px solid #555; }";
 	
 	string chanStatusStyleG	= pre;
 	chanStatusStyleG		+= CHSTATUS_GREEN;
@@ -2068,8 +1722,8 @@ void Gui::changeChannelStatusColour() {
 	chanStatusStyleGrey		+= CHSTATUS_GREY;
 	chanStatusStyleGrey		+= post;
 
-	red_limit		= 1;	// 0.5
-	yellow_limit	= 0.5;	// 0.3
+	red_limit				= 1;	// 0.5
+	yellow_limit			= 0.5;	// 0.3
 	
 	int tot_channels	= number_channels + number_channels_plus;
 	for (int c = 0; c < tot_channels; c++) {
@@ -2097,7 +1751,6 @@ void Gui::clickedstate(bool flag) {
 		customPalette = checkCustomPalette->isChecked();
 		ctextures->setEnabled(customPalette);
 		linePaletteString->setEnabled(customPalette); // SLB
-		//paletteStringCounter->setEnabled(true); // SLB
 		QVariant v(1 | 32);
 		comboInterfaccia->setItemData(0, v, Qt::UserRole-1);
 		comboInterfaccia->setItemData(1, v, Qt::UserRole-1);
@@ -2110,7 +1763,6 @@ void Gui::clickedstate(bool flag) {
 	if (checkCustomPalette->isChecked()) {
 		symbolicMode = false;
 		customPalette = true;
-		//comboInterfaccia->setCurrentIndex(2); // SLB
 		// SLB
 		ctextures->setEnabled(true);
 		linePaletteString->setEnabled(true); // SLB
@@ -2136,37 +1788,10 @@ void Gui::clickedstate(bool flag) {
 		comboInterfaccia->setItemData(3, v, Qt::UserRole-1);
 		comboInterfaccia->setItemData(4, v, Qt::UserRole-1);
 	}
-	/*
-	if (radioCustomPalette->isChecked()) {
-		symbolicMode = false;
-		customPalette = true;
-		//comboInterfaccia->setCurrentIndex(2); // SLB
-		// SLB
-		ctextures->setEnabled(true);
-		linePaletteString->setEnabled(true); // SLB
-		QVariant v(1 | 32);
-		comboInterfaccia->setItemData(0, v, Qt::UserRole-1);
-		comboInterfaccia->setItemData(1, v, Qt::UserRole-1);
-		comboInterfaccia->setItemData(2, v, Qt::UserRole-1);
-		comboInterfaccia->setItemData(3, v, Qt::UserRole-1);
-		comboInterfaccia->setItemData(4, v, Qt::UserRole-1);
-		// SLB //
-	}
-	*/
 	
 }
 
 void Gui::clickedOpt(bool flag) {
-	/*
-	if (radioOn->isChecked()) {
-		//optFlash = 1;
-		optFlash = true;
-	}
-	if (radioOff->isChecked()) {
-		//optFlash = 0;
-		optFlash = false;
-	}
-	*/
 	if (checkFlashOpt->isChecked()) {
 		optFlash = true;
 		checkFlashOpt->setToolTip("Disable optimisation of flashes");
@@ -2187,22 +1812,18 @@ void Gui::clickedFlashTimeAuto(bool flag) {
 void Gui::eyeTrackerChecked(bool flag) {
 	if (eyeTrackerCheckBox->isChecked()) {
 		tobiienabled = true;
-		//eyeTrackerCheckBox->setText("&Enabled");
 		eyeTrackerCheckBox->setToolTip("Click to disable");
 		if (radioBasic->isChecked()) {
 			radioBasic->setChecked(false);
 			radioHybrid->setChecked(true);
-			//radioBioHybrid->setChecked(false); // SLB Redundant
 		}
 	}
 	else {
 		tobiienabled = false;
-		//eyeTrackerCheckBox->setText("&Disabled");
 		eyeTrackerCheckBox->setToolTip("Click to enable");
 		if (radioHybrid->isChecked()) {
 			radioBasic->setChecked(true);
 			radioHybrid->setChecked(false);
-			//radioBioHybrid->setChecked(false); // SLB Redundant
 		}
 	}
 	iconEyeLabel->setEnabled(tobiienabled);
@@ -2323,7 +1944,6 @@ void Gui::clickedGameMode(bool flag) {
 // SLB
 void Gui::clickedGameApplyButton() {
 
-	//robotRawCommand("resetpose");
 	robotPlaymotion("resetpose");
 
 	gameFair1CounterTot		= gameFairEdit1->text().toInt();
@@ -2356,12 +1976,9 @@ void Gui::clickedGameApplyButton() {
 	gameSessionNumbers += ", ";
 	gameSessionNumbers += std::to_string((gameFair2CounterTot >= 0) ? gameFair2CounterTot : 0);
 	gameSessionNumbers += ") ";
-	//gameSessionNumbers += std::to_string((gameMode != GAMEMODE_FAIR) ? gameCheatCounter-gameCheatCurrent : 0);
 	gameSessionNumbers += std::to_string(gameCheatCounter);
 
 	gameSessionNumbers += "\n";
-	//for (int i = 0; i < 3; i++)
-	//	gameSessionNumbers += std::to_string(gameWinCounts[i]);
 	gameSessionNumbers += std::to_string(gameWinCounts[GAMERESULT_ROBOTWIN]);
 	gameSessionNumbers += "/";
 	gameSessionNumbers += std::to_string(gameWinCounts[GAMERESULT_TIE]);
@@ -2370,8 +1987,6 @@ void Gui::clickedGameApplyButton() {
 
 	gameCounterLabel->setText(QString::fromStdString(gameSessionNumbers));
 	
-	//gameCounterLabel->setText(QString::number(gameSessionCounter));
-
 	gameUseBCI		= gameUseBCICheckBox->isChecked();
 	gameUseKinect	= gameUseKinectCheckBox->isChecked();
 
@@ -2394,7 +2009,6 @@ void Gui::clickedGameExitButton() {
 
 	robotSpeak("thanksbye", 2.5); // 2
 	gameDelay();
-	//robotRawCommand("resetpose");
 	robotPlaymotion("resetpose");
 
 	gameRunDone = true;
@@ -2418,7 +2032,6 @@ void Gui::clickedGameStartButton() {
 	clickedGameApplyButton();
 	
 	gameDelay();
-	//receivedDataN	= FILETYPE_GAME;
 	receivedDataN = (gameMode != GAMEMODE_FAIR) ? GAMEMODE_ISCHEATTRIAL : FILETYPE_GAME;
 	receivedDataN1	= GAMEMODE_INIT;
 
@@ -2437,14 +2050,6 @@ void Gui::clickedGameNextButton() {
 	robotPlaymotion("resetpose");
 	
 	gameSessionCounter++;
-	/*
-	gameWinCounts[gameLastResult]++;
-
-	string gameresult	= "\n Robot wins:\t" + std::to_string(gameWinCounts[GAMERESULT_ROBOTWIN]) + "\n";
-	gameresult			+= " Ties:\t" + std::to_string(gameWinCounts[GAMERESULT_TIE]) + "\n";
-	gameresult			+= " Player wins:\t" + std::to_string(gameWinCounts[GAMERESULT_PLAYERWIN]) + "\n";
-	updateStamp(gameresult);
-	*/
 
 	// max iter criterion
 	if (gameFair1CounterTot-1 > 0) {
@@ -2456,11 +2061,9 @@ void Gui::clickedGameNextButton() {
 		if (gameRadioFair->isChecked() || (gameCheatCurrent >= gameCheatCounter)) // includes early-stop criterion
 			gameMode = GAMEMODE_FAIR;
 		else if (gameRadioCheatW->isChecked()) {
-			//gameCheatCounterTot--;
 			gameMode = GAMEMODE_CHEATWIN;
 		}
 		else if (gameRadioCheatL->isChecked()) {
-			//gameCheatCounterTot--;
 			gameMode = GAMEMODE_CHEATLOSE;
 		}
 	}
@@ -2484,18 +2087,10 @@ void Gui::clickedGameNextButton() {
 	receivedDataN = GAMEMODE_NEXT;
 
 	if ((gameFairEdit2->text().toInt() != 0) && (gameFair2CounterTot >= 0)) {
-	//if (gameSessionCounter < gameFair2CounterTot + gameSessionCounterTot) {
-	//if (gameSessionCounter < gameSessionCounterTot + 1) { // SLB TODO CHECK comment this to leave last n trials reserved as fair
-	///if (gameFair1CounterTot+gameCheatCounterTot+gameFair2CounterTot > 0) {
 		if (gameFair2CounterTot == 0)
 			gameFair2CounterTot--;
 		gamePlayMove();
 	}
-	/*
-	else if (gameSessionCounter < gameSessionCounterTot + 1) {
-		gamePlayMove();
-	}
-	*/
 	else {
 		
 		clickedGameExitButton();
@@ -2552,11 +2147,9 @@ void Gui::gamePlaySaishoWaGuu() {
 void Gui::gamePlayMove() {
 	Sleep(100);
 
-	//receivedDataN	= FILETYPE_GAME;
 	receivedDataN = (gameMode != GAMEMODE_FAIR) ? GAMEMODE_ISCHEATTRIAL : FILETYPE_GAME;
 	receivedDataN1	= GAMEMODE_INIT;
 
-	//robotRawCommand("resetpose");
 	robotPlaymotion("resetpose");
 
 	// command to robot to play janken pon
@@ -2580,44 +2173,10 @@ void Gui::gamePlayMove() {
 	// or uses the kinect input
 
 	// SLB TEST Kinect
-	//listener->getMoveReceivedEvent().SetEvent(); // SLB check
 	if (gameUseKinect = gameUseKinectCheckBox->isChecked()) { // possibly just use (gameUseKinect)
 		
 		WaitForSingleObject(listener->getMoveReceivedEvent().m_hObject, INFINITE);
-		//while (WaitForSingleObject(listener->getMoveReceivedEvent().m_hObject, 0) == WAIT_OBJECT_0) {
-		/*
-		int rockcounter, papercounter, scissorscounter;
-		//for (int i = 0; i < 50; i++) {
-		while (true) {
-			if (listener->getIsRockEvent()) {
-				rockcounter++;
-				listener->getIsRockEvent().ResetEvent();
-			}
-			if (listener->getIsPaperEvent()) {
-				papercounter++;
-				listener->getIsPaperEvent().ResetEvent();
-			}
-			if (listener->getIsScissorsEvent()) {
-				scissorscounter++;
-				listener->getIsScissorsEvent().ResetEvent();
-			}
-
-			if (rockcounter > 50) {
-				gamePlayerChoice = GAME_ROCK;
-				break;
-			}
-			if (papercounter > 50) {
-				gamePlayerChoice = GAME_PAPER;
-				break;
-			}
-			if (scissorscounter > 50) {
-				gamePlayerChoice = GAME_SCISSORS;
-				break;
-			}
-		}
-		listener->getMoveReceivedEvent().ResetEvent();
-		*/
-		//
+	
 		int move		= -1;
 		int initmove	= move;
 		int movecounter	= 0;
@@ -2837,8 +2396,6 @@ void Gui::clickedGameScissorsButton() {
 void Gui::gameTrialClosing() {
 	//Sleep(2000); // TEST Telenoid
 
-	//receivedDataN1 = gameMode;
-
 	///gameDelay();
 	//receivedDataN1 = GAMEMODE_FAIR;
 
@@ -2878,8 +2435,6 @@ void Gui::gameTrialClosing() {
 			receivedDataN1 = gameMode;
 			gameCheatCurrent++;
 			updateStamp("Game: The robot has CHEATED " + std::to_string(gameCheatCurrent) + ((gameCheatCurrent<2) ? " time!" : " times!"));
-			//gameDelay();
-			//gamePlayPaper();
 			if (gameRobotChoice == GAME_ROCK)
 				gamePlayRock2Paper();
 			else
@@ -2889,8 +2444,6 @@ void Gui::gameTrialClosing() {
 			receivedDataN1 = gameMode;
 			gameCheatCurrent++;
 			updateStamp("Game: The robot has CHEATED " + std::to_string(gameCheatCurrent) + ((gameCheatCurrent<2) ? " time!" : " times!"));
-			//gameDelay();
-			//gamePlayScissors();
 			if (gameRobotChoice == GAME_ROCK)
 				gamePlayRock2Scissors();
 			else
@@ -2900,8 +2453,6 @@ void Gui::gameTrialClosing() {
 			receivedDataN1 = gameMode;
 			gameCheatCurrent++;
 			updateStamp("Game: The robot has CHEATED " + std::to_string(gameCheatCurrent) + ((gameCheatCurrent<2) ? " time!" : " times!"));
-			//gameDelay();
-			//gamePlayRock();
 			if (gameRobotChoice == GAME_PAPER)
 				gamePlayPaper2Rock();
 			else
@@ -2921,8 +2472,6 @@ void Gui::gameTrialClosing() {
 			receivedDataN1 = gameMode;
 			gameCheatCurrent++;
 			updateStamp("Game: The robot has CHEATED " + std::to_string(gameCheatCurrent) + ((gameCheatCurrent<2) ? " time!" : " times!"));
-			//gameDelay();
-			//gamePlayScissors();
 			if (gameRobotChoice == GAME_ROCK)
 				gamePlayRock2Scissors();
 			else
@@ -2932,8 +2481,6 @@ void Gui::gameTrialClosing() {
 			receivedDataN1 = gameMode;
 			gameCheatCurrent++;
 			updateStamp("Game: The robot has CHEATED " + std::to_string(gameCheatCurrent) + ((gameCheatCurrent<2) ? " time!" : " times!"));
-			//gameDelay();
-			//gamePlayRock();
 			if (gameRobotChoice == GAME_PAPER)
 				gamePlayPaper2Rock();
 			else
@@ -2943,8 +2490,6 @@ void Gui::gameTrialClosing() {
 			receivedDataN1 = gameMode;
 			gameCheatCurrent++;
 			updateStamp("Game: The robot has CHEATED " + std::to_string(gameCheatCurrent) + ((gameCheatCurrent<2) ? " time!" : " times!"));
-			//gameDelay();
-			//gamePlayPaper();
 			if (gameRobotChoice == GAME_ROCK)
 				gamePlayRock2Paper();
 			else
@@ -2963,10 +2508,8 @@ void Gui::gameTrialClosing() {
 
 	gameDelay();
 	
-	//receivedDataN1 = GAMEMODE_BASELINE;
 	receivedDataN1 = GAMEMODE_TRIALEND;
 
-	//
 	gameWinCounts[gameLastResult]++;
 
 	string gameresult	= " Robot wins:\t" + std::to_string(gameWinCounts[GAMERESULT_ROBOTWIN]) + "\n";
@@ -3046,8 +2589,6 @@ void Gui::gameUpdateCounterLabel() {
 	gameSessionNumbers += std::to_string((gameMode != GAMEMODE_FAIR) ? gameCheatCounter-gameCheatCurrent : 0);
 
 	gameSessionNumbers += "\n";
-	//for (int i = 0; i < 3; i++)
-	//	gameSessionNumbers += std::to_string(gameWinCounts[i]);
 	gameSessionNumbers += std::to_string(gameWinCounts[GAMERESULT_ROBOTWIN]);
 	gameSessionNumbers += "/";
 	gameSessionNumbers += std::to_string(gameWinCounts[GAMERESULT_TIE]);
@@ -3055,8 +2596,7 @@ void Gui::gameUpdateCounterLabel() {
 	gameSessionNumbers += std::to_string(gameWinCounts[GAMERESULT_PLAYERWIN]);
 	
 	gameCounterLabel->setText(QString::fromStdString(gameSessionNumbers));
-	
-	//gameCounterLabel->setText(QString::number(gameSessionCounter));	
+
 }
 
 // SLB
@@ -3066,51 +2606,39 @@ void Gui::gameDelay() {
 
 // SLB TODO remove
 void Gui::getSkillSliderValue(int) {
-	///skillSliderValue = skillSlider->value();
 	skillSliderValue = skillSlider->value()*10;
-	//cout << skillSliderValue << endl;
 }
 
 // SLB
 void Gui::getSignalPlotGainValue(int) {
 	signalPlotGain = signalPlotGainSlider->value();
-	//cout << signalPlotGain << endl;
 }
 
 // SLB
 void Gui::eyeIconClicked() {
-
 	skillSlider->setValue(0);
-
 }
 
 // SLB
 void Gui::brainIconClicked() {
-
 	skillSlider->setValue(10);
-
 }
 
 void Gui::readConfiguration() {
 
-	//initMapVel();
-
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 	
 	if (result) {
 		username					= (doc.child("name").first_child().value());
 		number_of_calibration_tag	= strlen(doc.child("string").first_child().value());
 		mode						= atoi(doc.child("mode").first_child().value()); // SLB
-		//(mode==0) ? flashingMode=false : flashingMode=true; // SLB
 
 		number_of_row_interface		= atoi(doc.child("row_num_interface").first_child().value());
 		number_of_flash				= atoi(doc.child("num_flash").first_child().value());
 
 		time_flash_auto				= (bool) atoi(doc.child("time_flash_auto").first_child().value()); // SLB
-		//if (!time_flash_auto)
-			velocita = atoi(doc.child("time_flash").first_child().value());
+		velocita					= atoi(doc.child("time_flash").first_child().value());
 		
 		number_channels				= atoi(doc.child("num_ch").first_child().value()); // SLB
 		number_channels_plus		= atoi(doc.child("num_ch_plus").first_child().value()); // SLB
@@ -3118,14 +2646,15 @@ void Gui::readConfiguration() {
 		target_of_calibration		= new int[number_of_calibration_tag];
 		
 		pugi::xml_node tmp			= doc.child("target");
-		int i=0;
+		
+		int i = 0;
 		for (pugi::xml_node tool = tmp.child("t"); tool; tool = tool.next_sibling("t")) {
 			target_of_calibration[i] = atoi(tool.first_child().value());
 			i++;
 		}
 		
 		// SLB
-		symbolicMode					= (bool) atoi(doc.child("symbolicmode").first_child().value());
+		symbolicMode				= (bool) atoi(doc.child("symbolicmode").first_child().value());
 		if (symbolicMode) {
 			number_of_row_interface = 4;
 			elements = 16;
@@ -3137,8 +2666,8 @@ void Gui::readConfiguration() {
 		customPalette				= (bool) atoi(doc.child("palette").first_child().value());
 		optFlash					= (bool) atoi(doc.child("optimization").first_child().value()); // SLB added bool cast
 		userobot					= (bool) atoi(doc.child("userobot").first_child().value()); // SLB
-		ipRobot					= doc.child("iprobot").first_child().value();
-		portRobot				= doc.child("portrobot").first_child().value();
+		ipRobot						= doc.child("iprobot").first_child().value();
+		portRobot					= doc.child("portrobot").first_child().value();
 
 		skillSliderValue			= atoi(doc.child("skillslidervalue").first_child().value()); // SLB
 		
@@ -3179,6 +2708,7 @@ void Gui::initmapping(int squaresNumber) {
 			ss >> name;
 			mappingIdTag.insert(pair<int, string>(i, name)); 
 		}
+
 }
 
 void Gui::initMapVel() {
@@ -3193,6 +2723,7 @@ void Gui::initMapVel() {
 	mappingVel.insert(pair<string, int>("51",125));
 	mappingVel.insert(pair<string, int>("60",200));
 	mappingVel.insert(pair<string, int>("61",125));
+
 }
 
 void Gui::updateConfiguration() {
@@ -3200,15 +2731,10 @@ void Gui::updateConfiguration() {
 	initmapping(number_of_tags);
 	initMapVel();
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 	
 	if (result) {
 		// SLB
-		//doc.remove_child("name");
-		//doc.append_child("name").append_child(pugi::node_pcdata).set_value(q_username.toLocal8Bit().constData());
-		////pugi::xml_node node = doc.child("name");
-		////node.first_child().set_value(q_username.toLocal8Bit().constData());
 		pugi::xml_node node = doc.child("name");
 		if (node.first_child().empty())
 			node.append_child(pugi::node_pcdata).set_value(q_username.toLocal8Bit().constData());
@@ -3248,17 +2774,12 @@ void Gui::updateConfiguration() {
 		node.first_child().set_value(std::to_string(number_channels_plus).c_str()); // SLB
 
 		node = doc.child("symbolicmode");
-		//int sensorModeInt = symbolicMode ? sensorModeInt=1 : sensorModeInt=0;
-		//node.first_child().set_value(std::to_string(sensorModeInt).c_str()); // SLB
 		node.first_child().set_value(BoolToString(symbolicMode).c_str()); // SLB
 		
 		node = doc.child("palette");
-		//int visualModeInt = customPalette ? visualModeInt=1 : visualModeInt=0;
-		//node.first_child().set_value(std::to_string(visualModeInt).c_str()); // SLB
 		node.first_child().set_value(BoolToString(customPalette).c_str()); // SLB
 
 		node = doc.child("optimization");
-		//node.first_child().set_value(std::to_string(optFlash).c_str()); // SLB
 		checkFlashOpt->isChecked() ? optFlash=true : optFlash=false; // SLB
 		node.first_child().set_value(BoolToString(optFlash).c_str()); // SLB
 
@@ -3269,33 +2790,24 @@ void Gui::updateConfiguration() {
 		// SLB
 		node = doc.child("tobiienabled");
 		eyeTrackerCheckBox->isChecked() ? tobiienabled=true : tobiienabled=false;
-		//int tobiienabledint = tobiienabled ? tobiienabledint=1 : tobiienabledint=0;
 		if (node.first_child().empty())
-			//node.append_child(pugi::node_pcdata).set_value(std::to_string(tobiienabledint).c_str()); // SLB
 			node.append_child(pugi::node_pcdata).set_value(BoolToString(tobiienabled).c_str()); // SLB
 		else
-			//node.first_child().set_value(std::to_string(tobiienabledint).c_str()); // SLB
 			node.first_child().set_value(BoolToString(tobiienabled).c_str()); // SLB
 		// SLB
 		node = doc.child("tobiigazeenabled");
 		eyeTrackerGazeCheckBox->isChecked() ? tobiigazeenabled=true : tobiigazeenabled=false;
-		//int tobiigazeenabledint = tobiigazeenabled ? tobiigazeenabledint=1 : tobiigazeenabledint=0;
 		if (node.first_child().empty())
-			//node.append_child(pugi::node_pcdata).set_value(std::to_string(tobiigazeenabledint).c_str()); // SLB
 			node.append_child(pugi::node_pcdata).set_value(BoolToString(tobiigazeenabled).c_str()); // SLB
 		else
-			//node.first_child().set_value(std::to_string(tobiigazeenabledint).c_str()); // SLB
 			node.first_child().set_value(BoolToString(tobiigazeenabled).c_str()); // SLB
 		// SLB
 		node = doc.child("tobiifiltered");
 		tobiiFilteredRadio->isChecked() ? tobiifiltered=true : tobiifiltered=false;
 		tobiiRawRadio->isChecked() ? tobiifiltered=false : tobiifiltered=true;
-		//int tobiifilteredint = tobiifiltered ? tobiifilteredint=1 : tobiifilteredint=0;
 		if (node.first_child().empty())
-			//node.append_child(pugi::node_pcdata).set_value(std::to_string(tobiifilteredint).c_str()); // SLB
 			node.append_child(pugi::node_pcdata).set_value(BoolToString(tobiifiltered).c_str()); // SLB
 		else
-			//node.first_child().set_value(std::to_string(tobiifilteredint).c_str()); // SLB
 			node.first_child().set_value(BoolToString(tobiifiltered).c_str()); // SLB
 		// SLB
 		node = doc.child("biohybridmode");
@@ -3325,14 +2837,6 @@ void Gui::updateConfiguration() {
 		node = doc.child("portrobot");
 		node.first_child().set_value(portRobot.c_str());
 
-		/*
-		node = doc.child("ipnao");
-		node.first_child().set_value(ipnao.c_str());
-
-		node = doc.child("portnao");
-		node.first_child().set_value(portnao.c_str());
-		*/
-
 		// SLB
 		node = doc.child("letter_color");
 		node.first_child().set_value(impaired_letterCol.c_str());
@@ -3358,7 +2862,6 @@ void Gui::updateConfiguration() {
 			node.append_child("p").append_child(pugi::node_pcdata).set_value(textureString.c_str());
 		}
 
-		//doc.save_file("./configuration.xml");
 		doc.save_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 	}
 	else
@@ -3372,7 +2875,6 @@ void Gui::initiateConfiguration() {
 	string texturesString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 	if (!result) {
@@ -3444,7 +2946,6 @@ void Gui::initiateConfiguration() {
 		
 		doc.append_child("rsq").append_child(pugi::node_pcdata).set_value("-1");
 		doc.append_child("rsq_cum").append_child(pugi::node_pcdata).set_value("-1");
-		//doc.append_child("rsq_gap").append_child(pugi::node_pcdata).set_value("-1");
 		doc.append_child("rsq_min").append_child(pugi::node_pcdata).set_value("-1");
 		doc.append_child("rsq_max").append_child(pugi::node_pcdata).set_value("-1");
 		doc.append_child("rsq_norm").append_child(pugi::node_pcdata).set_value("-1");
@@ -3465,13 +2966,11 @@ void Gui::initiateConfiguration() {
 		doc.append_child("threshold_passed").append_child(pugi::node_pcdata).set_value("0");
 		doc.append_child("behaviour_intensity").append_child(pugi::node_pcdata).set_value("0");
 		
-		//doc.save_file("./configuration.xml");
 		doc.save_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 		readConfiguration();
 	}
 
 	// MEMORY
-	//result = doc.load_file("./memory.xml");
 	result = doc.load_file((configFilesRoot + "/memory.xml").c_str()); // SLB
 
 	if (!result) {
@@ -3484,7 +2983,6 @@ void Gui::initiateConfiguration() {
 		doc.append_child("radio").append_child(pugi::node_pcdata).set_value("0");
 		doc.append_child("light").append_child(pugi::node_pcdata).set_value("0");
 
-		//doc.save_file("./memory.xml");
 		doc.save_file((configFilesRoot + "/memory.xml").c_str()); // SLB
 	}
 
@@ -3556,14 +3054,11 @@ void Gui::showGameSessionDialogControl() {
 	QGridLayout *gameMainTopLayout2		= new QGridLayout();
 	QVBoxLayout *gameMainBottomLayout	= new QVBoxLayout();
 
-	//QVBoxLayout *gameTopLeftLayout		= new QVBoxLayout();
 	QVBoxLayout *gameTopRightLayout		= new QVBoxLayout();
 
 	QGridLayout *gameTopRightLine1		= new QGridLayout();
 	QGridLayout *gameTopRightLine2		= new QGridLayout();
 	QGridLayout *gameTopRightLine3		= new QGridLayout();
-
-	//QHBoxLayout *gameCommandButtons		= new QHBoxLayout();
 
 	QVBoxLayout *gameCommandButtonsLeft	= new QVBoxLayout();
 
@@ -3624,19 +3119,11 @@ void Gui::showGameSessionDialogControl() {
 	gameOptionsCheckBoxLayout->addWidget(gameUseBCICheckBox);
 	gameOptionsCheckBoxLayout->addWidget(gameUseKinectCheckBox);
 	gameOptionsCheckBoxLayout->addWidget(gameUseRobotCheckBox);
-	//gameCommandButtonsLeft->addLayout(kinectLayout);
 	//
 
 	gameCommandButtonsLeft->addLayout(gameOptionsCheckBoxLayout);
 	gameCommandButtonsLeft->addWidget(gameApplyButton);
 	gameCommandButtonsLeft->addWidget(gameExitButton);
-
-	//gameCommandButtons->addLayout(gameCommandButtonsLeft);
-	//gameCommandButtons->addWidget(gameStartButton);
-
-	//gameTopLeftLayout->addWidget(gameModeBox);
-	//gameTopLeftLayout->addStretch(true);
-	//gameTopLeftLayout->addLayout(gameCommandButtons);
 	//
 
 	// TopRight
@@ -3689,9 +3176,7 @@ void Gui::showGameSessionDialogControl() {
 	//
 
 	// Top
-	//gameMainTopLayout1->addLayout(gameTopLeftLayout, 0, 0);
 	gameMainTopLayout1->addWidget(gameModeBox, 0, 0);
-	//gameMainTopLayout1->addStretch(true);
 	gameMainTopLayout1->addWidget(gameTrialsBox, 0, 2);
 	gameMainTopLayout1->setColumnStretch(0, 40);
 	gameMainTopLayout1->setColumnStretch(1, 10);
@@ -3717,22 +3202,7 @@ void Gui::showGameSessionDialogControl() {
 	gameRockButton->setToolTip(tr("Rock\n(1-R)"));
 	gamePaperButton->setToolTip(tr("Paper\n(2-P)"));
 	gameScissorsButton->setToolTip(tr("Scissors\n(3-S)"));
-	/*
-	gameRockButton->setMinimumHeight(50);
-	gamePaperButton->setMinimumHeight(50);
-	gameScissorsButton->setMinimumHeight(50);
-	gameRockButton->setMaximumWidth(100);
-	gamePaperButton->setMaximumWidth(100);
-	gameScissorsButton->setMaximumWidth(100);
-	*/
-	/*
-	QPixmap iconRock(GAMEICON_ROCK);
-	QPixmap iconPaper(GAMEICON_PAPER);
-	QPixmap iconScissors(GAMEICON_SCISSORS);
-	QPixmap iconRockG(GAMEICON_ROCK_G);
-	QPixmap iconPaperG(GAMEICON_PAPER_G);
-	QPixmap iconScissorsG(GAMEICON_SCISSORS_G);
-	*/
+	
 	iconRock		= QPixmap(GAMEICON_ROCK);
 	iconPaper		= QPixmap(GAMEICON_PAPER);
 	iconScissors	= QPixmap(GAMEICON_SCISSORS);
@@ -3867,7 +3337,6 @@ void Gui::showBaselineAcquisitionDialogControl() {
 	durationLineEdit = new QLineEdit();
 	durationLineEdit->setAlignment(Qt::AlignRight);
 	durationLineEdit->setText(QString::number(30));
-	//durationLineEdit->setEnabled(false);
 	QGridLayout *durationGrid = new QGridLayout();
 	durationGrid->addWidget(durationLabel, 0, 0);
 	durationGrid->addWidget(durationLineEdit, 0, 1);
@@ -3929,7 +3398,7 @@ void Gui::showBaselineAcquisitionDialogControl() {
 	dialogControl->show(); // non modal
 	//delete dialogControl;
 	
-	/*
+	/* SLB test QMessageBox
 	QMessageBox mb("Modify Warning",
 				QString("\nDo you want to continue?"),
 				QMessageBox::Warning,
@@ -3948,22 +3417,14 @@ void Gui::showBaselineAcquisitionDialogControl() {
 
 // SLB
 void Gui::showBaselineAcquisitionDialogUser() {
-	//dialogUser = new QDialog(this);
 	dialogUser->setWindowTitle("Baseline Acquisition");
 	dialogUser->setAttribute(Qt::WA_DeleteOnClose);
 	dialogUser->setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint); // SLB remove "?" help quick menu
 	//dialogUser->setWindowFlags(Qt::FramelessWindowHint);
 	//dialogUser->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint);
-	/*
-	int dialogWidth		= 200;
-	int dialogHeight	= 200;
-	dialogUser->setMinimumWidth(dialogWidth);
-	dialogUser->setMinimumHeight(dialogHeight);
-	*/
-
+	
 	QVBoxLayout *dialogLayout = new QVBoxLayout;
 
-	//if (language.find("en") != std::string::npos) {
 	if (language != "jp") {
 
 		dialogLabelUser = new QLabel("<html>Ready for Baseline Acquisition"
@@ -4021,14 +3482,11 @@ void Gui::showBaselineAcquisitionDialogUser() {
 	dialogIconLabel2 = new QLabel("");
 	dialogIconLabel2->setAlignment(Qt::AlignCenter);
 	dialogIconLabel2->setPixmap(iconEyeClosed);
-	//dialogIconLabel->setFixedSize(iconEyeClosed.rect().size());
 	dialogEyesLayout->addStretch(true);
 	dialogEyesLayout->addWidget(dialogIconLabel);
 	dialogEyesLayout->addStretch(true);
 	dialogEyesLayout->addWidget(dialogIconLabel2);
 	dialogEyesLayout->addStretch(true);
-
-	//QPushButton *closeDialogButton = new QPushButton(tr("Close"));
 
 	QHBoxLayout *pbarLayout1 = new QHBoxLayout();
 	pbarLabel1 = new QLabel(tr("1 / 2"));
@@ -4058,15 +3516,11 @@ void Gui::showBaselineAcquisitionDialogUser() {
 
 	dialogLayout->addStretch(true);
 	dialogLayout->addWidget(dialogLabelUser);
-	//dialogLayout->addWidget(dialogIconLabel);
 	dialogLayout->addLayout(dialogEyesLayout);
 	dialogLayout->addStretch(true);
 	dialogLayout->addLayout(pbarLayout1);
 	dialogLayout->addLayout(pbarLayout2);
-	//dialogLayout->addWidget(closeDialogButton);
 	dialogUser->setLayout(dialogLayout);
-
-	//connect(closeDialogButton, SIGNAL(clicked()), dialogUser, SLOT(close()));
 
 	int dialogSide;
 	int screensAvailable = QApplication::desktop()->screenCount();
@@ -4080,13 +3534,8 @@ void Gui::showBaselineAcquisitionDialogUser() {
 		int yPos = screenGeom.center().y() - dialogSide/2;
 		QPoint globalPos = QPoint(xPos, yPos);
 		
-		//QPoint offsetPos(300, 0);
-		//dialogUser->move(screenGeom.center() - QPoint(dialogSide/2, dialogSide/2) + offsetPos);
-		//QPoint globalPos = dialogControl->mapToGlobal(offsetPos);
-		
 		dialogUser->move(globalPos);
 	}
-	//else if (screensAvailable == 2) {
 	else {
 		int newScreenID;
 		int mainWindowScreenID = QApplication::desktop()->screenNumber(dialogControl);
@@ -4101,6 +3550,7 @@ void Gui::showBaselineAcquisitionDialogUser() {
 	}
 	dialogUser->setMinimumWidth(dialogSide);
 	dialogUser->setMinimumHeight(dialogSide);
+	
 	//dialogUser->exec(); // modal
 	dialogUser->show(); // non modal
 
@@ -4132,7 +3582,6 @@ void Gui::clickedGameSessionButton() {
 	timer->stop(); // SLB Kinect test
 	
 	gameRunDone		= true;
-	//receivedDataN	= FILETYPE_GAME;
 	receivedDataN = (gameMode != GAMEMODE_FAIR) ? GAMEMODE_ISCHEATTRIAL : FILETYPE_GAME;
 	receivedDataN1	= GAMEMODE_BASELINE;
 
@@ -4182,18 +3631,6 @@ void Gui::clickedBaselineAcqButton1() {
 	Sleep(500);
 	acqReady = false;
 
-	/*
-	pbar->setMaximum(getBaselineAcqDuration() * 64 - 1); //500
-	pbar1->setMaximum(getBaselineAcqDuration() * 64 - 1);
-	pbar2->setMaximum(getBaselineAcqDuration() * 64 - 1);
-	for (int i = 0; i < getBaselineAcqDuration() * 64; i++) {
-		Sleep(1);
-		pbar->setValue(i);
-		pbar1->setValue(i);
-		pbar2->setValue(i/2 + 1);
-
-	}
-	*/
 	//
 	pbar->setMaximum(100);
 	pbar1->setMaximum(100);
@@ -4223,7 +3660,6 @@ void Gui::clickedBaselineAcqButton1() {
 // SLB
 void Gui::clickedBaselineAcqButton2() {
 
-	//if (language.find("en") != std::string::npos) {
 	if (language != "jp") {
 		
 		dialogLabelUser->setText("<html>Ready for Baseline Acquisition"
@@ -4282,14 +3718,6 @@ void Gui::clickedBaselineAcqButton2() {
 	Sleep(500);
 	acqReady = false;
 
-	/*
-	for (int i = 0; i < getBaselineAcqDuration() * 64; i++) {
-		Sleep(1);
-		pbar->setValue(i);
-		pbar1->setValue(i);
-		pbar2->setValue(i/2 + getBaselineAcqDuration() * 64/2);
-	}
-	*/
 	//
 	clock_t startTime;
 	clock_t currentTime;
@@ -4561,49 +3989,41 @@ void Gui::menubar1showGPLSlot() {
 
 // SLB
 void Gui::setEyesAcquisitionStatus(int value) {
-
 	eyesAcqStatus = value;
 }
 
 // SLB
 bool Gui::isCurrentRunDone() {
-
 	return currentRunDone;
 }
 
 // SLB
 bool Gui::isGameRunDone() {
-
 	return gameRunDone;
 }
 
 // SLB
 bool Gui::isGameRunStarted() {
-
 	return gameRunStarted;
 }
 
 // SLB
 bool Gui::isGameUseBCI() {
-
 	return gameUseBCI;
 }
 
 // SLB
 void Gui::setCurrentRunDone(bool value) {
-
 	currentRunDone = value;
 }
 
 // SLB
 bool Gui::isAcqReady() {
-
 	return acqReady;
 }
 
 // SLB
 bool Gui::isAcqDone() {
-
 	return acqDone;
 }
 
@@ -4621,14 +4041,6 @@ int Gui::getBaselineAcqDuration() {
 	bool convOk = false;
 	int duration = durationLineEdit->text().toInt(&convOk, 10);
 
-	/*
-	if (!durationLineEdit->text().isEmpty()) {
-		istringstream buffer(durationLineEdit->text().toLocal8Bit().constData());
-		int duration;
-		buffer >> duration;
-		return duration;
-	}
-	*/
 	if (convOk)
 		return duration;
 	else
@@ -4637,7 +4049,6 @@ int Gui::getBaselineAcqDuration() {
 
 void Gui::clickedCalibrationButton() {
 
-	//initiateOperation(); // SLB
 	readConfiguration(); // SLB
 
 	statusbar->showMessage(tr("Starting Calibration interface..."), 2000); // SLB
@@ -4652,30 +4063,23 @@ void Gui::clickedCalibrationButton() {
 	lineCalibrationAnalysis->setEnabled(true);	// SLB
 	startCalibrationAnalysis->setEnabled(true);
 
-	//terminateOperation(); // SLB
-	
 }
 
 void Gui::clickedSpellerButton() {
 
-	//initiateOperation(); // SLB
 	readConfiguration(); // SLB
 
 	_eventFinishInitialization.SetEvent();
 	_eventSpellerStart.SetEvent();
 
 	baselineAcquisitionButton->setEnabled(false); // SLB
-	//labelFlash->setEnabled(true);
 
 	//calibration->setEnabled(false); // SLB TODO allow recalibration after recognition instead of disabling the calibration button
-
-	//terminateOperation(); // SLB
 
 }
 
 void Gui::clickedSpellerFileButton() {
 
-	//initiateOperation(); // SLB
 	readConfiguration(); // SLB
 
 	statusbar->showMessage(tr("Starting Spelling interface..."), 2000); // SLB
@@ -4686,8 +4090,6 @@ void Gui::clickedSpellerFileButton() {
 	baselineAcquisitionButton->setEnabled(false); // SLB
 
 	//calibration->setEnabled(false); // SLB TODO allow recalibration after recognition instead of disabling the calibration button
-
-	//terminateOperation(); // SLB
 
 }
 
@@ -4701,13 +4103,11 @@ void Gui::clickedFlashAnalysisButton() {
 void Gui::clickedOnlineFlashAnalysisButton() {
 
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 	
 	if (result) {
 		pugi::xml_node node = doc.child("flash_analysis");
 		node.first_child().set_value(lineTagOnlineAnalysis->text().toLocal8Bit().constData());
-		//doc.save_file("./configuration.xml");
 		doc.save_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 	}
 
@@ -4719,7 +4119,6 @@ void Gui::clickedOnlineFlashAnalysisButton() {
 void Gui::clickedStartCalibrationAnalysisButton() {
 
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 	
 	if (result) {
@@ -4729,7 +4128,7 @@ void Gui::clickedStartCalibrationAnalysisButton() {
 		}
 		else
 			node.first_child().set_value(lineCalibrationAnalysis->text().toLocal8Bit().constData());
-		//doc.save_file("./configuration.xml");
+
 		doc.save_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 	}
 
@@ -4738,49 +4137,15 @@ void Gui::clickedStartCalibrationAnalysisButton() {
 
 }
 
-/*
-void Gui::clickedFlashButton() {
-
-	insertNewFlash(lineNewFlash->text().toLocal8Bit().constData());
-	_eventFlashOptimization.SetEvent();
-}
-
-void Gui::insertNewFlash(string flash) {
-
-	pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load_file("./configuration.xml");
-	
-	if (result) {
-		pugi::xml_node node = doc.child("flash_analysis");
-		node.first_child().set_value(flash.c_str());
-		doc.save_file("./configuration.xml");
-	}
-}*/
-
 void Gui::updateStamp(string message) {
 	// SLB
-	//char* c = new char[a.length() + 1];
-	//strcpy(c, a.c_str());
-	//
-	//cout << a << endl;
-	//textarea->append(QString::fromStdString(a)); // SLB was (a)
+	textarea->append(QString::fromStdString(message.c_str())); // SLB was (a)
+	textarea->ensureCursorVisible();  // SLB comment crash?
 	
-	//if (!a.empty()) {
-		textarea->append(QString::fromStdString(message.c_str())); // SLB was (a)
-		textarea->ensureCursorVisible();  // SLB comment crash?
-	//}
-	
-		writeLogFile(message);
+	writeLogFile(message);
 
 	//delete[] c; // SLB
 }
-
-/* SLB remove, unused
-void Gui::enableSpellerButton() {
-
-	speller->setEnabled(true);
-}
-*/
 
 // SLB disable Worker (no idea why it was used at all)
 void Gui::countFinished() {
@@ -4807,12 +4172,8 @@ void Gui::startCount() {
     connect(workerThread, SIGNAL(finished()), workerThread, SLOT(deleteLater()));
 	qRegisterMetaType< string >("string");
 	qRegisterMetaType< QTextCursor >("QTextCursor");
-	//qRegisterMetaType< int >("int"); // SLB
-	//qRegisterMetaType< QPushButton >("QPushButton"); // SLB
-	//qRegisterMetaType< QIcon >("QIcon"); // SLB
 	connect(worker, SIGNAL(updateStamp(string)), this, SLOT(updateStamp(string)));
-	//connect(worker, SIGNAL(gameSetChoiceIcons(int)), this, SLOT(gameSetChoiceIcons(int))); // SLB
-    workerThread->start();
+	workerThread->start();
 	
     countRunning = true;
 
@@ -4820,66 +4181,54 @@ void Gui::startCount() {
 //
 
 CEvent& Gui::getFinishInitializationEvent() {
-	
 	return _eventFinishInitialization;
 }
 
 // SLB
 CEvent& Gui::getSignalCheckStartEvent() {
-	
 	return _eventSignalCheckStart;
 }
 
 // SLB
 CEvent& Gui::getGameSessionStartEvent() {
-	
 	return _eventGameSessionStart;
 }
 
 // SLB
 CEvent& Gui::getBaselineAcquisitionStartEvent() {
-	
 	return _eventBaselineAcquisitionStart;
 }
 
 CEvent& Gui::getCalibrationStartEvent() {
-	
 	return _eventCalibrationStart;
 }
 
 CEvent& Gui::getSpellerStartEvent() {
-
 	return _eventSpellerStart;
 }
 
 CEvent& Gui::getSpellerFileStartEvent() {
-
 	return _eventSpellerFileStart;
 }
 
 CEvent& Gui::getFlashOptimizationEvent() {
-
 	return _eventFlashOptimization;
 }
 
 CEvent& Gui::getFlashAnalysisStartEvent() {
-
 	return _eventFlashAnalysis;
 }
 
 CEvent& Gui::getOnlineFlashAnalysisStartEvent() {
-
 	return _eventOnlineFlashAnalysis;
 }
 
 CEvent& Gui::getCalibrationAnalysisStartEvent() {
-	
 	return _eventCalibrationAnalysis;
 }
 
 // SLB
 CEvent& Gui::getKillEvent() {
-	
 	return _eventKill;
 }
 
@@ -4979,9 +4328,6 @@ void Gui::initKinect() {
 
 			listener->startAcquisition();
 
-			//Sleep(1000);
-			//system("start KinectHandTracking.exe");
-
 		}
 		catch (string& exception) {
 			//
@@ -4999,16 +4345,13 @@ void Gui::initTobii() {
 		gameEyeT->setRunning(true);
 		
 		if (gameEyeT->Initialize()) {
-			//tobiienabled		= true;
 			tobiiInitialised	= true;
-			//gameEyeT->setRunning(true);
 			cout << "Eye tracker enabled." << endl;
 		}
 		else {
 			cout << "Eye tracker not available." << endl;
 			tobiienabled		= false;
 			tobiiInitialised	= false;
-			//gameEyeT->setRunning(false);
 		}
 		
 	}
@@ -5025,13 +4368,13 @@ void Gui::destroyTobii() {
 
 // SLB
 void Gui::clickGameUseOptionsCheckBox(bool flag) {
-	gameUseBCI		= gameUseBCICheckBox->isChecked();
+	gameUseBCI = gameUseBCICheckBox->isChecked();
 	cout << ((gameUseBCI) ? "Game: Using BCI." : "Game: Not using BCI.") << endl;
 
-	gameUseKinect	= gameUseKinectCheckBox->isChecked();
+	gameUseKinect = gameUseKinectCheckBox->isChecked();
 	cout << ((gameUseKinect) ? "Game: Using Kinect." : "Game: Not using Kinect.") << endl;
 
-	userobot		= gameUseRobotCheckBox->isChecked();
+	userobot = gameUseRobotCheckBox->isChecked();
 	cout << ((userobot) ? "Game: Using Robot." : "Game: Not using Robot.") << endl;
 }
 
@@ -5044,11 +4387,9 @@ vector<string> Gui::list_files(string path) {
 	stringstream filename;
 	filename << path << "/w_*.*";
 	HANDLE hFind = FindFirstFile(filename.str().c_str(), &ffd);
-	//HANDLE hFind = FindFirstFile((path + "/w_*.*").c_str(), &ffd);
     if (hFind != INVALID_HANDLE_VALUE) {
         do {
 			if (!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
-				//string filename(ffd.cFileName);
 				matches.push_back(ffd.cFileName);
 			}
         } while (FindNextFile(hFind, &ffd) != 0);
@@ -5064,11 +4405,9 @@ vector<string> Gui::list_folders(string path) {
 	stringstream filename;
 	filename << path << "/*_*";
 	HANDLE hFind = FindFirstFile(filename.str().c_str(), &ffd);
-	//HANDLE hFind = FindFirstFile((path + "/*_*").c_str(), &ffd);
 	if (hFind != INVALID_HANDLE_VALUE) {
 		do {
 			if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-				//string filename = ffd.cFileName;
             	subdirs.push_back(ffd.cFileName);
 				//cout << filename.substr(0,2) << endl;
 			}

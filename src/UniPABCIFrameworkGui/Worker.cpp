@@ -31,9 +31,6 @@
 // SLB QT4
 #include <QtGui/QApplication>
 //
-/* SLB QT4
-#include <Qt/qapplication.h>
-*/
 /* SLB QT5
 #include <QtWidgets\qapplication.h>
 */
