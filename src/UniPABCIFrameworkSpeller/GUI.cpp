@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'  degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita'ï¿½ degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -51,7 +51,6 @@ TobiiTracker* EyeT;
 // -----------------------------------------------------------------------------
 // ------------------- Funzioni relative ai quadrati ---------------------------
 // -----------------------------------------------------------------------------
-
 void initCounterSquare() {
 	counterSquares = new int[squaresNumber];
 	for (int i=0; i<squaresNumber; i++)
@@ -132,78 +131,6 @@ void initParameterVectors() {
 	}
 	//
 
-	/* SLB old rendering method, replaced by mine above.
-	if ((squaresNumber > 1) && (squaresNumber <= 4)) {
-		size = 1.4f;
-
-		u_coor[0] = 0.5f; u_coor[1] = -1.8f;
-		u_coor[2] = 0.5f;	u_coor[3] = -1.8f;
-
-		v_coor[0] = 0.4f; v_coor[1] = 0.4f;
-		v_coor[2] = -1.45f; v_coor[3] = -1.45f;
-
-	}
-	else if ((squaresNumber > 4) && (squaresNumber <= 9)) {
-		size = 1.0f;
-
-		u_coor[0] = 0.65f; u_coor[1] = -0.5f; u_coor[2] = -1.65f;
-		u_coor[3] = 0.65f; u_coor[4] = -0.5f; u_coor[5] = -1.65f;
-		u_coor[6] = 0.65f; u_coor[7] = -0.5f; u_coor[8] = -1.65f;
-
-		v_coor[0] = 0.75f; v_coor[1] = 0.75f; v_coor[2] = 0.75f;
-		v_coor[3] = -0.35f;	v_coor[4] = -0.35f; v_coor[5] = -0.35f;
-		v_coor[6] = -1.45f; v_coor[7] = -1.45f; v_coor[8] = -1.45f;
-
-	}
-	else if ((squaresNumber > 9) && (squaresNumber <= 16)) {
-		size = 0.8f;
-
-		u_coor[0] = 1.1f; u_coor[1] = 0.1f; u_coor[2] = -0.9f; u_coor[3] = -1.9f;
-		u_coor[4] = 1.1f; u_coor[5] = 0.1f; u_coor[6] = -0.9f; u_coor[7] = -1.9f;
-		u_coor[8] = 1.1f; u_coor[9] = 0.1f; u_coor[10] = -0.9f; u_coor[11] = -1.9f;
-		u_coor[12] = 1.1f; u_coor[13] = 0.1f; u_coor[14] = -0.9f; u_coor[15] = -1.9f;
-
-		v_coor[0] = 1.009f; v_coor[1] = 1.009f; v_coor[2] = 1.009f; v_coor[3] = 1.009f;
-		v_coor[4] = 0.159; v_coor[5] = 0.159; v_coor[6] = 0.159; v_coor[7] = 0.159;
-		v_coor[8] = -0.691f; v_coor[9] = -0.691f; v_coor[10] = -0.691f; v_coor[11] = -0.691f;
-		v_coor[12] = -1.541f; v_coor[13] = -1.541f; v_coor[14] = -1.541f; v_coor[15] = -1.541f;
-
-	}
-	else if ((squaresNumber > 16) && (squaresNumber <= 25)) {
-		size = 0.62f;
-
-		u_coor[0] = 1.7f; u_coor[1] = 0.7f; u_coor[2] = -0.3f; u_coor[3] = -1.3f; u_coor[4] = -2.3f;
-		u_coor[5] = 1.7f; u_coor[6] = 0.7f; u_coor[7] = -0.3f; u_coor[8] = -1.3f; u_coor[9] = -2.3f;
-		u_coor[10] = 1.7f; u_coor[11] = 0.7f; u_coor[12] = -0.3f; u_coor[13] = -1.3f; u_coor[14] = -2.3f;
-		u_coor[15] = 1.7f; u_coor[16] = 0.7f; u_coor[17] = -0.3f; u_coor[18] = -1.3f; u_coor[19] = -2.3f;
-		u_coor[20] = 1.7f; u_coor[21] = 0.7f; u_coor[22] = -0.3f; u_coor[23] = -1.3f; u_coor[24] = -2.3f;
-
-		v_coor[0] = 1.235f; v_coor[1] = 1.235f; v_coor[2] = 1.235f; v_coor[3] = 1.235f; v_coor[4] = 1.235f;
-		v_coor[5] = 0.535f; v_coor[6] = 0.535f; v_coor[7] = 0.535f; v_coor[8] = 0.535f; v_coor[9] = 0.535f;
-		v_coor[10] = -0.165f; v_coor[11] = -0.165f; v_coor[12] = -0.165f; v_coor[13] = -0.165f; v_coor[14] = -0.165f;
-		v_coor[15] = -0.865f; v_coor[16] = -0.865f; v_coor[17] = -0.865f; v_coor[18] = -0.865f; v_coor[19] = -0.865f;
-		v_coor[20] = -1.565f; v_coor[21] = -1.565f; v_coor[22] = -1.565f; v_coor[23] = -1.565f; v_coor[24] = -1.565f;
-	}
-	else if ((squaresNumber > 25) && (squaresNumber <= 36)) {
-		size = 0.5f;
-
-		u_coor[0] = 2.2f; u_coor[1] = 1.2f; u_coor[2] = 0.2f; u_coor[3] = -0.8f; u_coor[4] = -1.8f; u_coor[5] = -2.8f;
-		u_coor[6] = 2.2f; u_coor[7] = 1.2f; u_coor[8] = 0.2f; u_coor[9] = -0.8f; u_coor[10] = -1.8f; u_coor[11] = -2.8f;
-		u_coor[12] = 2.2f; u_coor[13] = 1.2f; u_coor[14] = 0.2f; u_coor[15] = -0.8f; u_coor[16] = -1.8f;
-		u_coor[17] = -2.8f; u_coor[18] = 2.2f; u_coor[19] = 1.2f; u_coor[20] = 0.2f; u_coor[21] = -0.8f;
-		u_coor[22] = -1.8f; u_coor[23] = -2.8f; u_coor[24] = 2.2f; u_coor[25] = 1.2f; u_coor[26] = 0.2f;
-		u_coor[27] = -0.8f; u_coor[28] = -1.8f; u_coor[29] = -2.8f; u_coor[30] = 2.2f; u_coor[31] = 1.2f;
-		u_coor[32] = 0.2f; u_coor[33] = -0.8f; u_coor[34] = -1.8f; u_coor[35] = -2.8f;
-
-		v_coor[0] = 1.25f; v_coor[1] = 1.25f; v_coor[2] = 1.25f; v_coor[3] = 1.25f; v_coor[4] = 1.25f; v_coor[5] = 1.25f;
-		v_coor[6] = 0.7f; v_coor[7] = 0.7f; v_coor[8] = 0.7f; v_coor[9] = 0.7f; v_coor[10] = 0.7f; v_coor[11] = 0.7f;
-		v_coor[12] = 0.15f; v_coor[13] = 0.15f; v_coor[14] = 0.15f; v_coor[15] = 0.15f; v_coor[16] = 0.15f;
-		v_coor[17] = 0.15f; v_coor[18] = -0.4f; v_coor[19] = -0.4f; v_coor[20] = -0.4f; v_coor[21] = -0.4f;
-		v_coor[22] = -0.4f; v_coor[23] = -0.4f; v_coor[24] = -0.95f; v_coor[25] = -0.95f; v_coor[26] = -0.95f;
-		v_coor[27] = -0.95f; v_coor[28] = -0.95f; v_coor[29] = -0.95f; v_coor[30] = -1.5f; v_coor[31] = -1.5f;
-		v_coor[32] = -1.5f; v_coor[33] = -1.5f; v_coor[34] = -1.5f; v_coor[35] = -1.5f;
-	}
-	*/
 }
 
 void setColorMap() {
@@ -221,14 +148,7 @@ void setColorMap() {
 
 void initPaths() {
 	for (int i=0; i<squaresNumber; i++) {
-		/* SLB
-		if (symbolicTexture)
-			tpnVector[i] = interface->getTexturePathName() + mapTexture[i] + ".bmp";
-		else
-			tpnVector[i] = interface->getTexturePathName() + mapTexture[i] + ".bmp";
-		SLB */
 		tpnVector[i] = interface->getTexturePathName() + mapTexture[i] + ".bmp"; // SLB
-
 		tpnfVector[i] = interface->getTexturePathName() + textureFlash + ".bmp";
 	}
 }
@@ -260,33 +180,10 @@ void initInterface() {
 		interface->addRow(rowsVector[i]);
 }
 
-/*
-void getMemoryInformation(bool* b) {
-
-	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./memory.xml");
-	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/memory.xml").c_str()); // SLB
-
-	if (result)	{
-		b[0] = atoi(doc.child("window").first_child().value());
-	    b[1] = atoi(doc.child("door").first_child().value());
-		//b[2] = atoi(doc.child("tv").first_child().value());
-		//b[3] = atoi(doc.child("radio").first_child().value());
-		b[4] = atoi(doc.child("light").first_child().value());
-	}
-	else {
-		std::cout << "XML  parsed with errors, attr value: [" << doc.child("node").attribute("attr").value() << "]\n";
-		std::cout << "Error description: " << result.description() << "\n";
-		std::cout << "Error offset: " << result.offset << " (error at [..." << (result.offset) << "]\n\n";
-	}
-
-}
-*/
 // SLB
 void getMemoryInformation() {
 
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./memory.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/memory.xml").c_str()); // SLB
 
 	if (result)	{
@@ -331,7 +228,6 @@ void initMapTexture() {
 		
 		map<string,double*> p;
 		pugi::xml_document doc;
-		//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 		pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 		pugi::xml_node tmp=doc.child("texture");
@@ -354,20 +250,12 @@ void initMapTexture() {
 	else {
 		idSymbolicTexture = getOnlineParameters(); // SLB Was disabled, moved here
 
-		//getMemoryInformation(memoryInformation);
 		getMemoryInformation(); // SLB
 		
 		mapTexture.insert(pair<int, string>(CIBO, "eat"));
 		mapTextureName.insert(pair<int, string>(CIBO, "EAT"));
 		mapTexture.insert(pair<int, string>(BERE, "drink"));
 		mapTextureName.insert(pair<int, string>(BERE, "DRINK"));
-		/* SLB read from memory.xml
-		mapTexture.insert(pair<int, string>(LUCE, "lightOn"));
-		mapTextureName.insert(pair<int, string>(LUCE, "TURN ON THE LIGHT"));
-		*/
-		//mapTexture.insert(pair<int, string>(LUCE, "lightOff"));
-		//mapTextureName.insert(pair<int, string>(LUCE, "TURN OFF THE LIGHT"));
-		//
 		mapTexture.insert(pair<int, string>(ASSISTENZA, "assistance"));
 		mapTextureName.insert(pair<int, string>(ASSISTENZA, "HELP"));
 		mapTexture.insert(pair<int, string>(LETTO, "bed"));
@@ -382,12 +270,6 @@ void initMapTexture() {
 		mapTextureName.insert(pair<int, string>(SPELLER, "SPELLER"));
 		mapTexture.insert(pair<int, string>(CHIUDI, "exit"));
 		mapTextureName.insert(pair<int, string>(CHIUDI, "BYE BYE"));
-		/* SLB read from memory.xml
-		mapTexture.insert(pair<int, string>(FINESTRA, "windowOpen"));
-		mapTextureName.insert(pair<int, string>(FINESTRA, "OPEN THE WINDOW"));
-		mapTexture.insert(pair<int, string>(PORTA, "doorOpen"));
-		mapTextureName.insert(pair<int, string>(PORTA, "OPEN THE DOOR"));
-		*/
 		mapTexture.insert(pair<int, string>(RADIO, "radio"));
 		mapTextureName.insert(pair<int, string>(RADIO, "RADIO"));
 		mapTexture.insert(pair<int, string>(TV, "tv"));
@@ -395,14 +277,6 @@ void initMapTexture() {
 		mapTexture.insert(pair<int, string>(DORMIRE, "asleep"));
 		mapTextureName.insert(pair<int, string>(DORMIRE, "ASLEEP"));
 
-		// SLB
-		/*
-		memoryInformation.insert(pair <int, bool> (FINESTRA,	false));
-		memoryInformation.insert(pair <int, bool> (PORTA,		false));
-		memoryInformation.insert(pair <int, bool> (TV,			false));
-		memoryInformation.insert(pair <int, bool> (RADIO,		false));
-		memoryInformation.insert(pair <int, bool> (LUCE,		false));
-		*/
 		// SLB
 		setTexturesFromMemory();
 
@@ -413,72 +287,36 @@ void initMapTexture() {
 				isHot = true;
 				mapTexture.insert(pair<int, string>(TEMP, "hot"));
 				mapTextureName.insert(pair<int, string>(TEMP, "HOT"));
-				/* SLB from memory
-				mapTexture.insert(pair<int, string>(LUCE, "lightOn"));
-				mapTextureName.insert(pair<int, string>(LUCE, "TURN ON THE LIGHT"));
-				*/
-				//mapTexture.insert(pair<int, string>(FINESTRA, "windowClose"));
-				//mapTextureName.insert(pair<int, string>(FINESTRA, "CLOSE THE WINDOW"));
 
 				break;
 			case 2:
 				isHot = true;
 				mapTexture.insert(pair<int, string>(TEMP, "hot"));
 				mapTextureName.insert(pair<int, string>(TEMP, "HOT"));
-				/*
-				mapTexture.insert(pair<int, string>(LUCE, "lightOn"));
-				mapTextureName.insert(pair<int, string>(LUCE, "TURN ON THE LIGHT"));
-				*/
-				//mapTexture.insert(pair<int, string>(FINESTRA, "windowOpen"));
-				//mapTextureName.insert(pair<int, string>(FINESTRA, "OPEN THE WINDOW"));
 
 				break;
 			case 3:
 				isHot = true;
 				mapTexture.insert(pair<int, string>(TEMP, "hot"));
 				mapTextureName.insert(pair<int, string>(TEMP, "HOT"));
-				/*
-				mapTexture.insert(pair<int, string>(LUCE, "lightOff"));
-				mapTextureName.insert(pair<int, string>(LUCE, "TURN OFF THE LIGHT"));
-				*/
-				//mapTexture.insert(pair<int, string>(FINESTRA, "windowClose"));
-				//mapTextureName.insert(pair<int, string>(FINESTRA, "CLOSE THE WINDOW"));
 
 				break;
 			case 4:
 				isHot = true;
 				mapTexture.insert(pair<int, string>(TEMP, "hot"));
 				mapTextureName.insert(pair<int, string>(TEMP, "HOT"));
-				/*
-				mapTexture.insert(pair<int, string>(LUCE, "lightOff"));
-				mapTextureName.insert(pair<int, string>(LUCE, "TURN OFF THE LIGHT"));
-				*/
-				//mapTexture.insert(pair<int, string>(FINESTRA, "windowOpen"));
-				//mapTextureName.insert(pair<int, string>(FINESTRA, "OPEN THE WINDOW"));
 
 				break;
 			case 5:
 				isHot = false;
 				mapTexture.insert(pair<int, string>(TEMP, "cold"));
 				mapTextureName.insert(pair<int, string>(TEMP, "COLD"));
-				/*
-				mapTexture.insert(pair<int, string>(LUCE, "lightOn"));
-				mapTextureName.insert(pair<int, string>(LUCE, "TURN ON THE LIGHT"));
-				*/
-				//mapTexture.insert(pair<int, string>(FINESTRA, "windowClose"));
-				//mapTextureName.insert(pair<int, string>(FINESTRA, "CLOSE THE WINDOW"));
 
 				break;
 			case 6:
 				isHot = false;
 				mapTexture.insert(pair<int, string>(TEMP, "cold"));
 				mapTextureName.insert(pair<int, string>(TEMP, "COLD"));
-				/*
-				mapTexture.insert(pair<int, string>(LUCE, "lightOff"));
-				mapTextureName.insert(pair<int, string>(LUCE, "TURN OFF THE LIGHT"));
-				*/
-				//mapTexture.insert(pair<int, string>(FINESTRA, "windowClose"));
-				//mapTextureName.insert(pair<int, string>(FINESTRA, "CLOSE THE WINDOW"));
 
 				break;
 		}
@@ -725,7 +563,6 @@ void initMapTexture() {
 void initSpellingText() {
 
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 	pugi::xml_node tmp = doc.child("target");
@@ -736,23 +573,18 @@ void initSpellingText() {
 		//rowsNumber = 4;
 		//elements = squaresNumber = 16;
 
-		//idSymbolicTexture = getOnlineParameters(); // SLB Was already disabled (moved somewhere else)
 		for (pugi::xml_node tool = tmp.child("t"); tool; tool = tool.next_sibling("t")) {
 			testoPre += tool.first_child().value();
 			testoPre += " "; // SLB
 			targets.push_back(tool.first_child().value());
 		}
-		///testoProcessed = testoPre + " (" + testoPre[currentSession] + ")";
 	}
 	else { // SLB added to manage the alphabetic speller string
 		// SLB Speller PALETTE
 		for (pugi::xml_node tool = tmp.child("t"); tool; tool = tool.next_sibling("t")) {
 			testoPre += mapTextureName[atoi(tool.first_child().value())-1];
-			///testoPre += " ";
-			//targets.push_back(mapTextureName[atoi(tool.first_child().value())-1]);
 			targets.push_back(tool.first_child().value());
 		}
-		///testoProcessed = testoPre + " (" + testoPre[currentSession] + ")";
 	}
 
 	testoProcessed = testoPre + " (" + targets[currentSession] + ")";
@@ -765,7 +597,6 @@ void initTexturesTheme() {
 	
 	if (customPalette) { // SLB
 		pugi::xml_document doc;
-		//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 		pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 		texturetype += doc.child("letter_color").first_child().value();
@@ -847,10 +678,9 @@ void initializeAll() {
 	
 	initParameterVectors(); // Inizializzo i parametri e i quadrati
 
-	///initMapTexture(); // SLB moved above
 
 	initPaths();
-	
+
 	initSquare();
 
 	initCounterSquare();
@@ -869,7 +699,6 @@ void initializeAll() {
 // -----------------------------------------------------------------------------
 // ----------------------- Funzioni relative ai flash --------------------------
 // -----------------------------------------------------------------------------
-
 void flashSquare(int square) {
 
 	if (firstTime) { // Invio comando di inizio stimolo
@@ -916,12 +745,10 @@ void flashSquare(int square) {
 			pausa = true;
 			readyToFlash = true;
 			
-			//if (interface->getMaxSessions() == currentSession)
 			if (currentSession == interface->getMaxSessions()) { // SLB
 				sendToServer(END_CALIBRATION);
 				drawOnScreen();
 				firstTime = true;
-				//readyToFlash = true; // SLB redundant
 			}
 			else {
 				currentSession++;
@@ -950,6 +777,7 @@ void fillStackS() {
 	}
 
 	//random_shuffle(&tmpr[0], &tmpr[squaresNumber  * numberOfFlash - 1]);
+
 	for (int i=0; i<squaresNumber * numberOfFlash; i++) {
 		flashHelperS.push(tmpr[i]);
 		flashHelperS.push(tmpr[i]);
@@ -991,7 +819,7 @@ void flashRC(int val) {
 					showSquare[tmp + (i * rowsNumber)] = !showSquare[tmp + (i * rowsNumber)];
 				}
 			}
-			else { // è una riga
+			else { // ï¿½ una riga
 				showRow[tmp] = !showRow[tmp];
 				if (showRow[tmp]) { // Aumenta il contatore e manda l'ID della riga 
 					counterRows[tmp]++;
@@ -1022,11 +850,9 @@ void flashRC(int val) {
 			pausa = true;
 			readyToFlash = true;
 			
-			//if (interface->getMaxSessions() == currentSession) {
 			if (currentSession == interface->getMaxSessions()) { // SLB
 				sendToServer(END_CALIBRATION);
 				firstTime = true;
-				//readyToFlash = true; // SLB redundant
 			}
 			else {
 				currentSession++;
@@ -1041,8 +867,8 @@ void flashRC(int val) {
 }
 
 void fillStackRC() {
-	// La funzione si basa sul fatto che l'inserimento nello stack è sequenziale,
-	// dunque il primo elemento sulla cima dello stack sarà sicuramente una colonna.
+	// La funzione si basa sul fatto che l'inserimento nello stack ï¿½ sequenziale,
+	// dunque il primo elemento sulla cima dello stack sarï¿½ sicuramente una colonna.
 	int* tmpr = new int[rowsNumber*numberOfFlash]; // Vettore di permutazione delle righe
 	int* tmpc = new int[rowsNumber*numberOfFlash]; // Vettore di permutazione delle colonne
 	
@@ -1070,14 +896,6 @@ void fillStackRC() {
 	}
 
 }
-
-// SLB
-/*
-void baselineAcquisition() {
-
-}
-*/
-
 // ----------------------------------------------------------------------------
 // -------------------- Fine sezione dei flash-- ------------------------------
 //-----------------------------------------------------------------------------
@@ -1085,7 +903,6 @@ void baselineAcquisition() {
 // ----------------------------------------------------------------------------
 // --------------------------- Sezione funzioni varie -------------------------
 // ----------------------------------------------------------------------------
-
 void deleteAll() { // Funzione che cancella tutti i puntatori instanziati
 	delete interface;
 
@@ -1119,11 +936,7 @@ void deleteAll() { // Funzione che cancella tutti i puntatori instanziati
 void sendToServer(int com) {
 
 	clientTCP *conn = new clientTCP;
-	/* SLB
-	string s = to_string(com);
-	const char *p = s.c_str();
-	conn->sendCommand(p);
-	*/
+	
 	if (!SLBDEBUG) // SLB
 		conn->sendCommand(std::to_string(com).c_str()); // SLB
 	delete conn;
@@ -1131,7 +944,6 @@ void sendToServer(int com) {
 
 void readConfiguration() {
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 	if (result)	{
@@ -1144,10 +956,6 @@ void readConfiguration() {
 		symbolicTexture	= (bool) atoi(doc.child("symbolicmode").first_child().value());
 		customPalette	= (bool) atoi(doc.child("palette").first_child().value());
 		flashingMode	= (bool) atoi(doc.child("mode").first_child().value()); // SLB bool
-		///testoPre = doc.child("string").first_child().value();				// SLB da sostituire con targets
-		///testoProcessed = testoPre + " (" + testoPre[currentSession] + ")";	// Stringa di testo processata // SLB da sostituire con targets
-		///maxSessions = testoPre.size();										// Sessioni // SLB da sostituire con targets
-
 		tobiienabled	= (bool) atoi(doc.child("tobiienabled").first_child().value()); // SLB
 		
 	}
@@ -1160,7 +968,6 @@ void readConfiguration() {
 		*/
 	}
 }
-
 // ----------------------------------------------------------------------------
 // --------------------------- Fine funzioni varie ----------------------------
 // ----------------------------------------------------------------------------
@@ -1169,7 +976,6 @@ void readConfiguration() {
 // ----------------------------------------------------------------------------
 // ---------------------- Inizio sezione scritta a video ----------------------
 // ----------------------------------------------------------------------------
-
 int selectTextureToShow() {
 
 	if (idFromClient[1] == -1)
@@ -1190,12 +996,7 @@ void printStringOnVideo(void* font, string s) {
 }
 
 void drawOnScreen() {
-	/* SLB
-	GLfloat x, y;
-	// Draw the strings, according to the current mode and font.
-	x = textX[rowsNumber - 2] + (testoProcessed.size()*0.095f / 3.75);
-	y = textY[rowsNumber - 2];
-	*/
+	// SLB
 	//int width = glutGet(GLUT_SCREEN_WIDTH);
 	//int height = glutGet(GLUT_SCREEN_HEIGHT);
 	int width = g_Width;
@@ -1232,17 +1033,6 @@ void drawIDs() {
 void processText() {
 
 	if (!spellingOn) {
-		///if (currentSession < testoPre.size()) { // SLB TODO Spelling fixes
-		//if (currentSession < maxSessions) {
-			//testoProcessed = testoPre + " (" + testoPre[currentSession] + ")";		//SLB OK
-			//testoProcessed = testoPre + " (" + targets[currentSession] + ")";			//SLB OK
-		//}
-		/*
-		else {
-			//testoProcessed = testoPre + " (" + testoPre[maxSessions - 1] + ")";
-			testoProcessed = testoPre + " (" + targets[maxSessions - 1] + ")";
-		}
-		*/
 		if (symbolicTexture || customPalette) { // SLB TODO CHECK preferences of having different calibration strings depending on the spelling mode
 			testoProcessed = testoPre + " (" + targets[currentSession] + ")";
 			
@@ -1263,7 +1053,6 @@ void updateTestoSpelling(string res) {
 	else
 		testoSpelling = testoSpelling + " " + res;
 }
-
 // ----------------------------------------------------------------------------
 // ---------------------------- Fine scritta a video --------------------------
 // ----------------------------------------------------------------------------
@@ -1271,7 +1060,6 @@ void updateTestoSpelling(string res) {
 // ----------------------------------------------------------------------------
 // --------------------------- Sezione funzioni rendering----------------------
 // ----------------------------------------------------------------------------
-
 void display(void) {
 
 	glClearColor(backGroundColor[0], backGroundColor[1], backGroundColor[2], backGroundColor[3]);
@@ -1333,20 +1121,6 @@ void display(void) {
 
 void reshape(GLint width, GLint height) {
 	
-	/*
-	interface->setWindowWidth(width);
-	interface->setWindowHeight(height);
-	glViewport(0, yPosition[rowsNumber - 2], g_Width, g_Height);
-	g_fViewDistance = scaling[rowsNumber - 2];
-	glScalef(1, 2, 1.0);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(65.0, (float)g_Width / g_Height, g_nearPlane, g_farPlane);
-	glMatrixMode(GL_MODELVIEW);
-	*/
-
-	//glViewport(0, 0, (GLsizei)width, (GLsizei)height);
-	
 	if (square_ratio) {
 		if (height < 300)
 			height = 300;
@@ -1355,59 +1129,17 @@ void reshape(GLint width, GLint height) {
 	else {
 		glutReshapeWindow(width, height);
 	}
-	
-	/*
-	glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	*/
 
 }
-
-/* SLB
-void idle(void) {
-	glutPostRedisplay();
-}
-*/
 
 const char* BoolToString(bool b) {
-
   return b ? "1" : "0";
 }
 
-/*
-void updateXML(int res) {
-
-	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./memory.xml");
-	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/memory.xml").c_str()); // SLB
-	
-	if (result) {
-		
-		if (res == FINESTRA) {  // FINESTRA
-			pugi::xml_node node = doc.child("window");
-			node.first_child().set_value(BoolToString(memoryInformation[0]));
-		}
-		else if (res == PORTA) {  // PORTA
-			pugi::xml_node node = doc.child("door");
-			node.first_child().set_value(BoolToString(memoryInformation[1]));
-		}
-		else if (res == LUCE) {  // SLB
-			pugi::xml_node node = doc.child("light");
-			node.first_child().set_value(BoolToString(memoryInformation[4]));
-		}
-		//doc.save_file("./memory.xml");
-		doc.save_file((configFilesRoot + "/memory.xml").c_str()); // SLB
-	}
-}
-*/
 // SLB
 void updateXML(int res) {
 
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./memory.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/memory.xml").c_str()); // SLB
 	
 	if (result) {
@@ -1424,7 +1156,6 @@ void updateXML(int res) {
 			pugi::xml_node node = doc.child("light");
 			node.first_child().set_value(BoolToString(memoryInformation[LUCE]));
 		}
-		//doc.save_file("./memory.xml");
 		doc.save_file((configFilesRoot + "/memory.xml").c_str()); // SLB
 	}
 }
@@ -1446,7 +1177,6 @@ void Keyboard(unsigned char key, int x, int y) {
 				readConfiguration();
 
 				if (flashingMode == 0) { // flash square
-				//if (!flashingMode) { // SLB
 					printf("Flashing squares\n");
 					sendToServer(START_CALIBRATION);
 					sendToServer(FLASH_S);
@@ -1455,7 +1185,6 @@ void Keyboard(unsigned char key, int x, int y) {
 					currentSession=0;
 					flashSquare(0);
 				}
-				//else {
 				else if (flashingMode == 1) { // rows-cols // SLB
 					printf("Flashing rows and columns\n");
 					sendToServer(START_CALIBRATION);
@@ -1479,7 +1208,7 @@ void Keyboard(unsigned char key, int x, int y) {
 			exit(0);
 			break;
 	}
-	//glutPostRedisplay(); // SLB
+
 }
 /* SLB Disabled to let the gui cycle thru the targets automatically
 // ^ doesn't really work: still pauses, sometimes?!
@@ -1521,7 +1250,6 @@ void MouseMotion(int x, int y) {
 // ----------------------------------------------------------------------------
 // --------------------------- Inizio funzioni per la socket ------------------
 // ----------------------------------------------------------------------------
-
 DWORD WINAPI createSocket(LPVOID lpParameter) {
 
 	WSADATA wsa;
@@ -1711,21 +1439,6 @@ DWORD WINAPI createSocket(LPVOID lpParameter) {
 							glutDestroyWindow(window);
 							return 0;
 						}
-						/* SLB
-						if (idFromClient[0] == BASELINE_ACQ) { // SLB
-							sendToServer(FLASH_RC);
-							firstTime = true;
-							flashRC(0);
-						}
-						*/
-						/* SLB
-						if (idFromClient[0] == START_CALIBRATION) {
-							cout << "Starting calibration." << endl;
-							initSpellingText();
-							drawOnScreen();
-							glutPostRedisplay(); // SLB
-						}
-						*/
 
 						if (idFromClient[0] < START_CALIBRATION && idFromClient[0] > 0) {
 							
@@ -1737,7 +1450,7 @@ DWORD WINAPI createSocket(LPVOID lpParameter) {
 							int res = selectTextureToShow();
 
 							if (symbolicTexture) {
-								//controllo qual'è stata l'ultima selezione
+								//controllo qual e' stata l'ultima selezione
 								if (lastSensorialSelection == -1) {
 									cout << mapTextureName[res] << endl << endl; // SLB added endl endl
 									updateTestoSpelling(mapTextureName[res]);
@@ -1750,13 +1463,12 @@ DWORD WINAPI createSocket(LPVOID lpParameter) {
 							else
 								updateTestoSpelling(mapTextureName[res]);
 
-							///testoPre = testoProcessed = ""; // SLB
 							testoPre = testoProcessed = res; // SLB
 							spellingOn = true;
 							drawOnScreen();
 							glutPostRedisplay(); // SLB
 
-							//se l'id ritornato, è quello della finestra, devo modificare la memoria
+							//se l'id ritornato, e' quello della finestra, devo modificare la memoria
 							/*
 							if (symbolicTexture && (!spellingController) && (lastSensorialSelection == -1) &&
 								((res == FINESTRA) || (res == PORTA))) {
@@ -1765,14 +1477,6 @@ DWORD WINAPI createSocket(LPVOID lpParameter) {
 							if (symbolicTexture && (rowsNumber == 4) && (!spellingController) && (lastSensorialSelection == -1) &&
 								((res == FINESTRA) || (res == PORTA) || (res == LUCE))) {
 									
-									/* SLB old
-									if (res == FINESTRA)
-										memoryInformation[0] = !memoryInformation[0];
-									else if (res == PORTA)
-										memoryInformation[1] = !memoryInformation[1];
-									else if (res == LUCE) // SLB
-										memoryInformation[4] = !memoryInformation[4];
-									*/
 									// SLB new
 									memoryInformation[res] = !memoryInformation[res];
 
@@ -1783,7 +1487,7 @@ DWORD WINAPI createSocket(LPVOID lpParameter) {
 
 							//sendCommandToRobot(res); // SLB TODO CHECK here GEMINOID INTERFACE
 
-							if (symbolicTexture) //se è attivo il modulo dei sensori, potrei voler modificare l'interfaccia
+							if (symbolicTexture) //se ï¿½ attivo il modulo dei sensori, potrei voler modificare l'interfaccia
 								rebuildInterface(res);
 							else {
 								if (res == CHIUDI) { //devo uscire dall'interfaccia
@@ -1845,8 +1549,7 @@ void rebuildInterface(int res) {
 		}
 
 		//indice dello speller
-		//a secondo dell'indice scelto devo ricaricare i parametri della dimensione
-		
+		//a seconda dell'indice scelto devo ricaricare i parametri della dimensione
 		if (res == BACK) { // l'indice BACK serve per tornare all'interfaccia principale
 			lastSensorialSelection = -1; //indice di default;
 			texturePathName = texturePathRoot + "/" + texturetype; // path di default
@@ -1860,8 +1563,9 @@ void rebuildInterface(int res) {
 				testoSpelling = "";
 				reloadParameters(res);	
 			}
-			/****NON SONO CERTO CHE DEBBA ESSERE COMMENTATO*/
+			
 			//lastSensorialSelection=res; // SLB TODO CHECK was commented already
+
 		  }
 	}
 	//Eventualmente inserire delete
@@ -1870,7 +1574,6 @@ void rebuildInterface(int res) {
 
 void rebuildMainWindow(int res) {
 	
-		//getMemoryInformation(memoryInformation);
 		getMemoryInformation(); // SLB
 
 		// SLB
@@ -1890,9 +1593,8 @@ void rebuildMainWindow(int res) {
 }
 
 // SLB
-/*
 void setTexturesFromMemory() {
-	if (memoryInformation[0]) { //se dalla memoria sappiamo già che la finestra è aperta
+	if (memoryInformation[FINESTRA]) { //se dalla memoria sappiamo giï¿½ che la finestra ï¿½ aperta
 		mapTexture[FINESTRA] = "windowClose";
 		mapTextureName[FINESTRA] = "CLOSE THE WINDOW";
 	}
@@ -1901,37 +1603,7 @@ void setTexturesFromMemory() {
 		mapTextureName[FINESTRA] = "OPEN THE WINDOW";
 	}
 	
-	if (memoryInformation[1]) { //se l'indice booleano della porta è aperta,
-		mapTexture[PORTA] = "doorClose";
-		mapTextureName[PORTA] = "CLOSE THE DOOR";
-	}
-	else {
-		mapTexture[PORTA] = "doorOpen";
-		mapTextureName[PORTA] = "OPEN THE DOOR";
-	}
-
-	if (memoryInformation[4]) { // SLB
-		mapTexture[LUCE] = "lightOn";
-		mapTextureName[LUCE] = "TURN OFF THE LIGHT";
-	}
-	else {
-		mapTexture[LUCE] = "lightOff";
-		mapTextureName[LUCE] = "TURN ON THE LIGHT";
-	}
-}
-*/
-// SLB
-void setTexturesFromMemory() {
-	if (memoryInformation[FINESTRA]) { //se dalla memoria sappiamo già che la finestra è aperta
-		mapTexture[FINESTRA] = "windowClose";
-		mapTextureName[FINESTRA] = "CLOSE THE WINDOW";
-	}
-	else {
-		mapTexture[FINESTRA] = "windowOpen";
-		mapTextureName[FINESTRA] = "OPEN THE WINDOW";
-	}
-	
-	if (memoryInformation[PORTA]) { //se l'indice booleano della porta è aperta,
+	if (memoryInformation[PORTA]) { //se l'indice booleano della porta ï¿½ aperta,
 		mapTexture[PORTA] = "doorClose";
 		mapTextureName[PORTA] = "CLOSE THE DOOR";
 	}
@@ -1952,7 +1624,6 @@ void setTexturesFromMemory() {
 
 void reloadParameters(int res) {
 	pugi::xml_document doc;
-	//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 	if (res == BACK) {
@@ -1963,19 +1634,16 @@ void reloadParameters(int res) {
 		rowsNumber = 3;
 		elements = squaresNumber = 9;
 	}
-	//elements = squaresNumber = rowsNumber*rowsNumber; // SLB
 
 	pugi::xml_node node = doc.child("row_num_interface");
 	node.first_child().set_value(std::to_string(rowsNumber).c_str());
 	node = doc.child("elements");
 	node.first_child().set_value(std::to_string(elements).c_str());
-	//doc.save_file("./configuration.xml");
 	doc.save_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 	initObjects(); // SLB
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clean the screen and the depth buffer
-	///glLoadIdentity();	
 	glutSwapBuffers();
 
 	// Inizializzo i parametri e i quadrati
@@ -1987,7 +1655,6 @@ void reloadParameters(int res) {
 			else
 				tpnVector[i] = interface->getTexturePathName() + mapVector[res][i] + ".bmp";
 
-			//tpnfVector[i] = texturePathRoot+"/"+texturetype+"/einstein.bmp";
 			tpnfVector[i] = texturePathRoot + "/" + texturetype + "/" + textureFlash + ".bmp"; // SLB
 	}
 	
@@ -2002,8 +1669,6 @@ void reloadParameters(int res) {
 	glutDisplayFunc(display);	// Setta la callback per il display
 	glutReshapeFunc(reshape);
 	glutPostRedisplay();
-
-	//glutIdleFunc(idle); // SLB
 
 }
 
@@ -2027,28 +1692,23 @@ void manageSpeller(int res) {
 		rowsNumber = 6;
 
 		pugi::xml_document doc;
-		//pugi::xml_parse_result result = doc.load_file("./configuration.xml");
 		pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 		pugi::xml_node node = doc.child("row_num_interface");
 		node.first_child().set_value(std::to_string(rowsNumber).c_str());
 		node = doc.child("elements");
 		node.first_child().set_value(std::to_string(elements).c_str());
-		//doc.save_file("./configuration.xml");
 		doc.save_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 		initObjects(); // SLB
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clean the screen and the depth buffer
-		///glLoadIdentity();
 		glutSwapBuffers();
 
 		// Inizializzo i parametri e i quadrati
 		initParameterVectors();
 
 		for (int i=0; i<squaresNumber; i++) {
-			//char caio = ' ';
-			//caio = i + 25;
 			tpnVector[i] = interface->getTexturePathName() + "speller/W" + std::to_string(i+1) + ".bmp";
 			tpnfVector[i] = interface->getTexturePathName() + "/" + textureFlash + ".bmp";
 		}
@@ -2064,8 +1724,6 @@ void manageSpeller(int res) {
 		glutDisplayFunc(display);	// Setta la callback per il display
 		glutReshapeFunc(reshape);
 		glutPostRedisplay();
-
-		//glutIdleFunc(idle); // SLB
 
 	}
 
@@ -2088,7 +1746,7 @@ int getOnlineParameters() {
 	time_t currentTime;
 	struct tm *localTime;
 
-	time(&currentTime);                   // Get the current time
+	time(&currentTime); // Get the current time
 	localTime = localtime(&currentTime);
 	int Hour = localTime->tm_hour;
 	if (Hour>=8 && Hour<12)
@@ -2184,8 +1842,6 @@ int getOnlineParameters() {
 	//delete[] configuration;
 		
 }
-
-
 // ----------------------------------------------------------------------------
 // --------------------------- Fine funzioni per la socket --------------------
 // ----------------------------------------------------------------------------
@@ -2216,7 +1872,7 @@ int main(int argc, char** argv) {
 	// Initialize OpenGL graphics state
 	/*
 	glEnable(GL_DEPTH_TEST); // Abilita il controllo sullo z-buffer
-	glDepthFunc(GL_LEQUAL);  // Ordina sullo z-buffer dal più lontano al più vicino
+	glDepthFunc(GL_LEQUAL);  // Ordina sullo z-buffer dal piï¿½ lontano al piï¿½ vicino
 	glShadeModel(GL_FLAT);   // Usa il modello dolce per gli shader
 	glEnable(GL_BLEND);
 	glEnable(GL_POINT_SMOOTH);
@@ -2225,8 +1881,6 @@ int main(int argc, char** argv) {
 	// Render the scene
 	glutDisplayFunc(display);	// Setta la callback per il display
 	glutReshapeFunc(reshape);	// Setta la callback per il reshape, chiamato a primo lancio della finestra
-
-	//pausa = false; // SLB moved above
 
 	// printf("Press 'm' for flashing squares\n");
 	// printf("Press 'n' for flashing rows and columns\n");
@@ -2241,8 +1895,6 @@ int main(int argc, char** argv) {
 	glutPassiveMotionFunc(NULL);
 
 	glutKeyboardFunc(Keyboard);
-
-	//glutIdleFunc(idle); // SLB
 
 	// Turn the flow of control over to GLUT 
 
@@ -2260,3 +1912,4 @@ int main(int argc, char** argv) {
 
 	return 0;
 }
+

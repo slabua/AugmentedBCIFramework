@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'  degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita'ï¿½ degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -35,7 +35,7 @@
 //#include "serverTCP.h"
 
 #ifdef _WIN32
-#include <windows.h>
+#	include <windows.h>
 #else
 #	include <sys/time.h>
 #endif
@@ -49,9 +49,7 @@ using std::stack;
 // ----------------------- Parametri per l'interfaccia --------------------------------------
 // ------------------------------------------------------------------------------------------
 const int CIBO						= 0;
-//const int CALDO					= 1;
-//const int FREDDO					= 1;
-const int TEMP						= 1; // SLB replaces above redundancy
+const int TEMP						= 1; // SLB
 const int BERE						= 2;
 const int LUCE						= 3;
 const int ASSISTENZA				= 4;
@@ -87,19 +85,13 @@ string textureFlash;								// Flashing Texture // SLB
 int numberOfFlash;									// Numero di flash per sessione
 int currentSession = 0;								// Numero di sessione attuale
 int flashingMode;
-/* SLB Unused with the new rendering workflow
-GLfloat scaling[] = { 3, 3, 3, 3.1 };						// Fattore di scala dell'interfaccia
-GLint yPosition[] = { -35, -35, -24, -26 };					// Spostamento rispetto all'asse y
-GLfloat textX[] = { 0.10f, 0.045f, 0.05f, 0.062f, 0.062f }; // Coordinata x della prima lettera del testo
-GLfloat textY[] = { 1.88f, 1.9f, 1.85f, 1.89f, 1.84f };		// Coordinata y della prima lettera del testo
-*/
 float backGroundColor[] = { 0.024, 0.059, 0.259, 0.5 };		// Colore di sfondo
-float textColor[] = { 1, 1, 0 };				// Colore del testo
+float textColor[] = { 1, 1, 0 };					// Colore del testo
 bool symbolicTexture = true;						// TRUE = texture dai sensori, FALSE = texture alfabetiche
-int idSymbolicTexture = 1;						// ID di mapping per scegliere quali texture mostrare dai sensori
-int lastSensorialSelection = -1;				// Indice dell'ultima selezione nel modulo sensoriale effettuata, il default è -1
-map<int, string> mapTexture;					// Mappa che associa ad ogni elemento della gui una texture
-map<int, string> mapTextureName;				// Nome delle texture da mostrare
+int idSymbolicTexture = 1;							// ID di mapping per scegliere quali texture mostrare dai sensori
+int lastSensorialSelection = -1;					// Indice dell'ultima selezione nel modulo sensoriale effettuata, il default ï¿½ -1
+map<int, string> mapTexture;						// Mappa che associa ad ogni elemento della gui una texture
+map<int, string> mapTextureName;					// Nome delle texture da mostrare
 map<int, string> mapBere;
 map<int, string> mapBereName;
 map<int, string> mapCaldo;
@@ -121,16 +113,14 @@ map<int, string> mapCiboName;
 map<int, string> mapSpeller;
 map<int, string>* mapVector;
 map<int, string>* mapVectorName;
-bool spellingOn = false;						// Booleano che indica che è in corso lo speller
-bool spellingController = false;				// Booleano attivo quando si avvia lo speller dalla modalità sensoriale
-bool tobiienabled;								// SLB from readConfig, replaces tobii event
-//bool featuresenabled;							// SLB TODO temp variable for epyegy/r^2 testing
+bool spellingOn = false;							// Booleano che indica che ï¿½ in corso lo speller
+bool spellingController = false;					// Booleano attivo quando si avvia lo speller dalla modalitï¿½ sensoriale
+bool tobiienabled;									// SLB from readConfig, replaces tobii event
+//bool featuresenabled;								// SLB TODO temp variable for epyegy/r^2 testing
 
 bool firstFlash = true;
 bool startFramework = false;
-//bool memoryInformation [] = {false, false, false, false, false}; //booleano relativo alle informazioni in memoria
-map<int, bool> memoryInformation;				// SLB replaces the bool array above
-// Ogni lettera è larga al massimo 0,5cm, e per essere riportata al centro deve essere spostata di + 0.095f
+map<int, bool> memoryInformation;	// SLB
 
 string testoPre;					// Stringa di testo da visualizzare
 string testoProcessed;				// Stringa di testo processata
@@ -146,13 +136,12 @@ bool customPalette;
 // ------------------------------------------------------------------------------------------
 // -------------------------------- Parametri per il modulo sensoriale-----------------------
 // ------------------------------------------------------------------------------------------
-
 const string API_WEATHER_KEY="ccb404257f4bcca45076537726e2deff";
 
-string city;		//città di digitazione
+string city;		//citta' di digitazione
 float temperature;	//temperatura
 string description;	//descrizione tempo
-float wind;			//velocità vento
+float wind;			//velocita' vento
 
 // ------------------------------------------------------------------------------------------
 // --------------------------- Parametri per il canvas --------------------------------------
@@ -176,16 +165,15 @@ static int g_xClick = 0;
 // ------------------------------------------------------------------------------------------
 // -------------------------------- Codici per l'interfaccia --------------------------------
 // ------------------------------------------------------------------------------------------
-
 #define START_CALIBRATION 100	// Codice che indica l'inizio della calibrazione
 #define END_CALIBRATION -100	// Codice che indica la fine della calibrazione
 #define START_STIMULUS 200		// Codice che indica l'inizio di uno stimolo
 #define END_STIMULUS -200		// Codice che indica la fine di uno stimolo
-#define FLASH_RC 300			// Codice che indica che la modalità di flash sarà righe e colonne
-#define FLASH_S 400				// Codice che indica che la modalità di flash sarà singolo quadrato
-#define RESTART_RC 500			// Codice che indica che ricomincerà la modalità righe e colonne
-//#define	BASELINE_ACQ 550		// SLB
-#define RESTART_S 600			// Codice che indica che ricomincerà la modalità singolo quadrato
+#define FLASH_RC 300			// Codice che indica che la modalitï¿½ di flash sarï¿½ righe e colonne
+#define FLASH_S 400				// Codice che indica che la modalitï¿½ di flash sarï¿½ singolo quadrato
+#define RESTART_RC 500			// Codice che indica che ricomincerï¿½ la modalitï¿½ righe e colonne
+//#define	BASELINE_ACQ 550	// SLB
+#define RESTART_S 600			// Codice che indica che ricomincerï¿½ la modalitï¿½ singolo quadrato
 #define START_SPELLER 700		// Codice che indica all'interfaccia l'inizio dello speller
 #define END_SPELLER -700		// Codice che indica all'interfaccia la fine dello speller
 #define START_FRAMEWORK 650		// Codice che indica l'avvio del framework
@@ -194,7 +182,6 @@ static int g_xClick = 0;
 // -----------------------------------------------------------------------------------------
 // --------------------------------- Codici per la socket ----------------------------------
 // -----------------------------------------------------------------------------------------
-
 #define ASIO_STANDALONE 
 #define ASIO_HAS_STD_ADDRESSOF
 #define ASIO_HAS_STD_ARRAY
@@ -205,7 +192,6 @@ static int g_xClick = 0;
 // ------------------------------------------------------------------------------------------
 // ---------------------- Inizio della sezione riguardante i quadrati -----------------------
 // ------------------------------------------------------------------------------------------
-
 P300Square** squaresVector;			// Vettore di quadrati
 P300Row** rowsVector;				// Vettore delle righe
 P300Interface* interface;			// Interfaccia grafica
@@ -237,34 +223,35 @@ float posx = 0;
 // -----------------------------------------------------------------------------
 // -------------------- Inizio sezione flash -----------------------------------
 // -----------------------------------------------------------------------------
-int *counterSquares;		 // Contatore di flash dei quadrati
-int *counterRows;			 // Contatore di flash delle righe
+int *counterSquares;		// Contatore di flash dei quadrati
+int *counterRows;			// Contatore di flash delle righe
 int *counterColumns;		// Contatore di flash delle colonne
 
-int stackIndex = 0; // Indice dello stack delle righe e delle colonne
+int stackIndex = 0;			// Indice dello stack delle righe e delle colonne
 
-bool *showSquare;		// vettore indicante quali quadrati sono flashati
-bool *showRow;			// vettore indicante quali righe sono flashate
-bool *showColumn;		// vettore indicante quali colonne sono flashate
+bool *showSquare;			// vettore indicante quali quadrati sono flashati
+bool *showRow;				// vettore indicante quali righe sono flashate
+bool *showColumn;			// vettore indicante quali colonne sono flashate
 
 void flashSquare(int);		// Funzione che flasha un quadrato
 void flashRC(int);			// Funzione che flasha righe e colonne
 
-bool firstTime = true;		  // booleano che indica quando l'interfaccia viene avviata
-int selectedRow = 0;		  // codice della riga selezionata
-int selectedColumn = 0;		  // codice della colonna selezionata
+bool firstTime = true;		// booleano che indica quando l'interfaccia viene avviata
+int selectedRow = 0;		// codice della riga selezionata
+int selectedColumn = 0;		// codice della colonna selezionata
 
 // Per fare flashare randomicamente righe e colonne usiamo uno stack
 // riempito randomicamente e che usiamo per selezionare quali indici flashare
-stack <int> flashHelperRC; // Stack per righe e colonne
-stack <int> flashHelperS;	  // Stack per i quadrati
+stack <int> flashHelperRC;	// Stack per righe e colonne
+stack <int> flashHelperS;	// Stack per i quadrati
 
-void fillStackS();	// Funzione che riempie lo stack dei flash per i quadrati
-void fillStackRC();	// Funzione che riempie lo stack dei flash per righe e colonne
+void fillStackS();			// Funzione che riempie lo stack dei flash per i quadrati
+void fillStackRC();			// Funzione che riempie lo stack dei flash per righe e colonne
 
-void initCounterSquare(); // Funzione che setta a zero il contatore di flash dei quadrati
-void initCounterRow();	  // Funzione che setta a zero il contatore di flash delle righe
-void initCounterColumn(); // Funzione che setta a zero il contatore di flash delle colonne
+void initCounterSquare();	// Funzione che setta a zero il contatore di flash dei quadrati
+void initCounterRow();		// Funzione che setta a zero il contatore di flash delle righe
+void initCounterColumn();	// Funzione che setta a zero il contatore di flash delle colonne
+
 // ------------------------------------------------------------------------------------------
 // ------------------------------ Funzioni per il rendering----------------------------------
 // ------------------------------------------------------------------------------------------
@@ -301,14 +288,14 @@ void reshape(GLint, GLint);					// Callback usata all'avvio della window
 // ------------------------------------------------------------------------------------------
 // --------------------------- Funzioni per la scritta a video ------------------------------
 // ------------------------------------------------------------------------------------------
-
-void printStringOnVideo(void*, char*);	// Funzione che stampa una stringa
-void drawOnScreen();					// Funzione che mostra la stringa a video
-void processText();						// Funzione che processa la stringa da visualizzare
-int selectTextureToShow();				// Funzione che ritorna quale texture mostrare
-void updateTestoSpelling();				// Funzione che aggiorna la stringa da mostrare a testo
+void printStringOnVideo(void*, char*);		// Funzione che stampa una stringa
+void drawOnScreen();						// Funzione che mostra la stringa a video
+void processText();							// Funzione che processa la stringa da visualizzare
+int selectTextureToShow();					// Funzione che ritorna quale texture mostrare
+void updateTestoSpelling();					// Funzione che aggiorna la stringa da mostrare a testo
 void rebuildMainWindow(int);
-void setTexturesFromMemory();			// SLB
+void setTexturesFromMemory();				// SLB
+
 // ------------------------------------------------------------------------------------------
 // ------------------------------ Funzioni ausiliarie varie ---------------------------------
 // ------------------------------------------------------------------------------------------
@@ -317,14 +304,13 @@ void sendToServer(int);		// Funzione che invia un comando al server
 void initializeAll();		// Funzione che inizializza path, array e puntatori
 void deleteAll();			// Funzione che cancella tutti i puntatori
 void readConfiguration();	//leggo il file xml di configurazione
+
 // ------------------------------------------------------------------------------------------
 // ------------------------------ Funzioni per la socket -- ---------------------------------
 // ------------------------------------------------------------------------------------------
-
 DWORD WINAPI createSocket(LPVOID);		// Funzione che crea la socket
 size_t write_to_string(void*, size_t, size_t, void*);
 int getOnlineParameters();	//Leggo i dati online per conoscere i parametri
-//void getMemoryInformation(bool&); //leggo le informazioni dalla memoria;
 void getMemoryInformation(); // SLB
 
 void updateXML(int); //metodo per aggiornare il file xml della memoria
