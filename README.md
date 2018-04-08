@@ -4,8 +4,8 @@
 Copyright (C) 2017 Salvatore La Bua [slabua(at)gmail.com](mailto:slabua@gmail.com)  
 RoboticsLab, Department of Industrial and Digital Innovation (DIID),  
 Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.  
-http://www.slblabs.com/projects/unipa-bci-framework  
-https://github.com/slabua/UniPABCIFramework  
+[http://www.slblabs.com/projects/unipa-bci-framework][U01]  
+[https://github.com/slabua/UniPABCIFramework][U02]  
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -119,6 +119,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 [GPLimg]: https://img.shields.io/badge/License-GPLv3-blue.svg
 [GPLurl]: https://www.gnu.org/licenses/gpl-3.0
+[U01]: http://www.slblabs.com/projects/unipa-bci-framework
+[U02]: https://github.com/slabua/UniPABCIFramework
 [R01]: https://goo.gl/buaKOv
 [R02]: https://goo.gl/ZGJKXZ
 [R03]: https://goo.gl/M0ju0s
