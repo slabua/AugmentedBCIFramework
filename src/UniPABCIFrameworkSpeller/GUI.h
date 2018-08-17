@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'� degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -89,7 +89,7 @@ float backGroundColor[] = { 0.024, 0.059, 0.259, 0.5 };		// Colore di sfondo
 float textColor[] = { 1, 1, 0 };					// Colore del testo
 bool symbolicTexture = true;						// TRUE = texture dai sensori, FALSE = texture alfabetiche
 int idSymbolicTexture = 1;							// ID di mapping per scegliere quali texture mostrare dai sensori
-int lastSensorialSelection = -1;					// Indice dell'ultima selezione nel modulo sensoriale effettuata, il default � -1
+int lastSensorialSelection = -1;					// Indice dell'ultima selezione nel modulo sensoriale effettuata, default -1
 map<int, string> mapTexture;						// Mappa che associa ad ogni elemento della gui una texture
 map<int, string> mapTextureName;					// Nome delle texture da mostrare
 map<int, string> mapBere;
@@ -113,8 +113,8 @@ map<int, string> mapCiboName;
 map<int, string> mapSpeller;
 map<int, string>* mapVector;
 map<int, string>* mapVectorName;
-bool spellingOn = false;							// Booleano che indica che � in corso lo speller
-bool spellingController = false;					// Booleano attivo quando si avvia lo speller dalla modalit� sensoriale
+bool spellingOn = false;							// Booleano che indica che e' in corso lo speller
+bool spellingController = false;					// Booleano attivo quando si avvia lo speller dalla modalita' sensoriale
 bool tobiienabled;									// SLB from readConfig, replaces tobii event
 //bool featuresenabled;								// SLB TODO temp variable for epyegy/r^2 testing
 
@@ -169,11 +169,11 @@ static int g_xClick = 0;
 #define END_CALIBRATION -100	// Codice che indica la fine della calibrazione
 #define START_STIMULUS 200		// Codice che indica l'inizio di uno stimolo
 #define END_STIMULUS -200		// Codice che indica la fine di uno stimolo
-#define FLASH_RC 300			// Codice che indica che la modalit� di flash sar� righe e colonne
-#define FLASH_S 400				// Codice che indica che la modalit� di flash sar� singolo quadrato
-#define RESTART_RC 500			// Codice che indica che ricomincer� la modalit� righe e colonne
+#define FLASH_RC 300			// Codice che indica che la modalita' di flash sara' righe e colonne
+#define FLASH_S 400				// Codice che indica che la modalita' di flash sara' singolo quadrato
+#define RESTART_RC 500			// Codice che indica che ricomincera' la modalita' righe e colonne
 //#define	BASELINE_ACQ 550	// SLB
-#define RESTART_S 600			// Codice che indica che ricomincer� la modalit� singolo quadrato
+#define RESTART_S 600			// Codice che indica che ricomincera' la modalita' singolo quadrato
 #define START_SPELLER 700		// Codice che indica all'interfaccia l'inizio dello speller
 #define END_SPELLER -700		// Codice che indica all'interfaccia la fine dello speller
 #define START_FRAMEWORK 650		// Codice che indica l'avvio del framework

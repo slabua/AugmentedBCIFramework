@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'� degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -132,10 +132,10 @@ void P300Square::setTexture(bool func) {
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //aumento qualit�
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //aumento qualita'
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
-	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL); //aumento luminosita
+	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL); //aumento luminosita'
 	glColor3ub(50, 50, 50);
 	
 	glEnable(GL_BLEND);

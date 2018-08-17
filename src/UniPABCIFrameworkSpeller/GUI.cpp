@@ -4,7 +4,7 @@
 * 
 * Copyright (C) 2016-2017 Salvatore La Bua (slabua@gmail.com)
 * RoboticsLab, Department of Industrial and Digital Innovation (DIID),
-* Universita'� degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
+* Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 * 
 * http://www.slblabs.com/projects/unipa-bci-framework
 * https://github.com/slabua/UniPABCIFramework
@@ -819,7 +819,7 @@ void flashRC(int val) {
 					showSquare[tmp + (i * rowsNumber)] = !showSquare[tmp + (i * rowsNumber)];
 				}
 			}
-			else { // � una riga
+			else { // e' una riga
 				showRow[tmp] = !showRow[tmp];
 				if (showRow[tmp]) { // Aumenta il contatore e manda l'ID della riga 
 					counterRows[tmp]++;
@@ -867,8 +867,8 @@ void flashRC(int val) {
 }
 
 void fillStackRC() {
-	// La funzione si basa sul fatto che l'inserimento nello stack � sequenziale,
-	// dunque il primo elemento sulla cima dello stack sar� sicuramente una colonna.
+	// La funzione si basa sul fatto che l'inserimento nello stack e' sequenziale,
+	// dunque il primo elemento sulla cima dello stack sara' sicuramente una colonna.
 	int* tmpr = new int[rowsNumber*numberOfFlash]; // Vettore di permutazione delle righe
 	int* tmpc = new int[rowsNumber*numberOfFlash]; // Vettore di permutazione delle colonne
 	
@@ -1487,7 +1487,7 @@ DWORD WINAPI createSocket(LPVOID lpParameter) {
 
 							//sendCommandToRobot(res); // SLB TODO CHECK here GEMINOID INTERFACE
 
-							if (symbolicTexture) //se � attivo il modulo dei sensori, potrei voler modificare l'interfaccia
+							if (symbolicTexture) //se e' attivo il modulo dei sensori, potrei voler modificare l'interfaccia
 								rebuildInterface(res);
 							else {
 								if (res == CHIUDI) { //devo uscire dall'interfaccia
@@ -1594,7 +1594,7 @@ void rebuildMainWindow(int res) {
 
 // SLB
 void setTexturesFromMemory() {
-	if (memoryInformation[FINESTRA]) { //se dalla memoria sappiamo gi� che la finestra � aperta
+	if (memoryInformation[FINESTRA]) { //se dalla memoria sappiamo gia' che la finestra e' aperta
 		mapTexture[FINESTRA] = "windowClose";
 		mapTextureName[FINESTRA] = "CLOSE THE WINDOW";
 	}
@@ -1603,7 +1603,7 @@ void setTexturesFromMemory() {
 		mapTextureName[FINESTRA] = "OPEN THE WINDOW";
 	}
 	
-	if (memoryInformation[PORTA]) { //se l'indice booleano della porta � aperta,
+	if (memoryInformation[PORTA]) { //se l'indice booleano della porta e' aperta,
 		mapTexture[PORTA] = "doorClose";
 		mapTextureName[PORTA] = "CLOSE THE DOOR";
 	}
@@ -1872,7 +1872,7 @@ int main(int argc, char** argv) {
 	// Initialize OpenGL graphics state
 	/*
 	glEnable(GL_DEPTH_TEST); // Abilita il controllo sullo z-buffer
-	glDepthFunc(GL_LEQUAL);  // Ordina sullo z-buffer dal pi� lontano al pi� vicino
+	glDepthFunc(GL_LEQUAL);  // Ordina sullo z-buffer dal piu' lontano al piu' vicino
 	glShadeModel(GL_FLAT);   // Usa il modello dolce per gli shader
 	glEnable(GL_BLEND);
 	glEnable(GL_POINT_SMOOTH);
