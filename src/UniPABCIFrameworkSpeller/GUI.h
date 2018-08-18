@@ -136,7 +136,8 @@ bool customPalette;
 // ------------------------------------------------------------------------------------------
 // -------------------------------- Parametri per il modulo sensoriale-----------------------
 // ------------------------------------------------------------------------------------------
-const string API_WEATHER_KEY="ccb404257f4bcca45076537726e2deff";
+//const string API_WEATHER_KEY="ccb404257f4bcca45076537726e2deff"; // SLB moved to config file
+string API_WEATHER_KEY; // SLB
 
 string city;		//citta' di digitazione
 float temperature;	//temperatura

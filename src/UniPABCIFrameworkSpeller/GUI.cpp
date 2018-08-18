@@ -947,6 +947,7 @@ void readConfiguration() {
 	pugi::xml_parse_result result = doc.load_file((configFilesRoot + "/configuration.xml").c_str()); // SLB
 
 	if (result)	{
+		API_WEATHER_KEY = doc.child("openweathermap_apikey").first_child().value(); // SLB
 		elements		= atoi(doc.child("elements").first_child().value());
 		rowsNumber		= atoi(doc.child("row_num_interface").first_child().value());
 		squaresNumber	= rowsNumber*rowsNumber;

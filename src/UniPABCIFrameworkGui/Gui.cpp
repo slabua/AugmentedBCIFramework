@@ -2918,6 +2918,8 @@ void Gui::initiateConfiguration() {
 		doc.append_child("target").append_child("t").append_child(pugi::node_pcdata).set_value("1");
 		doc.child("target").append_child("t").append_child(pugi::node_pcdata).set_value("2");
 		
+		doc.append_child("openweathermap_apikey").append_child(pugi::node_pcdata).set_value("ccb404257f4bcca45076537726e2deff");
+
 		doc.append_child("palette_string").append_child(pugi::node_pcdata).set_value(texturesString.c_str());;
 		
 		doc.append_child("texture");
