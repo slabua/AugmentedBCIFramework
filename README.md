@@ -126,8 +126,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 [R03]: https://goo.gl/M0ju0s
 [R04]: https://goo.gl/EcMujd
 [R05]: https://goo.gl/lrbjgy
-[S01]: https://goo.gl/Tej47J
-[S02]: https://goo.gl/pVfrwR
+[S01]: https://goo.gl/W9aJWS
+[S02]: https://goo.gl/WdxwLW
 [S03]: https://goo.gl/XXEwuC
 [S04]: https://goo.gl/7heD6Y
 [S05]: https://goo.gl/vYPKYe
