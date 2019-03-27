@@ -94,6 +94,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+Note:
+The graphic icons used in the Main interface, Baseline Acquisition interface, 
+and the Game Session controller are provided through [The Noun Project](https://thenounproject.com/),
+by (in alphabetical order) [comkro](https://thenounproject.com/comkro/), [daouna](https://thenounproject.com/daouna/), [petervandriel](https://thenounproject.com/petervandriel/) and [rose-alice-design](https://thenounproject.com/rose-alice-design/).
+
 ## Screenshots
 
 ### BCI Framework main interface
