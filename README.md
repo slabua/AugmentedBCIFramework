@@ -13,6 +13,7 @@ Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
 
 - [Introduction to the Project](#introduction-to-the-project)
 - [Some information about UniPA BCI Framework](#some-information-about-unipa-bci-framework)
+- [How to cite](#how-to-cite)
 - [Design and Implementation of Modules for the Extraction of Biometric Parameters in an Augmented BCI Framework](#design-and-implementation-of-modules-for-the-extraction-of-biometric-parameters-in-an-augmented-bci-framework)
   - [Thesis Abstract](#thesis-abstract)
 - [Resources](#resources)
@@ -48,6 +49,17 @@ Universita' degli Studi di Palermo, V. delle Scienze, Palermo, Italy.
   P300 paradigm, but it also considers useful information, such as the user
   visual focus and her level of engagement with the system, providing a more
   robust and effective global response.
+
+## How to cite
+
+Thesis:
+```
+S. La Bua, “Design and Implementation of Modules for the Extraction of Biometric Parameters in an Augmented BCI Framework,” Master degree dissertation submitted to Universita' degli Studi di Palermo, Palermo, Italy, 2017.
+```
+GitHub repository:
+```
+S. La Bua, UniPA BCI Framework, (2017), GitHub repository, https://github.com/slabua/UniPABCIFramework
+```
 
 ## Design and Implementation of Modules for the Extraction of Biometric Parameters in an Augmented BCI Framework
 
